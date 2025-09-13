@@ -1,0 +1,16 @@
+
+MainController(
+		input Integer signal BottleQuantity;
+        input Integer signal LiquidAmount1;
+        input Integer signal LiquidAmount2;
+		output signal O;
+		)
+->{
+        while(true) {
+           	waitl(2 s);
+            System.out.println(#BottleQuantity);
+            pause;
+        }
+        
+ 
+    }

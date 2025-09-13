@@ -1,0 +1,11 @@
+<System xmlns="http://systemjtechnology.com">
+	<SubSystem Name="SS13" Local="true">
+		<ClockDomain Name="MainControllerCD" Class="MainController">
+			<iSignal Name="BottleQuantity" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10200" />
+			<iSignal Name="LiquidAmount1"  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10200" />
+			<iSignal Name="LiquidAmount2"  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10200" />
+		
+			<oSignal Name="O"  To="UI.O"   Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10007" />
+		</ClockDomain>
+	</SubSystem>
+</System>
