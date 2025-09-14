@@ -13,8 +13,6 @@
     <booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_START_ON_FIRST_THREAD" value="true"/>
     <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.systemj.SystemJRunner"/>
     <stringAttribute key="org.eclipse.jdt.launching.MODULE_NAME" value="COMPSYS704_Lab_3"/>
-    <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="sysj/controller.xml"/>
+    <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="sysj/simpleabro.xml"/>
     <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="COMPSYS704_Lab_3"/>
 </launchConfiguration>
-
-

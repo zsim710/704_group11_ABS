@@ -10,6 +10,8 @@ MainController(
            	waitl(2 s);
             System.out.println(#BottleQuantity);
             pause;
+            waitl(10 s);
+            emit O;
         }
         
  

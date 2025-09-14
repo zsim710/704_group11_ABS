@@ -26,6 +26,11 @@ public class Ports {
 	public static final String SIGNAL_LIQUID_AMOUNT_2 = "MainControllerCD.LiquidAmount2";
 	//public static final String SIGNAL_LIQUID_MIXTURE = "MainControllerCD.liquidMixture";
 
+	// Order completion signals from SystemJ
+	public static final int PORT_ORDER_COMPLETION = 10004;
+	public static final String SIGNAL_ORDER_COMPLETE = "MainControllerCD.OrderComplete";
+	public static final String SIGNAL_BATCH_FINISHED = "MainControllerCD.BatchFinished";
+
 	
 
 
