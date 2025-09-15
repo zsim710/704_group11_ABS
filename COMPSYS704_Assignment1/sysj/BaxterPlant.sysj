@@ -1,0 +1,61 @@
+import run.GUI;
+
+BaxterPlant(
+	input String signal CMD;
+	input signal failT;
+	output signal CMDfb, bottleAtLoad;
+	output signal POSA, POSB, POSC, POSD, GripDat;
+)->{
+	/* any signals to declare here */
+	
+	new Thread(new GUI()).start();
+	pause;
+	
+	while(true){ 
+//		System.out.println("1");
+		emit bottleAtLoad; 
+		
+		present(failT){
+			System.out.println("fail oii poopy");
+		}
+		
+		present(CMD) {
+			String command = (String)#CMD;
+			String[] parts = command.split(" ");
+			
+			//just print the string to console for now
+//			System.out.println(parts[0]);
+//			System.out.println(parts[1]);
+			System.out.println(parts[2]);
+			
+			// do smth depending on each command, emit smth to the GUI
+			if (parts[2].equals("A")) {
+				emit POSA;
+				//System.out.println("Position A is emitted");
+			} else if (parts[2].equals("B")) {
+				emit POSB;
+				//System.out.println("Position B is emitted");
+			} else if (parts[2].equals("C")) {
+				emit POSC;
+				//System.out.println("Position C is emitted");
+			} else if (parts[2].equals("D")) {
+				emit POSD;
+				//System.out.println("Position D is emitted");
+			}
+			
+			if(parts[2].equals("close")) {
+				emit GripDat; // gripper closed
+				//System.out.println("closed");
+				}	
+			
+//			waitl(100ms);
+		}
+
+		emit CMDfb;
+		//System.out.println("cmdfb emitted");
+		
+		
+		pause;
+	}
+}
+				

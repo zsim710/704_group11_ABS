@@ -1,0 +1,48 @@
+LidLoaderController(
+		input signal pusherRetracted,pusherExtended,WPgripped,armAtSource,armAtDest,empty,bottleAtPos3;
+		output signal pusherExtend,vacOn,armSource,armDest, lidLoaderReady;
+		input Integer signal mode;
+		)
+->{
+	while(true) {
+			abort(bottleAtPos3) {
+				sustain lidLoaderReady;
+			}
+			
+			abort(armAtDest) {
+				sustain armDest;
+			}
+			
+			abort(pusherExtended) {
+				sustain pusherExtend;
+			}
+			
+			abort(armAtSource) {
+				sustain armSource;
+			}
+			
+			{
+				abort(armAtDest){
+					sustain vacOn;
+				}
+			}
+			
+			||
+			
+			{
+				await(WPgripped);
+				abort(armAtDest) {
+					sustain armDest;
+				}
+			}
+			
+			abort(armAtSource) {
+				sustain armSource;
+			}
+			
+		}
+		
+		System.out.println("lid loader done");
+		emit lidLoaderReady;
+		await(!bottleAtPos3);
+	}

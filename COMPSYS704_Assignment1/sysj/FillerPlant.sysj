@@ -1,0 +1,79 @@
+FillerPlant(
+input signal enableFP, valveInjectorOn, valveInletOn, dosUnitValveRetract, dosUnitValveExtend;
+input Integer signal LiquidAmount1FP, LiquidAmount2FP;
+output signal dosUnitEvac,dosUnitFilled;
+)->{
+	
+	signal filler1, filler2, filler2Complete, filler1Complete;
+	int signal currentFiller;
+	
+	emit currentFiller(1);
+	
+	{
+	abort(filler2Complete) {
+		pause;
+
+		loop {
+			
+			await(valveInjectorOn && enableFP);
+			System.out.println("starting filler " + (Integer)#currentFiller);
+			// injector turned on
+			
+			// if dosUnitValveRetract present then we sustain dosUnitFilled(at the top).
+			// we stop sustaining (at the top) when controller forces pressure canister down
+			await(!enableFP);
+			
+			abort(dosUnitValveExtend && enableFP){
+					present(dosUnitValveRetract){
+						System.out.println("reached here 1");
+						sustain dosUnitFilled;
+					}
+			}
+			System.out.println("left abort 1");
+
+			
+			await(!enableFP);
+			// will sustain (at bottom) until they turn off the valve.
+			abort(!valveInletOn && enableFP) {
+					present(dosUnitValveExtend){
+						System.out.println("reached here 2");
+						sustain dosUnitEvac;
+					}
+			}
+			System.out.println("left abort 2");
+
+			await(!enableFP);
+			
+			if ((Integer)#currentFiller == 1) {
+				System.out.println("filler 1 complete, filled " + ((Integer)#LiquidAmount1FP) + "%");
+			}
+			else if ((Integer)#currentFiller == 2) {
+				System.out.println("filler 2 complete, filled " + ((Integer)#LiquidAmount2FP) + "%");
+			}
+			
+			await(enableFP);
+			emit currentFiller((Integer)#currentFiller + 1);
+			System.out.println("looped");
+			await(!enableFP);
+		}
+
+	}
+	
+	System.out.println("all fillers complete");
+	}
+	||
+	{
+		while(true) {	
+			pause;
+			if((Integer)#currentFiller == 2) {
+			emit filler2; 
+			} else if ((Integer)#currentFiller == 1) {
+				emit filler1;
+			} else { // means filler is all complete
+				emit filler2Complete;
+				emit currentFiller(1); // reset current filler
+			}
+		}
+	}
+
+}

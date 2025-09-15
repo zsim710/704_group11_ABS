@@ -1,0 +1,18 @@
+<System xmlns="http://systemjtechnology.com">
+	<SubSystem Name="SS3" Local="true">
+		<ClockDomain Name="ConveyorControllerCD" Class="ConveyorController">
+			<!--
+			<iSignal Name="bottleAtLoad"  	 	 Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="40000" />
+			<iSignal Name="bottleAtPos1ConvC"  	 	 Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="40000" />
+			
+			<iSignal Name="bottleLeftPos5ConvC"  	 Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="40000" />
+			-->
+		
+			<iSignal Name="wsActiveConvC"  	 			 Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="40000" />
+			<iSignal Name="bottleTotalConvC"  	 			 Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="40000" />
+			<iSignal Name="BatchQuantityConvC"  	 			 Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="40000" />		
+			
+			<oSignal Name="motConveyorOn" 	 To="ConveyorPlantCD.motConveyorOn" 	  Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40001" />
+		</ClockDomain>
+	</SubSystem>
+</System>

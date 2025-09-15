@@ -1,0 +1,34 @@
+ConveyorController(
+		input signal bottleAtLoad, bottleAtPos1ConvC, bottleLeftPos5ConvC; // these are input signals from ConveyorControllerCD
+		input Integer signal wsActiveConvC, bottleTotalConvC, BatchQuantityConvC;
+		
+		output signal motConveyorOn;
+		)
+->
+{	
+		
+	while (true){
+			await(bottleAtLoad); 
+			
+			if ((Integer)#wsActiveConvC > 4) {
+				abort(bottleAtPos1ConvC && bottleLeftPos5ConvC) {
+					sustain motConveyorOn; 
+				}
+			}
+			
+			else if ((Integer)#wsActiveConvC < 4  && (Integer)#bottleTotalConvC < (Integer)#BatchQuantityConvC) {
+				abort(bottleAtPos1ConvC) {
+					sustain motConveyorOn; 
+				}
+			}
+			
+			else {
+				abort(bottleLeftPos5ConvC) {
+					sustain motConveyorOn; 
+				}
+			}
+			System.out.println("conveyor not moving");
+
+	}
+
+}

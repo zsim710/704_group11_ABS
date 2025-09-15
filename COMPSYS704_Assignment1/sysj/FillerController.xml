@@ -1,0 +1,18 @@
+<System xmlns="http://systemjtechnology.com">
+
+	<SubSystem Name="SS7" Local="true">
+		<ClockDomain Name="FillerControllerCD" Class="FillerController">
+		
+<!--		<iSignal Name="bottleAtPos2" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="33000" />-->
+		<iSignal Name="dosUnitEvac"	  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="33000" />
+		<iSignal Name="dosUnitFilled" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="33000" />
+
+		<oSignal Name="fillerReady" 			To="RotaryControllerCD.fillerReady" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10003" />
+		<oSignal Name="valveInjectorOn"  		To="FillerPlantCD.valveInjectorOn"  	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="34000" />
+		<oSignal Name="valveInletOn"  			To="FillerPlantCD.valveInletOn"  	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="34000" />
+		<oSignal Name="dosUnitValveRetract"  	To="FillerPlantCD.dosUnitValveRetract"  	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="34000" />
+		<oSignal Name="dosUnitValveExtend"  	To="FillerPlantCD.dosUnitValveExtend"  	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="34000" />
+		</ClockDomain>
+	</SubSystem>
+	
+</System>

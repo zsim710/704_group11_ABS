@@ -1,0 +1,56 @@
+CapperPlant(
+		input signal cylPos5ZaxisExtend, gripperTurnRetract, gripperTurnExtend, capGripperPos5Extend, cylClampBottleExtend;
+		input signal enableCapP; //from GUI
+		output signal gripperZAxisLowered, gripperZAxisLifted, gripperTurnHomePos, gripperTurnFinalPos;
+		output signal bottleAtPos4E, gripperZAxisLoweredE, gripperZAxisLiftedE, gripperTurnHomePosE, gripperTurnFinalPosE, capIsGrippedE;
+		)
+->
+{
+
+	{
+		while(true) {
+			
+			await(enableCapP);
+			abort(cylPos5ZaxisExtend) {
+				System.out.println("sustaining gripper at top");
+				sustain gripperZAxisLifted;
+			}
+			System.out.println("abort 1");
+
+			await(!enableCapP);
+			System.out.println("reached here 1");
+			await(enableCapP);
+			System.out.println("aborted gripper at top");
+
+			await(!enableCapP);
+			System.out.println("reached here 2");
+			await(enableCapP);
+			abort(!cylPos5ZaxisExtend) {
+				System.out.println("gripper at bottom");
+				sustain gripperZAxisLowered;
+			}
+		}
+
+	}
+	
+	||
+	
+	{ 
+		while(true) {
+		
+			abort (gripperTurnExtend) {
+				System.out.println("home");
+				sustain gripperTurnHomePos;
+			}
+		
+			abort(gripperTurnRetract) {
+				System.out.println("final");
+				sustain gripperTurnFinalPos;
+			}
+		}
+	}
+
+}
+
+
+

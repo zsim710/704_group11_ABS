@@ -1,0 +1,72 @@
+CapperController(
+		input signal bottleAtPos4, gripperZAxisLowered, gripperZAxisLifted, gripperTurnHomePos, gripperTurnFinalPos;
+		output signal capperReady, cylPos5ZaxisExtend, gripperTurnRetract, gripperTurnExtend, capGripperPos5Extend, cylClampBottleExtend;
+		
+)-> {
+	
+	
+	loop{
+			abort(bottleAtPos4) {
+				sustain capperReady;
+			}
+					
+			trap(T){
+				
+				{
+					System.out.println("lowering");
+					sustain cylPos5ZaxisExtend;
+				}
+				
+				||
+				
+				{
+					System.out.println("clamped");
+					sustain cylClampBottleExtend;
+				}
+				
+				||
+				
+				{
+					System.out.println("reached here 3");
+					await(gripperZAxisLowered);
+					
+					{
+						System.out.println("gripped");
+						sustain capGripperPos5Extend;
+					}
+					
+					||
+					
+					{	
+						pause;
+						System.out.println("twisting");
+						sustain gripperTurnExtend;
+					}
+					
+					||
+					
+					{
+						await(gripperTurnFinalPos);
+						System.out.println("fully twisted");
+						exit(T);
+					}
+				}
+			}
+			System.out.println("ungripped");
+			System.out.println("unclamped");
+			System.out.println("raising");
+			
+			abort(gripperTurnHomePos) {
+				System.out.println("untwisting");
+				sustain gripperTurnRetract;
+			}
+			System.out.println("fully untwisted");
+
+			await(gripperZAxisLifted);
+			System.out.println("at top");
+			emit capperReady;
+			System.out.println("capperReady signal sent");
+			await(!bottleAtPos4);
+		}
+		
+	}

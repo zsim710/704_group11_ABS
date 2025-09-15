@@ -1,0 +1,55 @@
+MainController(
+input signal bottleAtPos1M,bottleLeftPos5M;
+input Integer signal BatchQuantity, LiquidAmount1, LiquidAmount2; 
+
+output Integer signal wsActive, wsActiveRC, wsActiveRP, bottleTotal, bottleTotalRC, bottleTotalRP, BatchQuantityRC, BatchQuantityRP, LiquidAmount1FP, LiquidAmount2FP;
+)->{
+	{
+
+		loop {	
+			
+				present(bottleAtPos1M) {
+					emit wsActive((Integer)#wsActive + 1); 
+					emit bottleTotal((Integer)#bottleTotal + 1); 
+				}
+				
+				present(bottleLeftPos5M) {
+					emit wsActive((Integer)#wsActive - 1); 
+				}
+				pause;
+		}
+	}
+	||
+	{
+		loop {
+			present(wsActive) {
+				emit wsActiveRC(#wsActive);
+				emit wsActiveRP(#wsActive);
+			}
+			
+			present(bottleTotal) {
+				emit bottleTotalRC(#bottleTotal);
+				emit bottleTotalRP(#bottleTotal);
+			}
+			
+			present(BatchQuantity) {
+				emit BatchQuantityRC(#BatchQuantity);
+				emit BatchQuantityRP(#BatchQuantity);
+			}
+			pause;
+		}
+	}
+	||
+	{ 
+		loop {
+//			if (Integer)#bottleTotal =< ((Integer)#BatchQuantity + 2)) {
+				emit LiquidAmount1FP;
+				emit LiquidAmount2FP;
+				pause;
+//			/}
+		}
+	}
+
+}
+	
+

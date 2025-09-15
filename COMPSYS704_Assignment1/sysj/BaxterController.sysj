@@ -1,0 +1,48 @@
+BaxterController(
+	input signal fail, CMDfb;
+	output String signal CMD;
+	output signal failT;
+)->{
+
+// bottle loader
+/* default is the gripper open */
+	while(true) {
+		
+			while(true) {
+				pause;
+				suspend(fail){
+
+					
+					/* step 2: lowers the arm to pos B */
+					emit CMD("limb_moveto left_limb B");
+					await(CMDfb);
+					
+					/* step 3: closes gripper */
+					emit CMD("limb_gripper left_limb close");
+					await(CMDfb);
+					
+					/* step 4: move arm to turntable, pos C */
+					emit CMD("limb_moveto left_limb C");
+					await(CMDfb);
+					
+					/* step 5: move arm to right height, pos D */
+					emit CMD("limb_moveto left_limb D");
+					await(CMDfb);
+					
+					/* step 6: open gripper */
+					emit CMD("limb_gripper left_limb open");
+					await(CMDfb);
+					
+					/* step 7: move arm back to pickup location */
+					emit CMD("limb_moveto left_limb A");
+					//waitl(100 ms);
+			//		pause; 
+//					await(CMDfb);		
+					}
+					
+				}
+			present(fail) {
+				System.out.println("fail oii poopy");
+			}
+	}
+}

@@ -1,0 +1,26 @@
+<System xmlns="http://systemjtechnology.com">
+
+	<SubSystem Name="SS13" Local="true">
+		<ClockDomain Name="MainControllerCD" Class="MainController">
+		
+		<iSignal Name="bottleAtPos1M"	  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="53000" />
+		<iSignal Name="bottleLeftPos5M" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="53000" />
+		<iSignal Name="BatchQuantity" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="53000" />
+		<iSignal Name="LiquidAmount1FP" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="53000" />
+		<iSignal Name="LiquidAmount2Fp" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="53000" />
+
+		<oSignal Name="wsActive"  		To="UI.wsActive"  	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10011" />
+		<oSignal Name="wsActiveRC"  			To="RotaryControllerCD.wsActiveRC"  	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10003" />
+		<oSignal Name="wsActiveRP"  	To="RotaryPlantCD.wsActive"  	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10004" />
+		<oSignal Name="bottleTotal"  	To="UI.bottleTotal"  	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10011" />
+		<oSignal Name="bottleTotalRC" To="RotaryControllerCD.bottleTotalRC" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10003" />
+		<oSignal Name="bottleTotalRP" To="RotaryPlantCD.bottleTotalRP" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10004" />
+		<oSignal Name="BatchQuantityRC" To="RotaryControllerCD.BatchQuantityRC" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10003" />
+		<oSignal Name="BatchQuantityRC" To="RotaryPlantCD.BatchQuantityRC" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10004" />
+		<oSignal Name="LiquidAmount1" To="FillerControllerCD.LiquidAmount1" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="33000" />
+		<oSignal Name="LiquidAmount2" To="FillerControllerCD.LiquidAmount2" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="33000" />
+
+		</ClockDomain>
+	</SubSystem>
+	
+</System>

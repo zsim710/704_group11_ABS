@@ -1,0 +1,17 @@
+<System xmlns="http://systemjtechnology.com">
+	<SubSystem Name="SS12" Local="true">
+		<ClockDomain Name="BaxterPlantCD" Class="BaxterPlant">
+			<iSignal Name="CMD" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10002" />
+			<iSignal Name="failT" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10002" />
+			<oSignal Name="CMDfb" To="BaxterControllerCD.CMDfb" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+			<oSignal Name="bottleAtLoad" To="BaxterControllerCD.bottleAtPoint" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
+
+			<oSignal Name="POSA" To="UI.POSA" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />
+            <oSignal Name="POSB" To="UI.POSB" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />
+            <oSignal Name="POSC" To="UI.POSC" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />
+            <oSignal Name="POSD" To="UI.POSD" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />
+            <oSignal Name="GripDat" To="UI.GripDat" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />
+
+		</ClockDomain>
+	</SubSystem>
+</System>

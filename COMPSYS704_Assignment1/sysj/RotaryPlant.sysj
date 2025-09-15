@@ -1,0 +1,83 @@
+import run.GUI;
+
+RotaryPlantCD(
+	input signal rotaryTableTrigger, rotated;
+	input Integer signal wsActiveRP, bottleTotalRP, BatchQuantityRP;
+	output signal tableAlignedWithSensor, rotation, bottleAtPos2, bottleAtPos3, bottleAtPos4, bottleAtPos5;
+	)->{
+		
+		new Thread(new GUI()).start();
+		pause;
+		
+		{
+			// rotary motor function
+			while(true){
+			pause;
+				suspend(rotaryTableTrigger){
+				// do nothing
+					sustain tableAlignedWithSensor;
+		//			sustain bottleAtPos1;
+					loop{
+						pause;
+						if ((Integer)#bottleTotalRP < (Integer)#BatchQuantityRP) { 
+							if((Integer)#wsActiveRP == 2) {
+								emit bottleAtPos2;
+							}
+							if((Integer)#wsActiveRP == 3) {
+								emit bottleAtPos2;
+								emit bottleAtPos3;		
+							}
+							if((Integer)#wsActiveRP == 4) {
+								emit bottleAtPos2;
+								emit bottleAtPos3;
+								emit bottleAtPos4;		
+							}
+							if((Integer)#wsActiveRP == 5) {
+								emit bottleAtPos2;
+								emit bottleAtPos3;
+								emit bottleAtPos4;
+								emit bottleAtPos5;	
+							}
+						}
+						
+						//------------ switch to last 5 -------------
+						else {
+							if((Integer)#wsActiveRP == 4) {
+								emit bottleAtPos2;
+								emit bottleAtPos3;
+								emit bottleAtPos4;
+								emit bottleAtPos5;	
+							}
+							if((Integer)#wsActiveRP == 3) {
+								emit bottleAtPos3;
+								emit bottleAtPos4;
+								emit bottleAtPos5;	
+							}
+							if((Integer)#wsActiveRP == 2) {
+								emit bottleAtPos4;
+								emit bottleAtPos5;	
+							}
+							if((Integer)#wsActiveRP == 1) {
+								emit bottleAtPos5;	
+							}
+						}
+					}
+				}
+				
+				// maybe make this an integer and we can just read its current state for GUI 
+			}
+		}
+		||
+		{
+			
+			loop{
+				pause;
+				present(rotated){
+					emit rotation;
+					//System.out.println("sent to UI");
+
+				}
+			}
+			
+		}
+	}
