@@ -7,6 +7,10 @@
 			<iSignal Name="gripperZAxisLifted" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="31000" />
 			<iSignal Name="gripperTurnHomePos" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="31000" />
 			<iSignal Name="gripperTurnFinalPos" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="31000" />
+			<iSignal Name="capGripped" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="31000" />
+			<iSignal Name="start" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="31000" />
+			<iSignal Name="letGo" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="31000" />
+
 
 			<oSignal Name="capperReady" To="RotaryControllerCD.capperReady" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10003" />
 			<oSignal Name="cylPos5ZaxisExtend" To="CapperPlantCD.cylPos5ZaxisExtend" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="32000" />

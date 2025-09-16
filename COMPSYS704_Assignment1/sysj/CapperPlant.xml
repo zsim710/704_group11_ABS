@@ -13,7 +13,10 @@
 			<oSignal Name="gripperZAxisLifted"  	To="CapperControllerCD.gripperZAxisLifted"  	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="31000" />
 			<oSignal Name="gripperTurnHomePos"  	To="CapperControllerCD.gripperTurnHomePos"  	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="31000" />
 			<oSignal Name="gripperTurnFinalPos"  	To="CapperControllerCD.gripperTurnFinalPos"  	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="31000" />
-			
+			<oSignal Name="capGripped"  			To="CapperControllerCD.capGripped"  			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="31000" />
+			<oSignal Name="start"  					To="CapperControllerCD.start"  					Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="31000" />
+			<oSignal Name="letGo"  					To="CapperControllerCD.letGo"  					Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="31000" />
+
 			
 			<oSignal Name="bottleAtPos4E" 			To="UI.bottleAtPos4E" 							Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10014" />
 			<oSignal Name="gripperZAxisLoweredE" 	To="UI.gripperZAxisLoweredE" 					Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10014" />

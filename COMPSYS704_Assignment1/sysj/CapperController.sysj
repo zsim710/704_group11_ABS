@@ -1,5 +1,5 @@
 CapperController(
-		input signal bottleAtPos4, gripperZAxisLowered, gripperZAxisLifted, gripperTurnHomePos, gripperTurnFinalPos;
+		input signal start, capGripped, letGo, bottleAtPos4, gripperZAxisLowered, gripperZAxisLifted, gripperTurnHomePos, gripperTurnFinalPos;
 		output signal capperReady, cylPos5ZaxisExtend, gripperTurnRetract, gripperTurnExtend, capGripperPos5Extend, cylClampBottleExtend;
 		
 )-> {
@@ -9,7 +9,9 @@ CapperController(
 			abort(bottleAtPos4) {
 				sustain capperReady;
 			}
-					
+				
+			await(start);
+			
 			trap(T){
 				
 				{
@@ -27,12 +29,12 @@ CapperController(
 				||
 				
 				{
-					System.out.println("reached here 3");
 					await(gripperZAxisLowered);
 					
 					{
-						System.out.println("gripped");
+						System.out.println("gripping");
 						sustain capGripperPos5Extend;
+		
 					}
 					
 					||
@@ -46,12 +48,18 @@ CapperController(
 					||
 					
 					{
+						await (capGripped);
+						System.out.println("gripped");
+						
 						await(gripperTurnFinalPos);
 						System.out.println("fully twisted");
 						exit(T);
 					}
 				}
 			}
+			
+			await(letGo);
+			
 			System.out.println("ungripped");
 			System.out.println("unclamped");
 			System.out.println("raising");
