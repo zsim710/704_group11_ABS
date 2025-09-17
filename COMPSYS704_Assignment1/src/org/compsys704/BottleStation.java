@@ -1,8 +1,10 @@
 package org.compsys704;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -21,20 +23,22 @@ public class BottleStation extends JFrame {
 	private JPanel panel;
 	
 	public BottleStation() {
+		setLayout(new BorderLayout());
 //		this.setPreferredSize(new Dimension(200, 300));
-
-		panel = new Canvas(); // canvas creates the image panel
-		panel.setPreferredSize(new Dimension(700, 700));
+ 
+		panel = new RotaryCanvas(); // canvas creates the image panel
+		panel.setPreferredSize(new Dimension(500, 500));
 		panel.setBackground(Color.WHITE);
+        add(panel, BorderLayout.CENTER);
 		
-		this.setLayout(new GridBagLayout());
-		GridBagConstraints c = new GridBagConstraints();
-		c.gridx = 0;
-		c.gridy = 0;
-		this.add(panel,c);
-		
-		JPanel pan = new JPanel(new GridLayout(1, 0));
-		pan.setBackground(Color.magenta);
+//		this.setLayout(new GridBagLayout());
+//		GridBagConstraints c = new GridBagConstraints();
+//		c.gridx = 0;
+//		c.gridy = 0;
+//		this.add(panel,c);
+		 
+//		JPanel pan = new JPanel(new GridLayout(1, 0));
+//		pan.setBackground(Color.magenta);
 		
 		// for tests
 //		JCheckBox pe = new JCheckBox("smth");
@@ -42,38 +46,31 @@ public class BottleStation extends JFrame {
 //		pe.addItemListener(new SignalCheckBoxClient(Ports.PORT_LOADER_CONTROLLER, Ports.SIGNAL_PUSHER_EXTEND)); // todo
 //		pan.add(pe);
 		
-		c.gridx = 0;
-		c.gridy = 2;
-		pan.setBorder(BorderFactory.createTitledBorder("Mode selector"));
+//		c.gridx = 0;
+//		c.gridy = 2;
+//		pan.setBorder(BorderFactory.createTitledBorder("Mode selector"));
 
-		JPanel pan2 = new JPanel(new GridLayout(2, 2));
-		pan2.setBackground(Color.black);
-
-//		if(States.POSA){
-//			pan2.setBackground(Color.green);
-//		} 
-//		if(States.POSB){
-//			pan2.setBackground(Color.blue);
-//		} 
-//		if(States.POSC){
-//			pan2.setBackground(Color.yellow);
-//		} 
-//		if(States.POSD){
-//			pan2.setBackground(Color.orange);
-//		} 
-//		if(States.GRIPDAT){
-//			pan2.setBackground(Color.red);
-//		}
-		// pan2.setBorder(BorderFactory.createTitledBorder("Manual control"));
-
-		JPanel pan3 = new JPanel(new GridLayout(0, 2));
-		pan3.add(pan);
-		pan3.add(pan2);
-		c.gridx = 0;
-		c.gridy = 2; 
-		this.add(pan3,c);
+		JPanel buttonPanel = new JPanel(new FlowLayout());
 		
-		this.setTitle("Bottle Loader");
+        JButton fault = new JButton("Cap on Bottle at Pos1");
+        fault.addActionListener(new SignalClient(Ports.PORT_ROTARY_PLANT, Ports.SIMULATE_FAULT));
+
+//        JButton bottleAtPos1 = new JButton("Bottle at Pos 1");
+//        fault.addActionListener(new SignalClient(Ports.PORT_ROTARY_PLANT, Ports.SIMULATE_FAULT));
+
+        buttonPanel.add(fault);
+        add(buttonPanel, BorderLayout.SOUTH); 
+
+        // Event listeners
+      
+//		JPanel pan3 = new JPanel(new GridLayout(0, 2));
+//		pan3.add(pan);
+//		pan3.add(pan2);
+//		c.gridx = 0;
+//		c.gridy = 2; 
+//		this.add(pan3,c);
+		
+		this.setTitle("Rotary Table");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
@@ -85,8 +82,8 @@ public class BottleStation extends JFrame {
 		cl.pack();
 		cl.setVisible(true);
 		
-		SignalServer<LoaderBSWorker> server = new SignalServer<LoaderBSWorker>(Ports.PORT_BOTTLESTATION_VIZ, LoaderBSWorker.class);
-		System.out.println("Starting SignalServer on port " + Ports.PORT_BOTTLESTATION_VIZ);
+		SignalServer<LoaderBSWorker> server = new SignalServer<LoaderBSWorker>(Ports.PORT_ROTARY_VIZ, LoaderBSWorker.class);
+		System.out.println("Starting SignalServer on port " + Ports.PORT_ROTARY_VIZ);
 		new Thread(server).start();
 		while(true){
 			try {

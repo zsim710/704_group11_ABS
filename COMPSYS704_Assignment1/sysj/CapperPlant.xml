@@ -18,13 +18,11 @@
 			<oSignal Name="letGo"  					To="CapperControllerCD.letGo"  					Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="31000" />
 
 			
-			<oSignal Name="bottleAtPos4E" 			To="UI.bottleAtPos4E" 							Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10014" />
-			<oSignal Name="gripperZAxisLoweredE" 	To="UI.gripperZAxisLoweredE" 					Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10014" />
-			<oSignal Name="gripperZAxisLiftedE" 	To="UI.gripperZAxisLiftedE" 					Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10014" />
-			<oSignal Name="gripperTurnHomePosE"		To="UI.gripperTurnHomePosE" 					Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10014" />
-			<oSignal Name="gripperTurnFinalPosE" 	To="UI.gripperTurnFinalPosE" 					Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10014" />	
-			<oSignal Name="capIsGrippedE" 	       	To="UI.capIsGrippedE" 					        Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10014" />		
-			
+			<oSignal Name="bottleAtPos4GUI" 			To="UI.bottleAtPos4GUI" 							Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10017" />
+			<oSignal Name="gripperClampGUI" 	To="UI.gripperClampGUI" 					Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10017" />
+			<oSignal Name="capperDoneGUI" 	       	To="UI.capperDoneGUI" 					        Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10017" />		
+			<oSignal Name="capperIdleGUI" 	       	To="UI.capperIdleGUI" 					        Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10017" />		
+
 		</ClockDomain>
 	</SubSystem>
 	

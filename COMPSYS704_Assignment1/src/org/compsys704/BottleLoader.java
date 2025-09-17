@@ -24,7 +24,7 @@ public class BottleLoader extends JFrame {
 	public BottleLoader() {
 //		this.setPreferredSize(new Dimension(200, 300));
 
-		panel = new Canvas(); // canvas creates the image panel
+		panel = new RotaryCanvas(); // canvas creates the image panel
 		panel.setPreferredSize(new Dimension(700, 700));
 		panel.setBackground(Color.WHITE);
 		

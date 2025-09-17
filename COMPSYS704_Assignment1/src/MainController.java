@@ -26,16 +26,16 @@ public class MainController extends ClockDomain{
   public Signal BatchQuantityRP = new Signal("BatchQuantityRP", Signal.OUTPUT);
   public Signal LiquidAmount1FP = new Signal("LiquidAmount1FP", Signal.OUTPUT);
   public Signal LiquidAmount2FP = new Signal("LiquidAmount2FP", Signal.OUTPUT);
-  private int S4457 = 1;
-  private int S4391 = 1;
-  private int S4450 = 1;
-  private int S4455 = 1;
+  private int S6256 = 1;
+  private int S6190 = 1;
+  private int S6249 = 1;
+  private int S6254 = 1;
   
   private int[] ends = new int[5];
   private int[] tdone = new int[5];
   
-  public void thread4465(int [] tdone, int [] ends){
-        switch(S4455){
+  public void thread6264(int [] tdone, int [] ends){
+        switch(S6254){
       case 0 : 
         active[4]=0;
         ends[4]=0;
@@ -55,8 +55,8 @@ public class MainController extends ClockDomain{
     }
   }
 
-  public void thread4464(int [] tdone, int [] ends){
-        switch(S4450){
+  public void thread6263(int [] tdone, int [] ends){
+        switch(S6249){
       case 0 : 
         active[3]=0;
         ends[3]=0;
@@ -163,8 +163,8 @@ public class MainController extends ClockDomain{
     }
   }
 
-  public void thread4463(int [] tdone, int [] ends){
-        switch(S4391){
+  public void thread6262(int [] tdone, int [] ends){
+        switch(S6190){
       case 0 : 
         active[2]=0;
         ends[2]=0;
@@ -213,8 +213,8 @@ public class MainController extends ClockDomain{
     }
   }
 
-  public void thread4461(int [] tdone, int [] ends){
-        S4455=1;
+  public void thread6260(int [] tdone, int [] ends){
+        S6254=1;
     LiquidAmount1FP.setPresent();//sysj\MainController.sysj line: 46, column: 5
     currsigs.addElement(LiquidAmount1FP);
     LiquidAmount2FP.setPresent();//sysj\MainController.sysj line: 47, column: 5
@@ -224,8 +224,8 @@ public class MainController extends ClockDomain{
     tdone[4]=1;
   }
 
-  public void thread4460(int [] tdone, int [] ends){
-        S4450=1;
+  public void thread6259(int [] tdone, int [] ends){
+        S6249=1;
     if(wsActive.getprestatus()){//sysj\MainController.sysj line: 25, column: 12
       wsActiveRC.setPresent();//sysj\MainController.sysj line: 26, column: 5
       currsigs.addElement(wsActiveRC);
@@ -322,8 +322,8 @@ public class MainController extends ClockDomain{
     }
   }
 
-  public void thread4459(int [] tdone, int [] ends){
-        S4391=1;
+  public void thread6258(int [] tdone, int [] ends){
+        S6190=1;
     if(bottleAtPos1M.getprestatus()){//sysj\MainController.sysj line: 11, column: 13
       wsActive.setPresent();//sysj\MainController.sysj line: 12, column: 6
       currsigs.addElement(wsActive);
@@ -369,58 +369,58 @@ public class MainController extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S4457){
+      switch(S6256){
         case 0 : 
-          S4457=0;
+          S6256=0;
           break RUN;
         
         case 1 : 
-          S4457=2;
-          S4457=2;
-          thread4459(tdone,ends);
-          thread4460(tdone,ends);
-          thread4461(tdone,ends);
-          int biggest4462 = 0;
-          if(ends[2]>=biggest4462){
-            biggest4462=ends[2];
+          S6256=2;
+          S6256=2;
+          thread6258(tdone,ends);
+          thread6259(tdone,ends);
+          thread6260(tdone,ends);
+          int biggest6261 = 0;
+          if(ends[2]>=biggest6261){
+            biggest6261=ends[2];
           }
-          if(ends[3]>=biggest4462){
-            biggest4462=ends[3];
+          if(ends[3]>=biggest6261){
+            biggest6261=ends[3];
           }
-          if(ends[4]>=biggest4462){
-            biggest4462=ends[4];
+          if(ends[4]>=biggest6261){
+            biggest6261=ends[4];
           }
-          if(biggest4462 == 1){
+          if(biggest6261 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
         
         case 2 : 
-          thread4463(tdone,ends);
-          thread4464(tdone,ends);
-          thread4465(tdone,ends);
-          int biggest4466 = 0;
-          if(ends[2]>=biggest4466){
-            biggest4466=ends[2];
+          thread6262(tdone,ends);
+          thread6263(tdone,ends);
+          thread6264(tdone,ends);
+          int biggest6265 = 0;
+          if(ends[2]>=biggest6265){
+            biggest6265=ends[2];
           }
-          if(ends[3]>=biggest4466){
-            biggest4466=ends[3];
+          if(ends[3]>=biggest6265){
+            biggest6265=ends[3];
           }
-          if(ends[4]>=biggest4466){
-            biggest4466=ends[4];
+          if(ends[4]>=biggest6265){
+            biggest6265=ends[4];
           }
-          if(biggest4466 == 1){
+          if(biggest6265 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
           //FINXME code
-          if(biggest4466 == 0){
-            S4457=0;
+          if(biggest6265 == 0){
+            S6256=0;
             active[1]=0;
             ends[1]=0;
-            S4457=0;
+            S6256=0;
             break RUN;
           }
         

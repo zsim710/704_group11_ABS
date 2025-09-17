@@ -1,10 +1,16 @@
 import run.GUI;
 
-RotaryPlantCD(
+RotaryPlant(
 	input signal rotaryTableTrigger, rotated;
 	input Integer signal wsActiveRP, bottleTotalRP, BatchQuantityRP;
 	output signal tableAlignedWithSensor, rotation, bottleAtPos2, bottleAtPos3, bottleAtPos4, bottleAtPos5;
-	)->{
+	
+		// output for GUIs
+	output signal bottleAtPos2GUI, bottleAtPos3GUI, bottleAtPos4GUI, bottleAtPos5GUI;
+	output signal capOnBottleAtPos1GUI;
+	input signal capOnBottleAtPos1RP;
+
+		)->{
 		
 		new Thread(new GUI()).start();
 		pause;
@@ -15,24 +21,29 @@ RotaryPlantCD(
 			pause;
 				suspend(rotaryTableTrigger){
 				// do nothing
-					sustain tableAlignedWithSensor;
+					emit tableAlignedWithSensor;
 		//			sustain bottleAtPos1;
 					loop{
+						
 						pause;
 						if ((Integer)#bottleTotalRP < (Integer)#BatchQuantityRP) { 
 							if((Integer)#wsActiveRP == 2) {
+								System.out.println("2 active");
 								emit bottleAtPos2;
 							}
 							if((Integer)#wsActiveRP == 3) {
+								System.out.println("2, 3 active");
 								emit bottleAtPos2;
 								emit bottleAtPos3;		
 							}
 							if((Integer)#wsActiveRP == 4) {
+								System.out.println("2, 3, 4 active");
 								emit bottleAtPos2;
 								emit bottleAtPos3;
 								emit bottleAtPos4;		
 							}
 							if((Integer)#wsActiveRP == 5) {
+								System.out.println("2, 3, 4, 5 active");
 								emit bottleAtPos2;
 								emit bottleAtPos3;
 								emit bottleAtPos4;
@@ -69,15 +80,30 @@ RotaryPlantCD(
 		}
 		||
 		{
-			
 			loop{
 				pause;
 				present(rotated){
 					emit rotation;
 					//System.out.println("sent to UI");
-
 				}
 			}
-			
+		}
+		||
+		{
+			// outputs for GUI
+			{while(true){present(bottleAtPos2){emit bottleAtPos2GUI;} pause;}}
+			||
+			{while(true){present(bottleAtPos3){emit bottleAtPos3GUI;} pause;}}
+			||
+			{while(true){present(bottleAtPos4){emit bottleAtPos4GUI;} pause;}}
+			||
+			{while(true){present(bottleAtPos5){emit bottleAtPos5GUI;} pause;}}
+			||
+			{while(true){present(bottleAtPos5){emit bottleAtPos5GUI;} pause;}}
+			||
+			{while(true){present(capOnBottleAtPos1RP){emit capOnBottleAtPos1GUI;
+			System.out.println("received by plant, send to GUI");
+			} pause;}}
+
 		}
 	}

@@ -8,22 +8,26 @@ ConveyorController(
 {	
 		
 	while (true){
+			System.out.println("im waiting on loadsignal");
 			await(bottleAtLoad); 
 			
-			if ((Integer)#wsActiveConvC > 4) {
+			if ((Integer)#wsActiveConvC > 4) { // im changing 
 				abort(bottleAtPos1ConvC && bottleLeftPos5ConvC) {
+					System.out.println("entered if");
 					sustain motConveyorOn; 
 				}
 			}
 			
-			else if ((Integer)#wsActiveConvC < 4  && (Integer)#bottleTotalConvC < (Integer)#BatchQuantityConvC) {
+			else if ((Integer)#wsActiveConvC < 4  && (Integer)#bottleTotalConvC == (Integer)#BatchQuantityConvC) { // ask nimit 
 				abort(bottleAtPos1ConvC) {
+				System.out.println("end of batch");
 					sustain motConveyorOn; 
 				}
 			}
 			
 			else {
 				abort(bottleLeftPos5ConvC) {
+					System.out.println("we should be here");	
 					sustain motConveyorOn; 
 				}
 			}

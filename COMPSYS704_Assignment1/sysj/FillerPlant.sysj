@@ -1,11 +1,19 @@
+import run.GUI;
+
 FillerPlant(
 input signal enableFP, valveInjectorOn, valveInletOn, dosUnitValveRetract, dosUnitValveExtend;
 input Integer signal LiquidAmount1FP, LiquidAmount2FP;
 output signal dosUnitEvac,dosUnitFilled;
+
+// output for GUI
+output signal fillersCompleteGUI, filler1OnGUI, filler2OnGUI, filler1InletGUI, filler2InletGUI, fillerIdleGUI, bottleAtPos2GUI;
 )->{
 	
+	new Thread(new GUI()).start();
+
 	signal filler1, filler2, filler2Complete, filler1Complete;
 	int signal currentFiller;
+	signal fillerIdle, bottleAtPos2;
 	
 	emit currentFiller(1);
 	
@@ -15,7 +23,10 @@ output signal dosUnitEvac,dosUnitFilled;
 
 		loop {
 			
-			await(valveInjectorOn && enableFP);
+			abort(valveInjectorOn && enableFP) {
+				sustain fillerIdle;
+			}
+
 			System.out.println("starting filler " + (Integer)#currentFiller);
 			// injector turned on
 			
@@ -60,6 +71,7 @@ output signal dosUnitEvac,dosUnitFilled;
 	}
 	
 	System.out.println("all fillers complete");
+
 	}
 	||
 	{
@@ -74,6 +86,24 @@ output signal dosUnitEvac,dosUnitFilled;
 				emit currentFiller(1); // reset current filler
 			}
 		}
+	}
+	||
+	{
+		// this are all the signals outputted to the GUI
+		{while(true){present(filler2Complete){emit fillersCompleteGUI;} pause;}}
+		||
+		{while(true){present(filler1 && valveInjectorOn){emit filler1OnGUI;} pause;}}
+		||
+		{while(true){present(filler2 && valveInjectorOn){emit filler2OnGUI;} pause;}}
+		||
+		{while(true){present(filler1 && dosUnitValveExtend){emit filler1InletGUI;} pause;}}
+		||
+		{while(true){present(filler2 && dosUnitValveExtend){emit filler2InletGUI;} pause;}}
+		||
+		{while(true){present(fillerIdle){emit fillerIdleGUI;} pause;}}
+//		||
+//		{while(true){present(bottleAtPos2){emit bottleAtPos2GUI;} pause;}}
+	
 	}
 
 }

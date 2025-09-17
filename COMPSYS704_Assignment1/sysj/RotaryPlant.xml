@@ -3,11 +3,11 @@
 		<ClockDomain Name="RotaryPlantCD" Class="RotaryPlant">
 			<iSignal Name="rotaryTableTrigger" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10004" />
 			<iSignal Name="rotated" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10004"/>
-			
+			<!--
 			<iSignal Name="wsActiveRP" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10004" />
 			<iSignal Name="bottleTotalRP" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10004"/>
 			<iSignal Name="BatchQuantityRP" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10004"/>
-
+-->
 			<oSignal Name="tableAlignedWithSensor" To="RotaryControllerCD.tableAlignedWithSensor" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10003" />
 			
 			<oSignal Name="bottleAtPos2" To="FillerPlantCD.bottleAtPos2" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="34000" />
@@ -16,6 +16,14 @@
 			<oSignal Name="bottleAtPos5" To="ConveyorPlantCD.bottleAtPos5" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40001" />
 			
 			<oSignal Name="rotation" To="UI.rotation"  Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10011" />
+			<oSignal Name="bottleAtPos2GUI" To="UI.bottleAtPos2GUI" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10011" />
+			<oSignal Name="bottleAtPos3GUI" To="UI.bottleAtPos3GUI" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10011" />
+			<oSignal Name="bottleAtPos4GUI" To="UI.bottleAtPos4GUI" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10011" />
+			<oSignal Name="bottleAtPos5GUI" To="UI.bottleAtPos5GUI" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10011" />
+			
+			<iSignal Name="capOnBottleAtPos1RP" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10004"/>
+			<oSignal Name="capOnBottleAtPos1GUI" To="UI.capOnBottleAtPos1GUI" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10011" />
+
 		</ClockDomain>
 	</SubSystem>
 </System>

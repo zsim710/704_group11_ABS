@@ -18,18 +18,17 @@ public class ConveyorCanvas extends JPanel {
 
 	public ConveyorCanvas(){
 		try {
-			BufferedImage conveyorOn = ImageIO.read(new File("res/conveyorOn.png"));
+			conveyorOn = ImageIO.read(new File("res/conveyorOn.png"));
+//			conveyorOn = bi.getSubimage(0, 101, 387, 100);
+			
+			conveyorOff = ImageIO.read(new File("res/conveyorOff.png"));
+//			conveyorOff = bi2.getSubimage(0, 0, 387, 100); // og image
+			
+			conveyorBottleAtPos1 = ImageIO.read(new File("res/conveyorBottleAtPos1.png"));
+//			conveyorBottleAtPos1 = bi3.getSubimage(0,  0, 387, 100);
 
-			BufferedImage conveyorOff = ImageIO.read(new File("res/conveyorOff.png"));
-//			conveyorOff = conveyorOff.getSubimage(0, 0, 378, 100); // og image
-
-			BufferedImage conveyorBottleAtPos1 = ImageIO.read(new File("res/conveyorBottleAtPos1.png"));
-
-			BufferedImage conveyorBottleLeftPos5 = ImageIO.read(new File("res/conveyorBottleComplete.png"));
-
-//			BufferedImage RT = ImageIO.read(new File("res/RT3.0.png"));
-//			RotaryTable = RT.getSubimage(0, 0, 387, 100);
-
+			conveyorBottleLeftPos5 = ImageIO.read(new File("res/conveyorBottleComplete.png"));
+//			conveyorBottleLeftPos5 = bi4.getSubimage(0,  0, 387, 100);
 			 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -41,42 +40,34 @@ public class ConveyorCanvas extends JPanel {
 	@Override
 	protected void paintComponent(Graphics g){
 		super.paintComponent(g);
-
-		int x = 500;
-		int y = 100;
 		
-		int x1 = 50;
-		int y1 = 15;
+		int x = 0;
+		int y = 0;
 		
-		g.drawImage(conveyorOff, 378, 100, null);
+		int w=387;
+		int h=100;
+		
+		g.drawImage(conveyorOff, 0, 0, null); //default conveyor off for start
+		g.drawImage(conveyorOff, 0, 110, null); //default conveyor off for end
 
 
-    // conveyor 
-	if(States.BOTTLE_AT_LOAD) {	
-		g.clearRect(0, 0, x, y);
-		g.drawImage(conveyorOn, x1, y1, null);
-    }
-	else if (States.BOTTLE_AT_POS_1) {
-		g.clearRect(0, 0, x, y);
-		g.drawImage(conveyorBottleAtPos1, x1, y1, null);
+	    // conveyor 
+		if(States.BOTTLE_AT_LOAD) {	
+			g.clearRect(0, 0, w, h);
+			g.drawImage(conveyorOn, x, y, null);
+	    }
+		else if (States.BOTTLE_AT_POS_1) {
+			g.clearRect(0, 0, w, h);
+			g.drawImage(conveyorBottleAtPos1, x, y, null);
+		
+		}
+		else if (States.BOTTLE_LEFT_POS_5) { // done
+			g.clearRect(0, 110, w, h);
+			g.drawImage(conveyorBottleLeftPos5, x, 110, null);
 	
-	}
-//	else if (States.BOTTLE_AT_POS_5) {
-//
-//	} 
-	else if (States.BOTTLE_LEFT_POS_5) { // done
-		g.clearRect(0, 0, x, y);
-		g.drawImage(conveyorBottleLeftPos5, x1, y1, null);
+		}
 
 	}
-//	else if (States.BOTTLE_AT_EMPTY) { // done
-//		g.setColor(Color.red);
-//        g.fillOval(rectX + 10, rectY - 25, 30, 30); 	
-//	}
-	
-	
-	}
-	
 	
 } 
 		

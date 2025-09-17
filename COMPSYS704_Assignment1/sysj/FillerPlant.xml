@@ -10,9 +10,17 @@
 			<iSignal Name="LiquidAmount1FP" 	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="34000" />
 			<iSignal Name="LiquidAmount2FP" 	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="34000" />
 
-			<oSignal Name="dosUnitEvac" To="FillerControllerCD.dosUnitEvac" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="33000" />
-			<oSignal Name="dosUnitFilled" To="FillerControllerCD.dosUnitFilled" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="33000" />
-
+			<oSignal Name="dosUnitEvac"			 To="FillerControllerCD.dosUnitEvac" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="33000" />
+			<oSignal Name="dosUnitFilled" 		 To="FillerControllerCD.dosUnitFilled" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="33000" />
+            
+            <oSignal Name="fillersCompleteGUI"   To="UI.fillersCompleteGUI"     	  Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10016" />
+            <oSignal Name="filler1OnGUI"     	 To="UI.filler1OnGUI"                 Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10016" />
+            <oSignal Name="filler2OnGUI"      	 To="UI.filler2OnGUI"                 Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10016" />
+            <oSignal Name="filler1InletGUI"      To="UI.filler1InletGUI"              Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10016" />
+            <oSignal Name="filler2InletGUI"      To="UI.filler2InletGUI"              Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10016" />
+            <oSignal Name="fillerIdleGUI"      To="UI.fillerIdleGUI"              Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10016" />
+            <oSignal Name="bottleAtPos2GUI"      To="UI.bottleAtPos2GUI"              Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10016" />
+            
 		</ClockDomain>
 	</SubSystem>
 	

@@ -18,10 +18,10 @@ public class ConveyorController extends ClockDomain{
   public Signal bottleTotalConvC = new Signal("bottleTotalConvC", Signal.INPUT);
   public Signal BatchQuantityConvC = new Signal("BatchQuantityConvC", Signal.INPUT);
   public Signal motConveyorOn = new Signal("motConveyorOn", Signal.OUTPUT);
-  private int S1303 = 1;
-  private int S1181 = 1;
-  private int S1166 = 1;
-  private int S1165 = 1;
+  private int S2116 = 1;
+  private int S1842 = 1;
+  private int S1868 = 1;
+  private int S1867 = 1;
   
   private int[] ends = new int[2];
   private int[] tdone = new int[2];
@@ -33,45 +33,49 @@ public class ConveyorController extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S1303){
+      switch(S2116){
         case 0 : 
-          S1303=0;
+          S2116=0;
           break RUN;
         
         case 1 : 
-          S1303=2;
-          S1303=2;
-          S1181=0;
+          S2116=2;
+          S2116=2;
+          System.out.println("im waiting on loadsignal");//sysj\ConveyorController.sysj line: 11, column: 4
+          S1842=0;
           active[1]=1;
           ends[1]=1;
           break RUN;
         
         case 2 : 
-          switch(S1181){
+          switch(S1842){
             case 0 : 
-              if(bottleAtLoad.getprestatus()){//sysj\ConveyorController.sysj line: 11, column: 10
-                S1181=1;
-                if((Integer)(wsActiveConvC.getpreval() == null ? null : ((Integer)wsActiveConvC.getpreval())) > 4){//sysj\ConveyorController.sysj line: 13, column: 8
-                  S1166=0;
-                  motConveyorOn.setPresent();//sysj\ConveyorController.sysj line: 15, column: 6
+              if(bottleAtLoad.getprestatus()){//sysj\ConveyorController.sysj line: 12, column: 10
+                S1842=1;
+                if((Integer)(wsActiveConvC.getpreval() == null ? null : ((Integer)wsActiveConvC.getpreval())) > 4){//sysj\ConveyorController.sysj line: 14, column: 8
+                  S1868=0;
+                  System.out.println("entered if");//sysj\ConveyorController.sysj line: 16, column: 6
+                  motConveyorOn.setPresent();//sysj\ConveyorController.sysj line: 17, column: 6
                   currsigs.addElement(motConveyorOn);
                   active[1]=1;
                   ends[1]=1;
                   break RUN;
                 }
                 else {
-                  S1166=1;
-                  if((Integer)(wsActiveConvC.getpreval() == null ? null : ((Integer)wsActiveConvC.getpreval())) < 4 && (Integer)(bottleTotalConvC.getpreval() == null ? null : ((Integer)bottleTotalConvC.getpreval())) < (Integer)(BatchQuantityConvC.getpreval() == null ? null : ((Integer)BatchQuantityConvC.getpreval()))){//sysj\ConveyorController.sysj line: 19, column: 13
-                    S1165=0;
-                    motConveyorOn.setPresent();//sysj\ConveyorController.sysj line: 21, column: 6
+                  S1868=1;
+                  if((Integer)(wsActiveConvC.getpreval() == null ? null : ((Integer)wsActiveConvC.getpreval())) < 4 && (Integer)(bottleTotalConvC.getpreval() == null ? null : ((Integer)bottleTotalConvC.getpreval())) == (Integer)(BatchQuantityConvC.getpreval() == null ? null : ((Integer)BatchQuantityConvC.getpreval()))){//sysj\ConveyorController.sysj line: 21, column: 13
+                    S1867=0;
+                    System.out.println("end of batch");//sysj\ConveyorController.sysj line: 23, column: 5
+                    motConveyorOn.setPresent();//sysj\ConveyorController.sysj line: 24, column: 6
                     currsigs.addElement(motConveyorOn);
                     active[1]=1;
                     ends[1]=1;
                     break RUN;
                   }
                   else {
-                    S1165=1;
-                    motConveyorOn.setPresent();//sysj\ConveyorController.sysj line: 27, column: 6
+                    S1867=1;
+                    System.out.println("we should be here");//sysj\ConveyorController.sysj line: 30, column: 6
+                    motConveyorOn.setPresent();//sysj\ConveyorController.sysj line: 31, column: 6
                     currsigs.addElement(motConveyorOn);
                     active[1]=1;
                     ends[1]=1;
@@ -86,17 +90,18 @@ public class ConveyorController extends ClockDomain{
               }
             
             case 1 : 
-              switch(S1166){
+              switch(S1868){
                 case 0 : 
-                  if(bottleAtPos1ConvC.getprestatus() && bottleLeftPos5ConvC.getprestatus()){//sysj\ConveyorController.sysj line: 14, column: 11
-                    System.out.println("conveyor not moving");//sysj\ConveyorController.sysj line: 30, column: 4
-                    S1181=0;
+                  if(bottleAtPos1ConvC.getprestatus() && bottleLeftPos5ConvC.getprestatus()){//sysj\ConveyorController.sysj line: 15, column: 11
+                    System.out.println("conveyor not moving");//sysj\ConveyorController.sysj line: 34, column: 4
+                    System.out.println("im waiting on loadsignal");//sysj\ConveyorController.sysj line: 11, column: 4
+                    S1842=0;
                     active[1]=1;
                     ends[1]=1;
                     break RUN;
                   }
                   else {
-                    motConveyorOn.setPresent();//sysj\ConveyorController.sysj line: 15, column: 6
+                    motConveyorOn.setPresent();//sysj\ConveyorController.sysj line: 17, column: 6
                     currsigs.addElement(motConveyorOn);
                     active[1]=1;
                     ends[1]=1;
@@ -104,17 +109,18 @@ public class ConveyorController extends ClockDomain{
                   }
                 
                 case 1 : 
-                  switch(S1165){
+                  switch(S1867){
                     case 0 : 
-                      if(bottleAtPos1ConvC.getprestatus()){//sysj\ConveyorController.sysj line: 20, column: 11
-                        System.out.println("conveyor not moving");//sysj\ConveyorController.sysj line: 30, column: 4
-                        S1181=0;
+                      if(bottleAtPos1ConvC.getprestatus()){//sysj\ConveyorController.sysj line: 22, column: 11
+                        System.out.println("conveyor not moving");//sysj\ConveyorController.sysj line: 34, column: 4
+                        System.out.println("im waiting on loadsignal");//sysj\ConveyorController.sysj line: 11, column: 4
+                        S1842=0;
                         active[1]=1;
                         ends[1]=1;
                         break RUN;
                       }
                       else {
-                        motConveyorOn.setPresent();//sysj\ConveyorController.sysj line: 21, column: 6
+                        motConveyorOn.setPresent();//sysj\ConveyorController.sysj line: 24, column: 6
                         currsigs.addElement(motConveyorOn);
                         active[1]=1;
                         ends[1]=1;
@@ -122,15 +128,16 @@ public class ConveyorController extends ClockDomain{
                       }
                     
                     case 1 : 
-                      if(bottleLeftPos5ConvC.getprestatus()){//sysj\ConveyorController.sysj line: 26, column: 11
-                        System.out.println("conveyor not moving");//sysj\ConveyorController.sysj line: 30, column: 4
-                        S1181=0;
+                      if(bottleLeftPos5ConvC.getprestatus()){//sysj\ConveyorController.sysj line: 29, column: 11
+                        System.out.println("conveyor not moving");//sysj\ConveyorController.sysj line: 34, column: 4
+                        System.out.println("im waiting on loadsignal");//sysj\ConveyorController.sysj line: 11, column: 4
+                        S1842=0;
                         active[1]=1;
                         ends[1]=1;
                         break RUN;
                       }
                       else {
-                        motConveyorOn.setPresent();//sysj\ConveyorController.sysj line: 27, column: 6
+                        motConveyorOn.setPresent();//sysj\ConveyorController.sysj line: 31, column: 6
                         currsigs.addElement(motConveyorOn);
                         active[1]=1;
                         ends[1]=1;

@@ -1,16 +1,27 @@
+import run.GUI;
+
 CapperPlant(
 		input signal cylPos5ZaxisExtend, gripperTurnRetract, gripperTurnExtend, capGripperPos5Extend, cylClampBottleExtend;
 		input signal enableCapP; //from GUI
 		output signal gripperZAxisLowered, gripperZAxisLifted, gripperTurnHomePos, gripperTurnFinalPos, start, capGripped, letGo;
 		output signal bottleAtPos4E, gripperZAxisLoweredE, gripperZAxisLiftedE, gripperTurnHomePosE, gripperTurnFinalPosE, capIsGrippedE;
+		
+		// outputs for GUI
+		output signal capperDoneGUI, gripperClampGUI, bottleAtPos4GUI, capperIdleGUI;
 		)
 ->
 {
+	new Thread(new GUI()).start();
+
+	signal idle;
 
 	{
 		while(true) {
 			
-			await (enableCapP);
+			abort(enableCapP) {
+				System.out.println("capper is idle");
+				sustain idle;
+			}
 			
 			abort(cylPos5ZaxisExtend) {
 				{
@@ -59,6 +70,7 @@ CapperPlant(
 			}
 			
 			System.out.println("looped");
+			
 		}
 
 	}
@@ -81,6 +93,18 @@ CapperPlant(
 				sustain gripperTurnFinalPos;
 			}
 		}
+	}
+	||
+	{
+		// output signals for GUI
+		{while(true){present(letGo){emit capperDoneGUI;} pause;}}
+		||
+		{while(true){present(capGripped){emit gripperClampGUI;} pause;}}
+		||
+		{while(true){present(start){emit bottleAtPos4GUI;} pause;}}
+		||
+		{while(true){present(idle){emit capperIdleGUI;} pause;}}
+
 	}
 
 }

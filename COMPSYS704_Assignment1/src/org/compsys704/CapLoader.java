@@ -22,7 +22,7 @@ public class CapLoader extends JFrame {
 	
 	public CapLoader() {
 //		this.setPreferredSize(new Dimension(200, 300));
-		panel = new Canvas();
+		panel = new LidLoaderCanvas();
 		panel.setPreferredSize(new Dimension(360, 350));
 		panel.setBackground(Color.WHITE);
 		
@@ -36,9 +36,9 @@ public class CapLoader extends JFrame {
 		JPanel ss = new JPanel();
 		ss.setBackground(Color.CYAN);
 		
-//		ss.add(enable);
-//		ss.add(request);
-//		ss.add(refill);
+		ss.add(enable); 
+		ss.add(request);
+		ss.add(refill);
 		
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
