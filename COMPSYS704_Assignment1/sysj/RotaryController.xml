@@ -4,19 +4,19 @@
 			
 			<iSignal Name="tableAlignedWithSensor" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10003" />
 			
-<!--			<iSignal Name="bottleLeftPos5RC" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10003" />-->
-<!--			<iSignal Name="bottleAtPos1RC" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10003" />-->
+			<iSignal Name="bottleLeftPos5RC" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10003" />
+			<iSignal Name="bottleAtPos1RC" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10003" />
 			
 			 <iSignal Name="capRemoved"  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10003" />
 			<iSignal Name="capOnBottleAtPos1"  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10003" />
 			
-<!--			<iSignal Name="capperReady"  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10003" />-->
-<!--			<iSignal Name="fillerReady" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10003" />-->
-<!--			<iSignal Name="lidLoaderReady" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10003" />-->
+			<iSignal Name="capperReady"  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10003" />
+			<iSignal Name="fillerReady" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10003" />
+			<iSignal Name="lidLoaderReady" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10003" />
 			
-<!--			<iSignal Name="wsActiveRC"  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10003" />-->
-<!--			<iSignal Name="bottleTotalRC" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10003" />-->
-<!--			<iSignal Name="BatchQuantityRC" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10003" />-->
+			<iSignal Name="wsActiveRC"  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10003" />
+			<iSignal Name="bottleTotalRC" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10003" />
+			<iSignal Name="BatchQuantityRC" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10003" />
 			
 			<iSignal Name="start" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10003" />
 

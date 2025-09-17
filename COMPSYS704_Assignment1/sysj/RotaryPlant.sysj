@@ -46,6 +46,9 @@ RotaryPlant(
 								emit bottleAtPos4;
 								emit bottleAtPos5;	
 							}
+							else {
+								System.out.println("print error");
+							}
 						}
 						
 						//------------ switch to last 5 -------------
@@ -67,6 +70,9 @@ RotaryPlant(
 							}
 							else if((Integer)#wsActiveRP == 1) {
 								emit bottleAtPos5;	
+							}
+							else {
+								System.out.println("error 2");
 							}
 						}
 					

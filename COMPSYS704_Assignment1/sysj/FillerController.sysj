@@ -1,6 +1,6 @@
 FillerController(
 input signal bottleAtPos2,dosUnitEvac,dosUnitFilled, start;
-input Integer signal LiquidAmount1C, LiquidAmount2C;
+input Integer signal LiquidAmount1FC, LiquidAmount2FC;
 output signal fillerReady, valveInjectorOn, valveInletOn, dosUnitValveRetract, dosUnitValveExtend;
 output signal filler2Complete;
 )->{
@@ -24,12 +24,12 @@ output signal filler2Complete;
 				//pause;
 	
 				if ((Integer)#currentFiller == 1) {
-					System.out.println("filler 1 start, filled " + ((Integer)#LiquidAmount1C) + "%");
+					System.out.println("filler 1 start, filled " + ((Integer)#LiquidAmount1FC) + "%");
 				}
 				else if ((Integer)#currentFiller == 2) {
-					System.out.println("filler 2 start, filled " + ((Integer)#LiquidAmount2C) + "%");
+					System.out.println("filler 2 start, filled " + ((Integer)#LiquidAmount2FC) + "%");
 				}else {
-					System.out.println("filler 1 start, filled " + ((Integer)#LiquidAmount1C) + "%");
+					System.out.println("filler 1 start, filled " + ((Integer)#LiquidAmount1FC) + "%");
 				}
 				
 				// else active then everything else

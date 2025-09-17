@@ -5,20 +5,30 @@
 		
 		<iSignal Name="bottleAtPos1M"	  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="53000" />
 		<iSignal Name="bottleLeftPos5M" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="53000" />
-		<iSignal Name="BatchQuantity" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="53000" />
-		<iSignal Name="LiquidAmount1" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="53000" />
-		<iSignal Name="LiquidAmount2" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="53000" />
+<!--		<iSignal Name="BatchQuantity" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="53000" />-->
+<!--		<iSignal Name="LiquidAmount1" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="53000" />-->
+<!--		<iSignal Name="LiquidAmount2" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="53000" />-->
+<!--		<iSignal Name="enable" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="53000" />-->
+
 
 		<oSignal Name="wsActive"  		To="UI.wsActive"  	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10011" />
 		<oSignal Name="wsActiveRC"  			To="RotaryControllerCD.wsActiveRC"  	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10003" />
 		<oSignal Name="wsActiveRP"  	To="RotaryPlantCD.wsActive"  	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10004" />
+		<oSignal Name="wsActiveConvC"  	To="ConveyorControllerCD.wsActiveConvC"  	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40000" />
 		<oSignal Name="bottleTotal"  	To="UI.bottleTotal"  	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10011" />
 		<oSignal Name="bottleTotalRC" To="RotaryControllerCD.bottleTotalRC" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10003" />
 		<oSignal Name="bottleTotalRP" To="RotaryPlantCD.bottleTotalRP" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10004" />
+		<oSignal Name="bottleTotalConvC"  	To="ConveyorControllerCD.bottleTotalConvC"  	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40000" />
 		<oSignal Name="BatchQuantityRC" To="RotaryControllerCD.BatchQuantityRC" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10003" />
-		<oSignal Name="BatchQuantityRC" To="RotaryPlantCD.BatchQuantityRC" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10004" />
-		<oSignal Name="LiquidAmount1C" To="FillerControllerCD.LiquidAmount1" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="33000" />
-		<oSignal Name="LiquidAmount2C" To="FillerControllerCD.LiquidAmount2" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="33000" />
+		<oSignal Name="BatchQuantityRP" To="RotaryPlantCD.BatchQuantityRP" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10004" />
+		<oSignal Name="BatchQuantityConvC" To="ConveyorControllerCD.BatchQuantityConvC" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40000" />
+		<oSignal Name="LiquidAmount1FC" To="FillerControllerCD.LiquidAmount1FC" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="33000" />
+		<oSignal Name="LiquidAmount2FC" To="FillerControllerCD.LiquidAmount2FC" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="33000" />
+		<oSignal Name="enableFP" To="FillerPlantCD.enableFP" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="34000" />
+		<oSignal Name="enableCapP" To="CapperPlantCD.enableCapP" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="32000" />
+		<oSignal Name="enableConvP" To="ConveyorPlantCD.enableConvP" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40001" />
+		<oSignal Name="enableRP" To="RotaryPlantCD.enableRP" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10004" />
+		<oSignal Name="enableLL" To="LidLoaderPlantCD.enableLL" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
 
 		</ClockDomain>
 	</SubSystem>

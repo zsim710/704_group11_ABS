@@ -20,9 +20,9 @@ public class FillerPlant extends ClockDomain{
   public Signal dosUnitEvac = new Signal("dosUnitEvac", Signal.OUTPUT);
   public Signal dosUnitFilled = new Signal("dosUnitFilled", Signal.OUTPUT);
   public Signal start = new Signal("start", Signal.OUTPUT);
-  private int S3098 = 1;
-  private int S2849 = 1;
-  private int S2852 = 1;
+  private int S3223 = 1;
+  private int S2974 = 1;
+  private int S2977 = 1;
   
   private int[] ends = new int[2];
   private int[] tdone = new int[2];
@@ -34,24 +34,24 @@ public class FillerPlant extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S3098){
+      switch(S3223){
         case 0 : 
-          S3098=0;
+          S3223=0;
           break RUN;
         
         case 1 : 
-          S3098=2;
-          S3098=2;
+          S3223=2;
+          S3223=2;
           if(filler2Complete.getprestatus()){//sysj\FillerPlant.sysj line: 10, column: 18
             System.out.println("all fillers complete");//sysj\FillerPlant.sysj line: 73, column: 2
-            S3098=0;
+            S3223=0;
             active[1]=0;
             ends[1]=0;
-            S3098=0;
+            S3223=0;
             break RUN;
           }
           else {
-            S2849=0;
+            S2974=0;
             active[1]=1;
             ends[1]=1;
             break RUN;
@@ -60,21 +60,21 @@ public class FillerPlant extends ClockDomain{
         case 2 : 
           if(filler2Complete.getprestatus()){//sysj\FillerPlant.sysj line: 10, column: 18
             System.out.println("all fillers complete");//sysj\FillerPlant.sysj line: 73, column: 2
-            S3098=0;
+            S3223=0;
             active[1]=0;
             ends[1]=0;
-            S3098=0;
+            S3223=0;
             break RUN;
           }
           else {
-            switch(S2849){
+            switch(S2974){
               case 0 : 
                 if(enableFP.getprestatus()){//sysj\FillerPlant.sysj line: 11, column: 9
                   start.setPresent();//sysj\FillerPlant.sysj line: 12, column: 3
                   currsigs.addElement(start);
-                  S2849=1;
+                  S2974=1;
                   System.out.println("awaiting starting enable");//sysj\FillerPlant.sysj line: 17, column: 4
-                  S2852=0;
+                  S2977=0;
                   active[1]=1;
                   ends[1]=1;
                   break RUN;
@@ -86,11 +86,11 @@ public class FillerPlant extends ClockDomain{
                 }
               
               case 1 : 
-                switch(S2852){
+                switch(S2977){
                   case 0 : 
                     if(enableFP.getprestatus()){//sysj\FillerPlant.sysj line: 18, column: 10
                       System.out.println("completed starting enable");//sysj\FillerPlant.sysj line: 19, column: 4
-                      S2852=1;
+                      S2977=1;
                       active[1]=1;
                       ends[1]=1;
                       break RUN;
@@ -104,7 +104,7 @@ public class FillerPlant extends ClockDomain{
                   case 1 : 
                     if(valveInjectorOn.getprestatus()){//sysj\FillerPlant.sysj line: 22, column: 10
                       System.out.println("awaiting disable 1");//sysj\FillerPlant.sysj line: 28, column: 4
-                      S2852=2;
+                      S2977=2;
                       active[1]=1;
                       ends[1]=1;
                       break RUN;
@@ -119,7 +119,7 @@ public class FillerPlant extends ClockDomain{
                     if(!enableFP.getprestatus()){//sysj\FillerPlant.sysj line: 29, column: 10
                       System.out.println("completed disable 1");//sysj\FillerPlant.sysj line: 30, column: 4
                       System.out.println("awaiting enable 2");//sysj\FillerPlant.sysj line: 32, column: 4
-                      S2852=3;
+                      S2977=3;
                       active[1]=1;
                       ends[1]=1;
                       break RUN;
@@ -133,7 +133,7 @@ public class FillerPlant extends ClockDomain{
                   case 3 : 
                     if(enableFP.getprestatus()){//sysj\FillerPlant.sysj line: 33, column: 10
                       System.out.println("completed enable 2");//sysj\FillerPlant.sysj line: 34, column: 4
-                      S2852=4;
+                      S2977=4;
                       if(dosUnitValveRetract.getprestatus()){//sysj\FillerPlant.sysj line: 37, column: 14
                         dosUnitFilled.setPresent();//sysj\FillerPlant.sysj line: 38, column: 7
                         currsigs.addElement(dosUnitFilled);
@@ -143,7 +143,7 @@ public class FillerPlant extends ClockDomain{
                       }
                       else {
                         System.out.println("awaiting disable 2");//sysj\FillerPlant.sysj line: 42, column: 4
-                        S2852=5;
+                        S2977=5;
                         active[1]=1;
                         ends[1]=1;
                         break RUN;
@@ -158,7 +158,7 @@ public class FillerPlant extends ClockDomain{
                   case 4 : 
                     if(dosUnitValveExtend.getprestatus()){//sysj\FillerPlant.sysj line: 36, column: 10
                       System.out.println("awaiting disable 2");//sysj\FillerPlant.sysj line: 42, column: 4
-                      S2852=5;
+                      S2977=5;
                       active[1]=1;
                       ends[1]=1;
                       break RUN;
@@ -175,7 +175,7 @@ public class FillerPlant extends ClockDomain{
                     if(!enableFP.getprestatus()){//sysj\FillerPlant.sysj line: 43, column: 10
                       System.out.println("completed disable 2");//sysj\FillerPlant.sysj line: 44, column: 4
                       System.out.println("awaiting enable 3");//sysj\FillerPlant.sysj line: 47, column: 4
-                      S2852=6;
+                      S2977=6;
                       active[1]=1;
                       ends[1]=1;
                       break RUN;
@@ -189,7 +189,7 @@ public class FillerPlant extends ClockDomain{
                   case 6 : 
                     if(enableFP.getprestatus()){//sysj\FillerPlant.sysj line: 48, column: 10
                       System.out.println("completed enable 3");//sysj\FillerPlant.sysj line: 49, column: 4
-                      S2852=7;
+                      S2977=7;
                       if(dosUnitValveExtend.getprestatus()){//sysj\FillerPlant.sysj line: 51, column: 14
                         dosUnitEvac.setPresent();//sysj\FillerPlant.sysj line: 52, column: 7
                         currsigs.addElement(dosUnitEvac);
@@ -199,7 +199,7 @@ public class FillerPlant extends ClockDomain{
                       }
                       else {
                         System.out.println("awaiting disable 3");//sysj\FillerPlant.sysj line: 56, column: 4
-                        S2852=8;
+                        S2977=8;
                         active[1]=1;
                         ends[1]=1;
                         break RUN;
@@ -214,7 +214,7 @@ public class FillerPlant extends ClockDomain{
                   case 7 : 
                     if(!valveInletOn.getprestatus()){//sysj\FillerPlant.sysj line: 50, column: 10
                       System.out.println("awaiting disable 3");//sysj\FillerPlant.sysj line: 56, column: 4
-                      S2852=8;
+                      S2977=8;
                       active[1]=1;
                       ends[1]=1;
                       break RUN;
@@ -231,7 +231,7 @@ public class FillerPlant extends ClockDomain{
                     if(!enableFP.getprestatus()){//sysj\FillerPlant.sysj line: 57, column: 10
                       System.out.println("completed disable 3");//sysj\FillerPlant.sysj line: 58, column: 4
                       System.out.println("awaiting enable 4");//sysj\FillerPlant.sysj line: 60, column: 4
-                      S2852=9;
+                      S2977=9;
                       active[1]=1;
                       ends[1]=1;
                       break RUN;
@@ -246,7 +246,7 @@ public class FillerPlant extends ClockDomain{
                     if(enableFP.getprestatus()){//sysj\FillerPlant.sysj line: 61, column: 10
                       System.out.println("completed enable 4");//sysj\FillerPlant.sysj line: 62, column: 4
                       System.out.println("awaiting disable 4");//sysj\FillerPlant.sysj line: 65, column: 4
-                      S2852=10;
+                      S2977=10;
                       active[1]=1;
                       ends[1]=1;
                       break RUN;
@@ -262,7 +262,7 @@ public class FillerPlant extends ClockDomain{
                       System.out.println("completed disable 4");//sysj\FillerPlant.sysj line: 67, column: 4
                       System.out.println("looped");//sysj\FillerPlant.sysj line: 69, column: 4
                       System.out.println("awaiting starting enable");//sysj\FillerPlant.sysj line: 17, column: 4
-                      S2852=0;
+                      S2977=0;
                       active[1]=1;
                       ends[1]=1;
                       break RUN;

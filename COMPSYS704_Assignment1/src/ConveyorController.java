@@ -14,14 +14,15 @@ public class ConveyorController extends ClockDomain{
   public Signal bottleAtLoad = new Signal("bottleAtLoad", Signal.INPUT);
   public Signal bottleAtPos1ConvC = new Signal("bottleAtPos1ConvC", Signal.INPUT);
   public Signal bottleLeftPos5ConvC = new Signal("bottleLeftPos5ConvC", Signal.INPUT);
+  public Signal start = new Signal("start", Signal.INPUT);
   public Signal wsActiveConvC = new Signal("wsActiveConvC", Signal.INPUT);
   public Signal bottleTotalConvC = new Signal("bottleTotalConvC", Signal.INPUT);
   public Signal BatchQuantityConvC = new Signal("BatchQuantityConvC", Signal.INPUT);
   public Signal motConveyorOn = new Signal("motConveyorOn", Signal.OUTPUT);
-  private int S1416 = 1;
-  private int S1294 = 1;
-  private int S1279 = 1;
-  private int S1278 = 1;
+  private int S1811 = 1;
+  private int S1267 = 1;
+  private int S1320 = 1;
+  private int S1319 = 1;
   
   private int[] ends = new int[2];
   private int[] tdone = new int[2];
@@ -33,45 +34,53 @@ public class ConveyorController extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S1416){
+      switch(S1811){
         case 0 : 
-          S1416=0;
+          S1811=0;
           break RUN;
         
         case 1 : 
-          S1416=2;
-          S1416=2;
-          S1294=0;
+          S1811=2;
+          S1811=2;
+          System.out.println("awaiting start");//sysj\ConveyorController.sysj line: 11, column: 3
+          S1267=0;
           active[1]=1;
           ends[1]=1;
           break RUN;
         
         case 2 : 
-          switch(S1294){
+          switch(S1267){
             case 0 : 
-              if(bottleAtLoad.getprestatus()){//sysj\ConveyorController.sysj line: 11, column: 10
-                S1294=1;
-                if((Integer)(wsActiveConvC.getpreval() == null ? null : ((Integer)wsActiveConvC.getpreval())) > 4){//sysj\ConveyorController.sysj line: 13, column: 8
-                  S1279=0;
-                  motConveyorOn.setPresent();//sysj\ConveyorController.sysj line: 15, column: 6
+              if(start.getprestatus()){//sysj\ConveyorController.sysj line: 12, column: 9
+                System.out.println("1");//sysj\ConveyorController.sysj line: 13, column: 3
+                S1267=1;
+                if((Integer)(wsActiveConvC.getpreval() == null ? null : ((Integer)wsActiveConvC.getpreval())) > 4){//sysj\ConveyorController.sysj line: 15, column: 8
+                  S1320=0;
+                  System.out.println("5");//sysj\ConveyorController.sysj line: 16, column: 5
+                  System.out.println("4");//sysj\ConveyorController.sysj line: 18, column: 6
+                  motConveyorOn.setPresent();//sysj\ConveyorController.sysj line: 19, column: 6
                   currsigs.addElement(motConveyorOn);
                   active[1]=1;
                   ends[1]=1;
                   break RUN;
                 }
                 else {
-                  S1279=1;
-                  if((Integer)(wsActiveConvC.getpreval() == null ? null : ((Integer)wsActiveConvC.getpreval())) < 4 && (Integer)(bottleTotalConvC.getpreval() == null ? null : ((Integer)bottleTotalConvC.getpreval())) < (Integer)(BatchQuantityConvC.getpreval() == null ? null : ((Integer)BatchQuantityConvC.getpreval()))){//sysj\ConveyorController.sysj line: 19, column: 13
-                    S1278=0;
-                    motConveyorOn.setPresent();//sysj\ConveyorController.sysj line: 21, column: 6
+                  S1320=1;
+                  if((Integer)(wsActiveConvC.getpreval() == null ? null : ((Integer)wsActiveConvC.getpreval())) < 4 && (Integer)(bottleTotalConvC.getpreval() == null ? null : ((Integer)bottleTotalConvC.getpreval())) < (Integer)(BatchQuantityConvC.getpreval() == null ? null : ((Integer)BatchQuantityConvC.getpreval()))){//sysj\ConveyorController.sysj line: 23, column: 13
+                    S1319=0;
+                    System.out.println("6");//sysj\ConveyorController.sysj line: 24, column: 5
+                    System.out.println("2");//sysj\ConveyorController.sysj line: 26, column: 6
+                    motConveyorOn.setPresent();//sysj\ConveyorController.sysj line: 27, column: 6
                     currsigs.addElement(motConveyorOn);
                     active[1]=1;
                     ends[1]=1;
                     break RUN;
                   }
                   else {
-                    S1278=1;
-                    motConveyorOn.setPresent();//sysj\ConveyorController.sysj line: 27, column: 6
+                    S1319=1;
+                    System.out.println("7");//sysj\ConveyorController.sysj line: 32, column: 5
+                    System.out.println("3");//sysj\ConveyorController.sysj line: 34, column: 6
+                    motConveyorOn.setPresent();//sysj\ConveyorController.sysj line: 35, column: 6
                     currsigs.addElement(motConveyorOn);
                     active[1]=1;
                     ends[1]=1;
@@ -86,17 +95,18 @@ public class ConveyorController extends ClockDomain{
               }
             
             case 1 : 
-              switch(S1279){
+              switch(S1320){
                 case 0 : 
-                  if(bottleAtPos1ConvC.getprestatus() && bottleLeftPos5ConvC.getprestatus()){//sysj\ConveyorController.sysj line: 14, column: 11
-                    System.out.println("conveyor not moving");//sysj\ConveyorController.sysj line: 30, column: 4
-                    S1294=0;
+                  if(bottleAtPos1ConvC.getprestatus() && bottleLeftPos5ConvC.getprestatus()){//sysj\ConveyorController.sysj line: 17, column: 11
+                    System.out.println("conveyor not moving");//sysj\ConveyorController.sysj line: 38, column: 4
+                    System.out.println("awaiting start");//sysj\ConveyorController.sysj line: 11, column: 3
+                    S1267=0;
                     active[1]=1;
                     ends[1]=1;
                     break RUN;
                   }
                   else {
-                    motConveyorOn.setPresent();//sysj\ConveyorController.sysj line: 15, column: 6
+                    motConveyorOn.setPresent();//sysj\ConveyorController.sysj line: 19, column: 6
                     currsigs.addElement(motConveyorOn);
                     active[1]=1;
                     ends[1]=1;
@@ -104,17 +114,18 @@ public class ConveyorController extends ClockDomain{
                   }
                 
                 case 1 : 
-                  switch(S1278){
+                  switch(S1319){
                     case 0 : 
-                      if(bottleAtPos1ConvC.getprestatus()){//sysj\ConveyorController.sysj line: 20, column: 11
-                        System.out.println("conveyor not moving");//sysj\ConveyorController.sysj line: 30, column: 4
-                        S1294=0;
+                      if(bottleAtPos1ConvC.getprestatus()){//sysj\ConveyorController.sysj line: 25, column: 11
+                        System.out.println("conveyor not moving");//sysj\ConveyorController.sysj line: 38, column: 4
+                        System.out.println("awaiting start");//sysj\ConveyorController.sysj line: 11, column: 3
+                        S1267=0;
                         active[1]=1;
                         ends[1]=1;
                         break RUN;
                       }
                       else {
-                        motConveyorOn.setPresent();//sysj\ConveyorController.sysj line: 21, column: 6
+                        motConveyorOn.setPresent();//sysj\ConveyorController.sysj line: 27, column: 6
                         currsigs.addElement(motConveyorOn);
                         active[1]=1;
                         ends[1]=1;
@@ -122,15 +133,16 @@ public class ConveyorController extends ClockDomain{
                       }
                     
                     case 1 : 
-                      if(bottleLeftPos5ConvC.getprestatus()){//sysj\ConveyorController.sysj line: 26, column: 11
-                        System.out.println("conveyor not moving");//sysj\ConveyorController.sysj line: 30, column: 4
-                        S1294=0;
+                      if(bottleLeftPos5ConvC.getprestatus()){//sysj\ConveyorController.sysj line: 33, column: 11
+                        System.out.println("conveyor not moving");//sysj\ConveyorController.sysj line: 38, column: 4
+                        System.out.println("awaiting start");//sysj\ConveyorController.sysj line: 11, column: 3
+                        S1267=0;
                         active[1]=1;
                         ends[1]=1;
                         break RUN;
                       }
                       else {
-                        motConveyorOn.setPresent();//sysj\ConveyorController.sysj line: 27, column: 6
+                        motConveyorOn.setPresent();//sysj\ConveyorController.sysj line: 35, column: 6
                         currsigs.addElement(motConveyorOn);
                         active[1]=1;
                         ends[1]=1;
@@ -174,6 +186,7 @@ public class ConveyorController extends ClockDomain{
           bottleAtLoad.gethook();
           bottleAtPos1ConvC.gethook();
           bottleLeftPos5ConvC.gethook();
+          start.gethook();
           wsActiveConvC.gethook();
           bottleTotalConvC.gethook();
           BatchQuantityConvC.gethook();
@@ -184,6 +197,7 @@ public class ConveyorController extends ClockDomain{
       bottleAtLoad.setpreclear();
       bottleAtPos1ConvC.setpreclear();
       bottleLeftPos5ConvC.setpreclear();
+      start.setpreclear();
       wsActiveConvC.setpreclear();
       bottleTotalConvC.setpreclear();
       BatchQuantityConvC.setpreclear();
@@ -203,6 +217,9 @@ public class ConveyorController extends ClockDomain{
       dummyint = bottleLeftPos5ConvC.getStatus() ? bottleLeftPos5ConvC.setprepresent() : bottleLeftPos5ConvC.setpreclear();
       bottleLeftPos5ConvC.setpreval(bottleLeftPos5ConvC.getValue());
       bottleLeftPos5ConvC.setClear();
+      dummyint = start.getStatus() ? start.setprepresent() : start.setpreclear();
+      start.setpreval(start.getValue());
+      start.setClear();
       dummyint = wsActiveConvC.getStatus() ? wsActiveConvC.setprepresent() : wsActiveConvC.setpreclear();
       wsActiveConvC.setpreval(wsActiveConvC.getValue());
       wsActiveConvC.setClear();
@@ -219,6 +236,7 @@ public class ConveyorController extends ClockDomain{
         bottleAtLoad.gethook();
         bottleAtPos1ConvC.gethook();
         bottleLeftPos5ConvC.gethook();
+        start.gethook();
         wsActiveConvC.gethook();
         bottleTotalConvC.gethook();
         BatchQuantityConvC.gethook();

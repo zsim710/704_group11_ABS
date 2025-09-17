@@ -2,40 +2,40 @@ import run.GUI;
 
 LidLoaderPlant(
 		input signal pusherExtend,vacOn,armSource,armDest;
-		input signal enable,refill;
+		input signal enableLL, refill;
 		output signal pusherRetracted,pusherExtended,WPgripped,armAtSource,armAtDest,empty;
 		output signal pusherRetractedE,pusherExtendedE,WPgrippedE,armAtSourceE,armAtDestE,emptyE;
 		)
 ->
 {
-	new Thread(new GUI()).start();
+//	new Thread(new GUI()).start();
 
 	signal capDec;
 	int signal capPos;
 	emit capPos(0);
 	{// Arm
 		while(true){
-			abort(armSource && enable){
+			abort(armSource && enableLL){
 				sustain armAtDest;
 			}
-			await(!enable);
-			abort(armDest && enable){
+			await(!enableLL);
+			abort(armDest && enableLL){
 				sustain armAtSource;
 			}
-			await(!enable);
+			await(!enableLL);
 		}
 	}
 	||
 	{// Pusher
 		while(true){
-			abort(pusherExtend && enable){
+			abort(pusherExtend && enableLL){
 				sustain pusherRetracted;
 			}
-			await(!enable);
-			abort(!pusherExtend && enable){
+			await(!enableLL);
+			abort(!pusherExtend && enableLL){
 				sustain pusherExtended;
 			}
-			await(!enable);
+			await(!enableLL);
 		}
 	}
 	||

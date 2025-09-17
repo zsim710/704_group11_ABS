@@ -4,11 +4,11 @@
 			<iSignal Name="rotaryTableTrigger" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10004" />
 			<iSignal Name="rotated" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10004"/>
 			
-<!--			<iSignal Name="wsActiveRP" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10004" />-->
-<!--			<iSignal Name="bottleTotalRP" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10004"/>-->
-<!--			<iSignal Name="BatchQuantityRP" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10004"/>-->
+			<iSignal Name="wsActiveRP" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10004" />
+			<iSignal Name="bottleTotalRP" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10004"/>
+			<iSignal Name="BatchQuantityRP" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10004"/>
 			
-<!--			<iSignal Name="enableRP" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10004"/>-->
+			<iSignal Name="enableRP" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10004"/>
 
 			<oSignal Name="tableAlignedWithSensor" To="RotaryControllerCD.tableAlignedWithSensor" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10003" />
 			

@@ -1,10 +1,8 @@
 import run.GUI;
 
 ConveyorPlant(
-		input signal motConveyorOn, enableConveyor, bottleAtPos5, rotatedConvP; 
-		// pos1 outputs 
-		input signal enableConvP;
-		output signal bottleAtPos1ConvC, bottleAtPos1RC, bottleAtPos1M;
+		input signal motConveyorOn, enableConveyor, bottleAtPos5, rotatedConvP, enableConvP;
+		output signal bottleAtPos1ConvC, bottleAtPos1RC, bottleAtPos1M, start;
 		output signal bottleLeftPos5ConvC, bottleLeftPos5M, bottleLeftPos5RC;	
 		
 		// output GUIS 
@@ -15,14 +13,16 @@ ConveyorPlant(
 		)
 ->
 {
-	new Thread(new GUI()).start();
+//	new Thread(new GUI()).start();
 	
 	pause;
 
 	{
 	// position one monitoring
 		loop {
+			System.out.println("made it into conveyor");
 			await(enableConvP);
+			emit start;
 			await(motConveyorOn);
 			System.out.println("conveyor is moving");
 			
@@ -30,8 +30,9 @@ ConveyorPlant(
 			//waitl(1 s);
 			
 			System.out.println("bottle at pos1");
-			emit bottleAtPos1ConvC; 
-			await(rotatedConvP);
+			abort(rotatedConvP){
+				sustain bottleAtPos1ConvC; 
+				}
 			}
 	}
 	||
@@ -51,9 +52,16 @@ ConveyorPlant(
 	}
 	||
 	{// To viz (GUI/duplicate signals) 
-		{while(true){present(bottleAtPos1ConvC){emit bottleAtPos1RotaryGUI;
-		emit bottleAtPos1ConveyorGUI;
-		emit bottleAtPos1RC;} pause;}}
+		{while(true){
+			present(bottleAtPos1ConvC){
+				emit bottleAtPos1RotaryGUI;
+				System.out.println("at least we got here 1");
+				emit bottleAtPos1ConveyorGUI;
+				emit bottleAtPos1RC;
+				emit bottleAtPos1M;
+			} 
+			pause;}
+		}
 		||
 		{while(true){present(bottleLeftPos5ConvC){emit bottleLeftPos5RotaryGUI;} pause;}}
 		||

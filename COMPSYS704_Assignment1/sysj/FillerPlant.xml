@@ -2,8 +2,8 @@
 	<SubSystem Name="SS8" Local="true">
 		<ClockDomain Name="FillerPlantCD" Class="FillerPlant">
 			
-		<!--<iSignal Name="enableFP" 	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="34000" />
-		-->	<iSignal Name="valveInjectorOn" 	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="34000" />
+			<iSignal Name="enableFP" 	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="34000" />
+			<iSignal Name="valveInjectorOn" 	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="34000" />
 			<iSignal Name="valveInletOn"   	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="34000" />
 			<iSignal Name="dosUnitValveRetract" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="34000" />
 			<iSignal Name="dosUnitValveExtend" 	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="34000" />
