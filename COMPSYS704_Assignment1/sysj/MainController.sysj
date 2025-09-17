@@ -1,7 +1,7 @@
 MainController(
-input signal bottleAtPos1M,bottleLeftPos5M;
+input signal bottleAtPos1M,bottleLeftPos5M, enable;
 input Integer signal BatchQuantity, LiquidAmount1, LiquidAmount2; 
-
+//output signal enableCP, enableRP, enableLL;
 output Integer signal wsActive, wsActiveRC, wsActiveRP, bottleTotal, bottleTotalRC, bottleTotalRP, BatchQuantityRC, BatchQuantityRP, LiquidAmount1FP, LiquidAmount2FP;
 )->{
 	{
@@ -47,6 +47,19 @@ output Integer signal wsActive, wsActiveRC, wsActiveRP, bottleTotal, bottleTotal
 				emit LiquidAmount2FP;
 				pause;
 //			/}
+		}
+	}
+	||
+	{
+		loop {
+			pause;
+			present(enable){
+				//emit enableFP;
+				//emit enableCP;
+				//emit enableRP;
+				//emit enableLL;
+			}
+			
 		}
 	}
 

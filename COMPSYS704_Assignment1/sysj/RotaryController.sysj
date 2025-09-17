@@ -1,24 +1,30 @@
 import run.GUI;
 
-RotaryCD(
+RotaryController(
 	input signal tableAlignedWithSensor, bottleLeftPos5RC, bottleAtPos1RC, capRemoved, capOnBottleAtPos1;
 	input signal fillerReady, capperReady, lidLoaderReady;
+	input signal start;
 	input Integer signal wsActiveRC, bottleTotalRC, BatchQuantityRC;
 	output signal rotaryTableTrigger;
 	output signal rotated, rotatedConvP, bottleAtPos2, bottleAtPos3, bottleAtPos4;
 	)->	{
 	
 	{
-		
+		pause;
 		loop{
+			//pause;
+			System.out.println("awaiting start");
+			await(immediate start);
+			System.out.println("received start");
 			pause;
 			
 			if ((Integer)#bottleTotalRC < (Integer)#BatchQuantityRC) {
-				await (bottleAtPos1RC);
+				await(bottleAtPos1RC);
 			}
 			
 			{await(fillerReady);}||{await(capperReady);}||{await(lidLoaderReady);}
 			System.out.println("all ready signals received");
+			
 
 			present(capOnBottleAtPos1) {
 				abort(capRemoved) {
@@ -30,11 +36,20 @@ RotaryCD(
 				if ((Integer)#wsActiveRC > 4) {
 					await (bottleLeftPos5RC);
 				}
-					
+				
+				System.out.println("awaiting trap");
+				
 				trap(T){
-					{sustain rotaryTableTrigger;}||{waitl(500 ms); exit(T);}
+					{
+						System.out.println("rotating");
+						sustain rotaryTableTrigger;
+					}
+					||
+					{waitl(0.5 s); exit(T);}
 				}
+				
 				await(tableAlignedWithSensor);
+				System.out.println("received aligned signal");
 				emit rotated;
 				emit rotatedConvP;
 				System.out.println("rotated emitted");

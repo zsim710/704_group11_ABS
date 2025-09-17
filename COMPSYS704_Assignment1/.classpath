@@ -20,27 +20,13 @@
 	<classpathentry kind="lib" path="lib/sjrt-v2.1-37-g7941c30-SNAPSHOT-base.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/sjrt-v2.1-37-g7941c30-SNAPSHOT-desktop.jar"/>
 	<classpathentry kind="lib" path="lib/sysjnetapi-SNAPSHOT-e1801c7.jar"/>
-	<classpathentry kind="lib" path="H:/Documents/COMPSYS704_Lab_3/lib/asm-5.0.4.jar"/>
-	<classpathentry kind="lib" path="H:/Documents/COMPSYS704_Lab_3/lib/commons-cli-1.3.1.jar"/>
-	<classpathentry kind="lib" path="H:/Documents/COMPSYS704_Lab_3/lib/gson-2.8.1.jar"/>
-	<classpathentry kind="lib" path="H:/Documents/COMPSYS704_Lab_3/lib/hmpsoc-ac01f84-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="H:/Documents/COMPSYS704_Lab_3/lib/jdom2-2.0.6.jar"/>
-	<classpathentry kind="lib" path="H:/Documents/COMPSYS704_Lab_3/lib/kotlin-reflect-1.3.72.jar"/>
-	<classpathentry kind="lib" path="H:/Documents/COMPSYS704_Lab_3/lib/kotlin-stdlib-1.3.72.jar"/>
-	<classpathentry kind="lib" path="H:/Documents/COMPSYS704_Lab_3/lib/kotlin-stdlib-common-1.3.72.jar"/>
-	<classpathentry kind="lib" path="H:/Documents/COMPSYS704_Lab_3/lib/kotlin-stdlib-jdk7-1.3.72.jar"/>
-	<classpathentry kind="lib" path="H:/Documents/COMPSYS704_Lab_3/lib/kotlin-stdlib-jdk8-1.3.72.jar"/>
-	<classpathentry kind="lib" path="H:/Documents/COMPSYS704_Lab_3/lib/sjc-2.2-13-g8ab684c-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="H:/Documents/COMPSYS704_Lab_3/lib/sjrt-v2.1-37-g7941c30-SNAPSHOT-base.jar"/>
-	<classpathentry kind="lib" path="H:/Documents/COMPSYS704_Lab_3/lib/sjrt-v2.1-37-g7941c30-SNAPSHOT-desktop.jar"/>
-	<classpathentry kind="lib" path="H:/Documents/COMPSYS704_Lab_3/lib/sysjnetapi-SNAPSHOT-e1801c7.jar"/>
-	<classpathentry kind="lib" path="H:/Documents/COMPSYS704_Lab_3/lib/javafx22/lib/javafx.base.jar"/>
-	<classpathentry kind="lib" path="H:/Documents/COMPSYS704_Lab_3/lib/javafx22/lib/javafx.controls.jar"/>
-	<classpathentry kind="lib" path="H:/Documents/COMPSYS704_Lab_3/lib/javafx22/lib/javafx.fxml.jar"/>
-	<classpathentry kind="lib" path="H:/Documents/COMPSYS704_Lab_3/lib/javafx22/lib/javafx.graphics.jar"/>
-	<classpathentry kind="lib" path="H:/Documents/COMPSYS704_Lab_3/lib/javafx22/lib/javafx.media.jar"/>
-	<classpathentry kind="lib" path="H:/Documents/COMPSYS704_Lab_3/lib/javafx22/lib/javafx.swing.jar"/>
-	<classpathentry kind="lib" path="H:/Documents/COMPSYS704_Lab_3/lib/javafx22/lib/javafx.web.jar"/>
-	<classpathentry kind="lib" path="H:/Documents/COMPSYS704_Lab_3/lib/javafx22/lib/javafx-swt.jar"/>
+	<classpathentry kind="lib" path="C:/Users/nimit/OneDrive/Documents/GitHub/704_group11_ABS/COMPSYS704_Assignment1/lib/javafx22/lib/javafx.base.jar"/>
+	<classpathentry kind="lib" path="C:/Users/nimit/OneDrive/Documents/GitHub/704_group11_ABS/COMPSYS704_Assignment1/lib/javafx22/lib/javafx.controls.jar"/>
+	<classpathentry kind="lib" path="C:/Users/nimit/OneDrive/Documents/GitHub/704_group11_ABS/COMPSYS704_Assignment1/lib/javafx22/lib/javafx.fxml.jar"/>
+	<classpathentry kind="lib" path="C:/Users/nimit/OneDrive/Documents/GitHub/704_group11_ABS/COMPSYS704_Assignment1/lib/javafx22/lib/javafx.graphics.jar"/>
+	<classpathentry kind="lib" path="C:/Users/nimit/OneDrive/Documents/GitHub/704_group11_ABS/COMPSYS704_Assignment1/lib/javafx22/lib/javafx.media.jar"/>
+	<classpathentry kind="lib" path="C:/Users/nimit/OneDrive/Documents/GitHub/704_group11_ABS/COMPSYS704_Assignment1/lib/javafx22/lib/javafx.swing.jar"/>
+	<classpathentry kind="lib" path="C:/Users/nimit/OneDrive/Documents/GitHub/704_group11_ABS/COMPSYS704_Assignment1/lib/javafx22/lib/javafx.web.jar"/>
+	<classpathentry kind="lib" path="C:/Users/nimit/OneDrive/Documents/GitHub/704_group11_ABS/COMPSYS704_Assignment1/lib/javafx22/lib/javafx-swt.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

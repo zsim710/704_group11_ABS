@@ -3,6 +3,7 @@ import run.GUI;
 ConveyorPlant(
 		input signal motConveyorOn, enableConveyor, bottleAtPos5, rotatedConvP; 
 		// pos1 outputs 
+		input signal enableConvP;
 		output signal bottleAtPos1ConvC, bottleAtPos1RC, bottleAtPos1M;
 		output signal bottleLeftPos5ConvC, bottleLeftPos5M, bottleLeftPos5RC;	
 		
@@ -21,9 +22,13 @@ ConveyorPlant(
 	{
 	// position one monitoring
 		loop {
+			await(enableConvP);
 			await(motConveyorOn);
 			System.out.println("conveyor is moving");
-			waitl(1 s);
+			
+			await(!enableConvP);
+			//waitl(1 s);
+			
 			System.out.println("bottle at pos1");
 			emit bottleAtPos1ConvC; 
 			await(rotatedConvP);
@@ -33,8 +38,10 @@ ConveyorPlant(
 	{
 		// position five monitoring -> 
 		loop {
+			await(enableConvP);
 			await(bottleAtPos5);
-			waitl(1 s);
+			await(!enableConvP);
+			
 			System.out.println("bottle left pos 5");
 			emit bottleLeftPos5M;
 			emit bottleLeftPos5ConvC;

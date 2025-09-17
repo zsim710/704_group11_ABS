@@ -10,10 +10,9 @@ CapperPlant(
 	{
 		while(true) {
 			
-			await (enableCapP);
-			
 			abort(cylPos5ZaxisExtend) {
 				{
+					await (enableCapP);
 					System.out.println("sending start signal");
 					sustain start;
 					}
@@ -23,16 +22,10 @@ CapperPlant(
 					sustain gripperZAxisLifted;
 				}
 			}
-//			System.out.println("abort 1");
 
-//			await(!enableCapP);
-//			System.out.println("reached here 1");
-//			await(enableCapP);
-//			System.out.println("aborted gripper at top");
-
+			System.out.println("waiting for gripper at bottom disable");
 			await(!enableCapP);
-			System.out.println("reached here 2");
-//			/await(enableCapP);
+
 			abort(!cylPos5ZaxisExtend) {
 				{
 					System.out.println("gripper at bottom");
@@ -47,10 +40,9 @@ CapperPlant(
 				}
 			}
 			
-			System.out.println("reached here 3");
-			
+			System.out.println("waiting for let go disable");
 			await(!enableCapP);
-			System.out.println("waiting for letgo enable");
+			System.out.println("waiting for let go enable");
 
 			await(enableCapP);
 			abort(gripperTurnRetract) {
@@ -67,17 +59,14 @@ CapperPlant(
 	
 	{ 
 		while(true) {
-			
-//			await(letGo); 
 		
 			abort (gripperTurnExtend) {
-				System.out.println("fully untwisted");
+				//System.out.println("fully untwisted");
 				sustain gripperTurnHomePos;
 			}
 		
-//			await(enableCapP);
 			abort(gripperTurnRetract) {
-				System.out.println("fully twisted");
+				//System.out.println("fully twisted");
 				sustain gripperTurnFinalPos;
 			}
 		}

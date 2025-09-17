@@ -1,79 +1,77 @@
 FillerPlant(
-input signal enableFP, valveInjectorOn, valveInletOn, dosUnitValveRetract, dosUnitValveExtend;
-input Integer signal LiquidAmount1FP, LiquidAmount2FP;
+input signal enableFP, valveInjectorOn, valveInletOn, dosUnitValveRetract, dosUnitValveExtend, filler2Complete;
 output signal dosUnitEvac,dosUnitFilled;
+output signal start;
 )->{
 	
-	signal filler1, filler2, filler2Complete, filler1Complete;
-	int signal currentFiller;
-	
-	emit currentFiller(1);
 	
 	{
-	abort(filler2Complete) {
-		pause;
+		
+	abort(immediate filler2Complete) {
+		await(enableFP);
+		emit start;
 
 		loop {
 			
-			await(valveInjectorOn && enableFP);
-			System.out.println("starting filler " + (Integer)#currentFiller);
+			
+			System.out.println("awaiting starting enable");
+			await(enableFP);
+			System.out.println("completed starting enable");
+			
+			
+			await(valveInjectorOn);
+			//System.out.println("starting filler " + (Integer)#currentFiller);
 			// injector turned on
 			
 			// if dosUnitValveRetract present then we sustain dosUnitFilled(at the top).
 			// we stop sustaining (at the top) when controller forces pressure canister down
+			System.out.println("awaiting disable 1");
 			await(!enableFP);
+			System.out.println("completed disable 1");
 			
-			abort(dosUnitValveExtend && enableFP){
+			System.out.println("awaiting enable 2");
+			await(enableFP);
+			System.out.println("completed enable 2");
+
+			abort(dosUnitValveExtend){
 					present(dosUnitValveRetract){
-						System.out.println("reached here 1");
 						sustain dosUnitFilled;
 					}
 			}
-			System.out.println("left abort 1");
-
 			
+			System.out.println("awaiting disable 2");
 			await(!enableFP);
+			System.out.println("completed disable 2");
 			// will sustain (at bottom) until they turn off the valve.
-			abort(!valveInletOn && enableFP) {
+			
+			System.out.println("awaiting enable 3");
+			await(enableFP);
+			System.out.println("completed enable 3");
+			abort(!valveInletOn) {
 					present(dosUnitValveExtend){
-						System.out.println("reached here 2");
 						sustain dosUnitEvac;
 					}
 			}
-			System.out.println("left abort 2");
-
+			
+			System.out.println("awaiting disable 3");
 			await(!enableFP);
+			System.out.println("completed disable 3");
 			
-			if ((Integer)#currentFiller == 1) {
-				System.out.println("filler 1 complete, filled " + ((Integer)#LiquidAmount1FP) + "%");
-			}
-			else if ((Integer)#currentFiller == 2) {
-				System.out.println("filler 2 complete, filled " + ((Integer)#LiquidAmount2FP) + "%");
-			}
-			
+			System.out.println("awaiting enable 4");
 			await(enableFP);
-			emit currentFiller((Integer)#currentFiller + 1);
-			System.out.println("looped");
+			System.out.println("completed enable 4");
+			
+			
+			System.out.println("awaiting disable 4");
 			await(!enableFP);
+			System.out.println("completed disable 4");
+			
+			System.out.println("looped");
 		}
-
 	}
 	
 	System.out.println("all fillers complete");
+	
 	}
-	||
-	{
-		while(true) {	
-			pause;
-			if((Integer)#currentFiller == 2) {
-			emit filler2; 
-			} else if ((Integer)#currentFiller == 1) {
-				emit filler1;
-			} else { // means filler is all complete
-				emit filler2Complete;
-				emit currentFiller(1); // reset current filler
-			}
-		}
-	}
-
+	
 }

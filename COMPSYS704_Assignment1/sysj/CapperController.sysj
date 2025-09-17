@@ -4,10 +4,12 @@ CapperController(
 		
 )-> {
 	
+	pause; 
 	
 	loop{
-			abort(bottleAtPos4) {
+			abort(immediate bottleAtPos4) {
 				sustain capperReady;
+				System.out.println("emitting capper Ready");
 			}
 				
 			await(start);

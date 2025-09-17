@@ -7,11 +7,11 @@
 			<iSignal Name="valveInletOn"   	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="34000" />
 			<iSignal Name="dosUnitValveRetract" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="34000" />
 			<iSignal Name="dosUnitValveExtend" 	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="34000" />
-			<iSignal Name="LiquidAmount1FP" 	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="34000" />
-			<iSignal Name="LiquidAmount2FP" 	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="34000" />
+			<iSignal Name="filler2Complete" 	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="34000" />
 
 			<oSignal Name="dosUnitEvac" To="FillerControllerCD.dosUnitEvac" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="33000" />
 			<oSignal Name="dosUnitFilled" To="FillerControllerCD.dosUnitFilled" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="33000" />
+			<oSignal Name="start" To="FillerControllerCD.start" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="33000" />
 
 		</ClockDomain>
 	</SubSystem>
