@@ -9,7 +9,8 @@ CapperController(
 			abort(bottleAtPos4) {
 				sustain capperReady;
 			}
-				
+
+			System.out.println("bottle at pos 4 received");
 			await(start);
 			
 			trap(T){

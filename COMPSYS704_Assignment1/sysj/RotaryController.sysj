@@ -9,10 +9,7 @@ RotaryController(
 		// for GUI
 		)->	{
 	
-	{
-		
-//		signal capOnBottleAtPos1RP;
-		
+	{		
 		loop{
 			pause;
 			// below commented out for easier testing

@@ -29,13 +29,18 @@ public class Capper extends JFrame {
 
         // Control buttons
         JPanel buttonPanel = new JPanel(new FlowLayout());
-        JButton btnBottleAtPos3 = new JButton("Bottle at Pos 3");
-        JButton btnEnable = new JButton("Enable");
-        JButton btnFault = new JButton("Fault"); 
 
-        buttonPanel.add(btnBottleAtPos3);
-        buttonPanel.add(btnEnable);
-        buttonPanel.add(btnFault);
+        JButton btnBottleAtPos4 = new JButton("Bottle at Pos 4");
+        btnBottleAtPos4.addActionListener(new SignalClient(Ports.PORT_CAPPER_CONTROLLER, Ports.CAPPER_BOTTLE_PRESENT));
+        
+        // JButton btnEnable = new JButton("Enable");
+        // btnEnable.addActionListener(new SignalClient(Ports.PORT_CAPPER_CONTROLLER, Ports.ROTARY_ENABLE));
+
+        // JButton btnFault = new JButton("Fault"); 
+
+        buttonPanel.add(btnBottleAtPos4);
+        // buttonPanel.add(btnEnable);
+        // buttonPanel.add(btnFault);
  
         add(buttonPanel, BorderLayout.SOUTH); 
 

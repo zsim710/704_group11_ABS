@@ -53,15 +53,16 @@ public class BottleStation extends JFrame {
 		JPanel buttonPanel = new JPanel(new FlowLayout());
 		
         JButton fault = new JButton("Cap on Bottle at Pos1");
-        fault.addActionListener(new SignalClient(Ports.PORT_ROTARY_PLANT, Ports.SIMULATE_FAULT));
+        fault.addActionListener(new SignalClient(Ports.PORT_ROTARY_CONTROLLER, Ports.SIMULATE_FAULT));
 
-//        JButton bottleAtPos1 = new JButton("Bottle at Pos 1");
-//        fault.addActionListener(new SignalClient(Ports.PORT_ROTARY_PLANT, Ports.SIMULATE_FAULT));
+		// TODO send to main controller to enable/disable whole system, change ports
+        JButton enable = new JButton("Enable");
+        enable.addActionListener(new SignalClient(Ports.PORT_ROTARY_CONTROLLER, Ports.ROTARY_ENABLE));
 
         buttonPanel.add(fault);
+		buttonPanel.add(enable);
         add(buttonPanel, BorderLayout.SOUTH); 
 
-        // Event listeners
       
 //		JPanel pan3 = new JPanel(new GridLayout(0, 2));
 //		pan3.add(pan);

@@ -29,7 +29,6 @@
 
 			<oSignal Name="capOnBottleAtPos1RP" To="RotaryPlantCD.capOnBottleAtPos1RP" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10004" />
 
-
 		</ClockDomain>
 	</SubSystem>
 </System>
