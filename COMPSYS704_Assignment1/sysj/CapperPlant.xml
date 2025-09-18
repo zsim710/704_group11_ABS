@@ -7,8 +7,8 @@
 			<iSignal Name="gripperTurnExtend" 														Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="32000" />
 			<iSignal Name="capGripperPos5Extend" 													Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="32000" />
 			<iSignal Name="cylClampBottleExtend" 													Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="32000" />
-			<iSignal Name="enableCapP"      	 														Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="32000" />	
-			
+			<iSignal Name="start" 																	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="32000" />
+		
 			<oSignal Name="gripperZAxisLowered"  	To="CapperControllerCD.gripperZAxisLowered"  	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="31000" />
 			<oSignal Name="gripperZAxisLifted"  	To="CapperControllerCD.gripperZAxisLifted"  	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="31000" />
 			<oSignal Name="gripperTurnHomePos"  	To="CapperControllerCD.gripperTurnHomePos"  	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="31000" />
@@ -16,7 +16,6 @@
 			<oSignal Name="capGripped"  			To="CapperControllerCD.capGripped"  			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="31000" />
 			<oSignal Name="start"  					To="CapperControllerCD.start"  					Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="31000" />
 			<oSignal Name="letGo"  					To="CapperControllerCD.letGo"  					Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="31000" />
-
 			
 			<oSignal Name="bottleAtPos4E" 			To="UI.bottleAtPos4E" 							Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10014" />
 			<oSignal Name="gripperZAxisLoweredE" 	To="UI.gripperZAxisLoweredE" 					Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10014" />

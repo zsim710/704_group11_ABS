@@ -1,8 +1,8 @@
 import run.GUI;
 
 ConveyorPlant(
-		input signal motConveyorOn, enableConveyor, bottleAtPos5, rotatedConvP, enableConvP;
-		output signal bottleAtPos1ConvC, bottleAtPos1RC, bottleAtPos1M, start;
+		input signal motConveyorOn, bottleAtPos5, rotatedConvP,start;
+		output signal bottleAtPos1ConvC, bottleAtPos1RC, bottleAtPos1M;
 		output signal bottleLeftPos5ConvC, bottleLeftPos5M, bottleLeftPos5RC;	
 		
 		// output GUIS 
@@ -14,34 +14,34 @@ ConveyorPlant(
 ->
 {
 //	new Thread(new GUI()).start();
+	signal rotatedUpdated;
 	
-	pause;
+	await(immediate start);
 
 	{
-	// position one monitoring
 		loop {
 			System.out.println("made it into conveyor");
-			await(enableConvP);
-			emit start;
+			//pause; shouldnt need this because start and notconveyorON should be recieved at same time
 			await(motConveyorOn);
 			System.out.println("conveyor is moving");
-			
-			await(!enableConvP);
-			//waitl(1 s);
+			pause;
 			
 			System.out.println("bottle at pos1");
+			//emit rotatedUpdated;
 			abort(rotatedConvP){
 				sustain bottleAtPos1ConvC; 
 				}
 			}
+			//emit rotatedUpdated; // maybe we can emit this signal from rotary after its rotated straight to main controller 
+			pause;
 	}
 	||
 	{
 		// position five monitoring -> 
 		loop {
-			await(enableConvP);
+			pause;
 			await(bottleAtPos5);
-			await(!enableConvP);
+			pause;
 			
 			System.out.println("bottle left pos 5");
 			emit bottleLeftPos5M;
@@ -55,12 +55,20 @@ ConveyorPlant(
 		{while(true){
 			present(bottleAtPos1ConvC){
 				emit bottleAtPos1RotaryGUI;
-				System.out.println("at least we got here 1");
+				//System.out.println("got it");
 				emit bottleAtPos1ConveyorGUI;
 				emit bottleAtPos1RC;
-				emit bottleAtPos1M;
+				
 			} 
 			pause;}
+		}
+		{
+			while(true) {
+				present(rotatedUpdated){
+					emit bottleAtPos1M;
+				}
+				pause;
+			}
 		}
 		||
 		{while(true){present(bottleLeftPos5ConvC){emit bottleLeftPos5RotaryGUI;} pause;}}

@@ -5,15 +5,15 @@
 			<iSignal Name="vacOn"        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
 			<iSignal Name="armSource"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
 			<iSignal Name="armDest"      Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
-			<iSignal Name="enableLL"       Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
+			<iSignal Name="start"       Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
 			<iSignal Name="refill"       Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
 
-			<oSignal Name="pusherRetracted" To="ControllerCD.pusherRetracted" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
-			<oSignal Name="pusherExtended"  To="ControllerCD.pusherExtended"  Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
-			<oSignal Name="WPgripped"       To="ControllerCD.WPgripped"       Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
-			<oSignal Name="armAtSource"     To="ControllerCD.armAtSource"     Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
-			<oSignal Name="armAtDest"       To="ControllerCD.armAtDest"       Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
-			<oSignal Name="empty"           To="ControllerCD.empty"           Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
+			<oSignal Name="pusherRetracted" To="LidLoaderControllerCD.pusherRetracted" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
+			<oSignal Name="pusherExtended"  To="LidLoaderControllerCD.pusherExtended"  Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
+			<oSignal Name="WPgripped"       To="LidLoaderControllerCD.WPgripped"       Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
+			<oSignal Name="armAtSource"     To="LidLoaderControllerCD.armAtSource"     Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
+			<oSignal Name="armAtDest"       To="LidLoaderControllerCD.armAtDest"       Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
+			<oSignal Name="empty"           To="LidLoaderControllerCD.empty"           Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
 
 			<oSignal Name="pusherRetractedE" To="UI.pusherRetractedE" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />
 			<oSignal Name="pusherExtendedE"  To="UI.pusherExtendedE"  Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />

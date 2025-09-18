@@ -3,23 +3,28 @@ import run.GUI;
 RotaryController(
 	input signal tableAlignedWithSensor, bottleLeftPos5RC, bottleAtPos1RC, capRemoved, capOnBottleAtPos1;
 	input signal fillerReady, capperReady, lidLoaderReady;
-	input signal start;
 	input Integer signal wsActiveRC, bottleTotalRC, BatchQuantityRC;
 	output signal rotaryTableTrigger;
-	output signal rotated, rotatedConvP, bottleAtPos2, bottleAtPos3, bottleAtPos4;
+	output signal rotated, rotatedM, rotatedConvP, bottleAtPos2, bottleAtPos3, bottleAtPos4, start_r;
 	)->	{
 	
 	{
-		pause;
+		//await (bottleAtPos1RC);
+		System.out.println("got into controller");
+		//pause;
+		//emit start_r; should be inside since for some reason plant doesnt detect start? 
 		loop{
-			//pause;
-			System.out.println("awaiting start");
-			await(immediate start);
-			System.out.println("received start");
+			await(bottleAtPos1RC);
+			emit start_r;
+	
+			//pause; // inserting pause to see if helps plant catch start_r
+			System.out.println("emitted start");
 			pause;
+
 			
 			if ((Integer)#bottleTotalRC < (Integer)#BatchQuantityRC) {
-				await(bottleAtPos1RC);
+//				await(bottleAtPos1RC);
+				System.out.println("received bottleAtPos1RC");
 			}
 			
 			{await(fillerReady);}||{await(capperReady);}||{await(lidLoaderReady);}
@@ -47,19 +52,18 @@ RotaryController(
 					||
 					{waitl(0.5 s); exit(T);}
 				}
-				
+				System.out.println("exited the trap");
 				await(tableAlignedWithSensor);
 				System.out.println("received aligned signal");
 				emit rotated;
 				emit rotatedConvP;
+				emit rotatedM; // this goes directly to main controller 
 				System.out.println("rotated emitted");
 				
-				pause;
-				
 			}
-			
-			
-				
+				//pause;
+				//pause;
+				//pause;
 		}
 
 	}

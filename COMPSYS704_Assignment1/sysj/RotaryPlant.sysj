@@ -1,50 +1,48 @@
 import run.GUI;
 
 RotaryPlant(
-	input signal rotaryTableTrigger, rotated, enableRP;
+	input signal rotaryTableTrigger, rotated, start_r;
 	input Integer signal wsActiveRP, bottleTotalRP, BatchQuantityRP;
 	output signal tableAlignedWithSensor, rotation, bottleAtPos2, bottleAtPos3, bottleAtPos4, bottleAtPos5;
-	output signal start;
 	)->{
 		
 		//new Thread(new GUI()).start();
-		pause;
+		System.out.println("awaiting start");
+		await(immediate start_r);
+		System.out.println("received start");
 		
 		{
 			// rotary motor function
 			while(true){
-			System.out.println("awaiting enable");
-			await(enableRP);
-			System.out.println("received enable");
-
-			emit start;
-			System.out.println("emitted start");
-
-			pause;
+		
 				suspend(immediate rotaryTableTrigger){
 				// do nothing
 		//			sustain bottleAtPos1;
 						
-						System.out.println("emitted aligned signal");
+						//System.out.println("emitted aligned signal");
 						pause;
 						if ((Integer)#bottleTotalRP < (Integer)#BatchQuantityRP) { 
 							if((Integer)#wsActiveRP == 2) {
 								emit bottleAtPos2;
+								System.out.println("emitted botteAtPos2");
 							}
 							else if((Integer)#wsActiveRP == 3) {
 								emit bottleAtPos2;
 								emit bottleAtPos3;		
+								System.out.println("emitted botteAtPos3");
 							}
 							else if((Integer)#wsActiveRP == 4) {
 								emit bottleAtPos2;
 								emit bottleAtPos3;
-								emit bottleAtPos4;		
+								emit bottleAtPos4;	
+								System.out.println("emitted botteAtPos4");
 							}
 							else if((Integer)#wsActiveRP == 5) {
 								emit bottleAtPos2;
 								emit bottleAtPos3;
 								emit bottleAtPos4;
-								emit bottleAtPos5;	
+								emit bottleAtPos5;
+								System.out.println("emitted botteAtPos5");
 							}
 							else {
 								System.out.println("print error");
@@ -63,13 +61,18 @@ RotaryPlant(
 								emit bottleAtPos3;
 								emit bottleAtPos4;
 								emit bottleAtPos5;	
+								System.out.println("stopped emitting botteAtPos2");
 							}
 							else if((Integer)#wsActiveRP == 2) {
 								emit bottleAtPos4;
 								emit bottleAtPos5;	
+								System.out.println("stopped emitting botteAtPos3");
+
 							}
 							else if((Integer)#wsActiveRP == 1) {
 								emit bottleAtPos5;	
+								System.out.println("stopped emitting botteAtPos4");
+
 							}
 							else {
 								System.out.println("error 2");
@@ -78,8 +81,9 @@ RotaryPlant(
 					
 				}
 				System.out.println("awaiting disable");
-
-				await(!enableRP);
+				
+				
+				
 				// maybe make this an integer and we can just read its current state for GUI 
 			}
 		}
@@ -90,7 +94,7 @@ RotaryPlant(
 				pause;
 				present(rotated){
 					emit rotation;
-					//System.out.println("sent to UI");
+					System.out.println("recieved rotation");
 				}
 				else {
 					
@@ -102,6 +106,7 @@ RotaryPlant(
 		{
 			loop{
 				abort(immediate rotaryTableTrigger){
+					System.out.println("emitting aligned sensor");
 					sustain tableAlignedWithSensor;
 				}
 				pause;

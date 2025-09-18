@@ -1,7 +1,7 @@
 CapperPlant(
 		input signal cylPos5ZaxisExtend, gripperTurnRetract, gripperTurnExtend, capGripperPos5Extend, cylClampBottleExtend;
-		input signal enableCapP; //from GUI
-		output signal gripperZAxisLowered, gripperZAxisLifted, gripperTurnHomePos, gripperTurnFinalPos, start, capGripped, letGo;
+		input signal start; //from GUI
+		output signal gripperZAxisLowered, gripperZAxisLifted, gripperTurnHomePos, gripperTurnFinalPos, capGripped, letGo;
 		output signal bottleAtPos4E, gripperZAxisLoweredE, gripperZAxisLiftedE, gripperTurnHomePosE, gripperTurnFinalPosE, capIsGrippedE;
 		)
 ->
@@ -9,22 +9,17 @@ CapperPlant(
 
 	{
 		while(true) {
+			// wait until the start 
+			await(immediate start);
 			
 			abort(cylPos5ZaxisExtend) {
-				{
-					await (enableCapP);
-					System.out.println("sending start signal");
-					sustain start;
-					}
-				||
-				{
 					System.out.println("sustaining gripper at top");
 					sustain gripperZAxisLifted;
-				}
+				
 			}
 
 			System.out.println("waiting for gripper at bottom disable");
-			await(!enableCapP);
+			pause;
 
 			abort(!cylPos5ZaxisExtend) {
 				{
@@ -34,17 +29,16 @@ CapperPlant(
 				||
 				{ 
 					System.out.println("waiting for gripped enable");
-					await(enableCapP);
+					pause;
 					System.out.println("cap gripped sent");
 					sustain capGripped;
 				}
 			}
 			
 			System.out.println("waiting for let go disable");
-			await(!enableCapP);
 			System.out.println("waiting for let go enable");
 
-			await(enableCapP);
+			pause;
 			abort(gripperTurnRetract) {
 				System.out.println("let go emitted");
 				sustain letGo;

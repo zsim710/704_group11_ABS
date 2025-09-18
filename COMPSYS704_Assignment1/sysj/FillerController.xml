@@ -6,18 +6,18 @@
 		<iSignal Name="bottleAtPos2" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="33000" />
 		<iSignal Name="dosUnitEvac"	  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="33000" />
 		<iSignal Name="dosUnitFilled" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="33000" />
-		<iSignal Name="start" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="33000" />
 		
 		<iSignal Name="LiquidAmount1FC" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="33000" />
 		<iSignal Name="LiquidAmount2FC" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="33000" />
 
+		<oSignal Name="start" 					To="FillerPlantCD.start" 		Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="34000" />
 		<oSignal Name="fillerReady" 			To="RotaryControllerCD.fillerReady" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10003" />
 		<oSignal Name="valveInjectorOn"  		To="FillerPlantCD.valveInjectorOn"  	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="34000" />
 		<oSignal Name="valveInletOn"  			To="FillerPlantCD.valveInletOn"  	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="34000" />
 		<oSignal Name="dosUnitValveRetract"  	To="FillerPlantCD.dosUnitValveRetract"  	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="34000" />
 		<oSignal Name="dosUnitValveExtend"  	To="FillerPlantCD.dosUnitValveExtend"  	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="34000" />
 		<oSignal Name="filler2Complete"  	To="FillerPlantCD.filler2Complete"  	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="34000" />
-		</ClockDomain>
+		</ClockDomain>`
 	</SubSystem>
 	
 </System>

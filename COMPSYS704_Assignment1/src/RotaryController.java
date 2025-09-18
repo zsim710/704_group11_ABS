@@ -20,32 +20,32 @@ public class RotaryController extends ClockDomain{
   public Signal fillerReady = new Signal("fillerReady", Signal.INPUT);
   public Signal capperReady = new Signal("capperReady", Signal.INPUT);
   public Signal lidLoaderReady = new Signal("lidLoaderReady", Signal.INPUT);
-  public Signal start = new Signal("start", Signal.INPUT);
   public Signal wsActiveRC = new Signal("wsActiveRC", Signal.INPUT);
   public Signal bottleTotalRC = new Signal("bottleTotalRC", Signal.INPUT);
   public Signal BatchQuantityRC = new Signal("BatchQuantityRC", Signal.INPUT);
   public Signal rotaryTableTrigger = new Signal("rotaryTableTrigger", Signal.OUTPUT);
   public Signal rotated = new Signal("rotated", Signal.OUTPUT);
+  public Signal rotatedM = new Signal("rotatedM", Signal.OUTPUT);
   public Signal rotatedConvP = new Signal("rotatedConvP", Signal.OUTPUT);
   public Signal bottleAtPos2 = new Signal("bottleAtPos2", Signal.OUTPUT);
   public Signal bottleAtPos3 = new Signal("bottleAtPos3", Signal.OUTPUT);
   public Signal bottleAtPos4 = new Signal("bottleAtPos4", Signal.OUTPUT);
-  private long __start_thread_6;//sysj\RotaryController.sysj line: 48, column: 6
-  private int S8428 = 1;
-  private int S8427 = 1;
-  private int S5529 = 1;
-  private int S5536 = 1;
-  private int S5539 = 1;
-  private int S5542 = 1;
-  private int S5567 = 1;
-  private int S5575 = 1;
-  private int S5591 = 1;
+  public Signal start_r = new Signal("start_r", Signal.OUTPUT);
+  private long __start_thread_6;//sysj\RotaryController.sysj line: 53, column: 6
+  private int S7214 = 1;
+  private int S4454 = 1;
+  private int S4457 = 1;
+  private int S4460 = 1;
+  private int S4463 = 1;
+  private int S4479 = 1;
+  private int S4487 = 1;
+  private int S4503 = 1;
   
   private int[] ends = new int[7];
   private int[] tdone = new int[7];
   
-  public void thread8452(int [] tdone, int [] ends){
-        switch(S5591){
+  public void thread7234(int [] tdone, int [] ends){
+        switch(S4503){
       case 0 : 
         active[6]=0;
         ends[6]=0;
@@ -53,9 +53,9 @@ public class RotaryController extends ClockDomain{
         break;
       
       case 1 : 
-        if(com.systemj.Timer.getMs() - __start_thread_6 >= (0.5) * 1000){//sysj\RotaryController.sysj line: 48, column: 6
+        if(com.systemj.Timer.getMs() - __start_thread_6 >= (0.5) * 1000){//sysj\RotaryController.sysj line: 53, column: 6
           ends[6]=3;
-          ;//sysj\RotaryController.sysj line: 48, column: 6
+          ;//sysj\RotaryController.sysj line: 53, column: 6
           ends[6]=2;
           tdone[6]=1;
         }
@@ -69,8 +69,8 @@ public class RotaryController extends ClockDomain{
     }
   }
 
-  public void thread8451(int [] tdone, int [] ends){
-        switch(S5575){
+  public void thread7233(int [] tdone, int [] ends){
+        switch(S4487){
       case 0 : 
         active[5]=0;
         ends[5]=0;
@@ -78,7 +78,7 @@ public class RotaryController extends ClockDomain{
         break;
       
       case 1 : 
-        rotaryTableTrigger.setPresent();//sysj\RotaryController.sysj line: 45, column: 7
+        rotaryTableTrigger.setPresent();//sysj\RotaryController.sysj line: 50, column: 7
         currsigs.addElement(rotaryTableTrigger);
         active[5]=1;
         ends[5]=1;
@@ -88,12 +88,12 @@ public class RotaryController extends ClockDomain{
     }
   }
 
-  public void thread8449(int [] tdone, int [] ends){
-        S5591=1;
-    __start_thread_6 = com.systemj.Timer.getMs();//sysj\RotaryController.sysj line: 48, column: 6
-    if(com.systemj.Timer.getMs() - __start_thread_6 >= (0.5) * 1000){//sysj\RotaryController.sysj line: 48, column: 6
+  public void thread7231(int [] tdone, int [] ends){
+        S4503=1;
+    __start_thread_6 = com.systemj.Timer.getMs();//sysj\RotaryController.sysj line: 53, column: 6
+    if(com.systemj.Timer.getMs() - __start_thread_6 >= (0.5) * 1000){//sysj\RotaryController.sysj line: 53, column: 6
       ends[6]=3;
-      ;//sysj\RotaryController.sysj line: 48, column: 6
+      ;//sysj\RotaryController.sysj line: 53, column: 6
       ends[6]=2;
       tdone[6]=1;
     }
@@ -104,22 +104,22 @@ public class RotaryController extends ClockDomain{
     }
   }
 
-  public void thread8448(int [] tdone, int [] ends){
-        S5575=1;
-    System.out.println("rotating");//sysj\RotaryController.sysj line: 44, column: 7
-    rotaryTableTrigger.setPresent();//sysj\RotaryController.sysj line: 45, column: 7
+  public void thread7230(int [] tdone, int [] ends){
+        S4487=1;
+    System.out.println("rotating");//sysj\RotaryController.sysj line: 49, column: 7
+    rotaryTableTrigger.setPresent();//sysj\RotaryController.sysj line: 50, column: 7
     currsigs.addElement(rotaryTableTrigger);
     active[5]=1;
     ends[5]=1;
     tdone[5]=1;
   }
 
-  public void thread8446(int [] tdone, int [] ends){
-        S5591=1;
-    __start_thread_6 = com.systemj.Timer.getMs();//sysj\RotaryController.sysj line: 48, column: 6
-    if(com.systemj.Timer.getMs() - __start_thread_6 >= (0.5) * 1000){//sysj\RotaryController.sysj line: 48, column: 6
+  public void thread7228(int [] tdone, int [] ends){
+        S4503=1;
+    __start_thread_6 = com.systemj.Timer.getMs();//sysj\RotaryController.sysj line: 53, column: 6
+    if(com.systemj.Timer.getMs() - __start_thread_6 >= (0.5) * 1000){//sysj\RotaryController.sysj line: 53, column: 6
       ends[6]=3;
-      ;//sysj\RotaryController.sysj line: 48, column: 6
+      ;//sysj\RotaryController.sysj line: 53, column: 6
       ends[6]=2;
       tdone[6]=1;
     }
@@ -130,22 +130,22 @@ public class RotaryController extends ClockDomain{
     }
   }
 
-  public void thread8445(int [] tdone, int [] ends){
-        S5575=1;
-    System.out.println("rotating");//sysj\RotaryController.sysj line: 44, column: 7
-    rotaryTableTrigger.setPresent();//sysj\RotaryController.sysj line: 45, column: 7
+  public void thread7227(int [] tdone, int [] ends){
+        S4487=1;
+    System.out.println("rotating");//sysj\RotaryController.sysj line: 49, column: 7
+    rotaryTableTrigger.setPresent();//sysj\RotaryController.sysj line: 50, column: 7
     currsigs.addElement(rotaryTableTrigger);
     active[5]=1;
     ends[5]=1;
     tdone[5]=1;
   }
 
-  public void thread8443(int [] tdone, int [] ends){
-        S5591=1;
-    __start_thread_6 = com.systemj.Timer.getMs();//sysj\RotaryController.sysj line: 48, column: 6
-    if(com.systemj.Timer.getMs() - __start_thread_6 >= (0.5) * 1000){//sysj\RotaryController.sysj line: 48, column: 6
+  public void thread7225(int [] tdone, int [] ends){
+        S4503=1;
+    __start_thread_6 = com.systemj.Timer.getMs();//sysj\RotaryController.sysj line: 53, column: 6
+    if(com.systemj.Timer.getMs() - __start_thread_6 >= (0.5) * 1000){//sysj\RotaryController.sysj line: 53, column: 6
       ends[6]=3;
-      ;//sysj\RotaryController.sysj line: 48, column: 6
+      ;//sysj\RotaryController.sysj line: 53, column: 6
       ends[6]=2;
       tdone[6]=1;
     }
@@ -156,18 +156,18 @@ public class RotaryController extends ClockDomain{
     }
   }
 
-  public void thread8442(int [] tdone, int [] ends){
-        S5575=1;
-    System.out.println("rotating");//sysj\RotaryController.sysj line: 44, column: 7
-    rotaryTableTrigger.setPresent();//sysj\RotaryController.sysj line: 45, column: 7
+  public void thread7224(int [] tdone, int [] ends){
+        S4487=1;
+    System.out.println("rotating");//sysj\RotaryController.sysj line: 49, column: 7
+    rotaryTableTrigger.setPresent();//sysj\RotaryController.sysj line: 50, column: 7
     currsigs.addElement(rotaryTableTrigger);
     active[5]=1;
     ends[5]=1;
     tdone[5]=1;
   }
 
-  public void thread8440(int [] tdone, int [] ends){
-        switch(S5542){
+  public void thread7222(int [] tdone, int [] ends){
+        switch(S4463){
       case 0 : 
         active[4]=0;
         ends[4]=0;
@@ -175,8 +175,8 @@ public class RotaryController extends ClockDomain{
         break;
       
       case 1 : 
-        if(lidLoaderReady.getprestatus()){//sysj\RotaryController.sysj line: 25, column: 57
-          S5542=0;
+        if(lidLoaderReady.getprestatus()){//sysj\RotaryController.sysj line: 30, column: 57
+          S4463=0;
           active[4]=0;
           ends[4]=0;
           tdone[4]=1;
@@ -191,8 +191,8 @@ public class RotaryController extends ClockDomain{
     }
   }
 
-  public void thread8439(int [] tdone, int [] ends){
-        switch(S5539){
+  public void thread7221(int [] tdone, int [] ends){
+        switch(S4460){
       case 0 : 
         active[3]=0;
         ends[3]=0;
@@ -200,8 +200,8 @@ public class RotaryController extends ClockDomain{
         break;
       
       case 1 : 
-        if(capperReady.getprestatus()){//sysj\RotaryController.sysj line: 25, column: 34
-          S5539=0;
+        if(capperReady.getprestatus()){//sysj\RotaryController.sysj line: 30, column: 34
+          S4460=0;
           active[3]=0;
           ends[3]=0;
           tdone[3]=1;
@@ -216,8 +216,8 @@ public class RotaryController extends ClockDomain{
     }
   }
 
-  public void thread8438(int [] tdone, int [] ends){
-        switch(S5536){
+  public void thread7220(int [] tdone, int [] ends){
+        switch(S4457){
       case 0 : 
         active[2]=0;
         ends[2]=0;
@@ -225,8 +225,8 @@ public class RotaryController extends ClockDomain{
         break;
       
       case 1 : 
-        if(fillerReady.getprestatus()){//sysj\RotaryController.sysj line: 25, column: 11
-          S5536=0;
+        if(fillerReady.getprestatus()){//sysj\RotaryController.sysj line: 30, column: 11
+          S4457=0;
           active[2]=0;
           ends[2]=0;
           tdone[2]=1;
@@ -241,43 +241,22 @@ public class RotaryController extends ClockDomain{
     }
   }
 
-  public void thread8436(int [] tdone, int [] ends){
-        S5542=1;
+  public void thread7218(int [] tdone, int [] ends){
+        S4463=1;
     active[4]=1;
     ends[4]=1;
     tdone[4]=1;
   }
 
-  public void thread8435(int [] tdone, int [] ends){
-        S5539=1;
+  public void thread7217(int [] tdone, int [] ends){
+        S4460=1;
     active[3]=1;
     ends[3]=1;
     tdone[3]=1;
   }
 
-  public void thread8434(int [] tdone, int [] ends){
-        S5536=1;
-    active[2]=1;
-    ends[2]=1;
-    tdone[2]=1;
-  }
-
-  public void thread8432(int [] tdone, int [] ends){
-        S5542=1;
-    active[4]=1;
-    ends[4]=1;
-    tdone[4]=1;
-  }
-
-  public void thread8431(int [] tdone, int [] ends){
-        S5539=1;
-    active[3]=1;
-    ends[3]=1;
-    tdone[3]=1;
-  }
-
-  public void thread8430(int [] tdone, int [] ends){
-        S5536=1;
+  public void thread7216(int [] tdone, int [] ends){
+        S4457=1;
     active[2]=1;
     ends[2]=1;
     tdone[2]=1;
@@ -290,29 +269,28 @@ public class RotaryController extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S8428){
+      switch(S7214){
         case 0 : 
-          S8428=0;
+          S7214=0;
           break RUN;
         
         case 1 : 
-          S8428=2;
-          S8428=2;
-          S8427=0;
+          S7214=2;
+          S7214=2;
+          System.out.println("got into controller");//sysj\RotaryController.sysj line: 13, column: 3
+          S4454=0;
           active[1]=1;
           ends[1]=1;
           break RUN;
         
         case 2 : 
-          switch(S8427){
+          switch(S4454){
             case 0 : 
-              S8427=0;
-              S8427=1;
-              System.out.println("awaiting start");//sysj\RotaryController.sysj line: 16, column: 4
-              S5529=0;
-              if(start.getprestatus()){//sysj\RotaryController.sysj line: 17, column: 20
-                System.out.println("received start");//sysj\RotaryController.sysj line: 18, column: 4
-                S5529=1;
+              if(bottleAtPos1RC.getprestatus()){//sysj\RotaryController.sysj line: 17, column: 10
+                start_r.setPresent();//sysj\RotaryController.sysj line: 18, column: 4
+                currsigs.addElement(start_r);
+                System.out.println("emitted start");//sysj\RotaryController.sysj line: 21, column: 4
+                S4454=1;
                 active[1]=1;
                 ends[1]=1;
                 break RUN;
@@ -324,14 +302,184 @@ public class RotaryController extends ClockDomain{
               }
             
             case 1 : 
-              switch(S5529){
-                case 0 : 
-                  if(start.getprestatus()){//sysj\RotaryController.sysj line: 17, column: 20
-                    System.out.println("received start");//sysj\RotaryController.sysj line: 18, column: 4
-                    S5529=1;
+              S4454=1;
+              if((Integer)(bottleTotalRC.getpreval() == null ? null : ((Integer)bottleTotalRC.getpreval())) < (Integer)(BatchQuantityRC.getpreval() == null ? null : ((Integer)BatchQuantityRC.getpreval()))) {//sysj\RotaryController.sysj line: 25, column: 61
+                System.out.println("received bottleAtPos1RC");//sysj\RotaryController.sysj line: 27, column: 5
+              }
+              S4454=2;
+              thread7216(tdone,ends);
+              thread7217(tdone,ends);
+              thread7218(tdone,ends);
+              int biggest7219 = 0;
+              if(ends[2]>=biggest7219){
+                biggest7219=ends[2];
+              }
+              if(ends[3]>=biggest7219){
+                biggest7219=ends[3];
+              }
+              if(ends[4]>=biggest7219){
+                biggest7219=ends[4];
+              }
+              if(biggest7219 == 1){
+                active[1]=1;
+                ends[1]=1;
+                break RUN;
+              }
+            
+            case 2 : 
+              thread7220(tdone,ends);
+              thread7221(tdone,ends);
+              thread7222(tdone,ends);
+              int biggest7223 = 0;
+              if(ends[2]>=biggest7223){
+                biggest7223=ends[2];
+              }
+              if(ends[3]>=biggest7223){
+                biggest7223=ends[3];
+              }
+              if(ends[4]>=biggest7223){
+                biggest7223=ends[4];
+              }
+              if(biggest7223 == 1){
+                active[1]=1;
+                ends[1]=1;
+                break RUN;
+              }
+              //FINXME code
+              if(biggest7223 == 0){
+                System.out.println("all ready signals received");//sysj\RotaryController.sysj line: 31, column: 4
+                S4454=3;
+                if(capOnBottleAtPos1.getprestatus()){//sysj\RotaryController.sysj line: 34, column: 12
+                  active[1]=1;
+                  ends[1]=1;
+                  break RUN;
+                }
+                else {
+                  S4454=4;
+                  if(!capOnBottleAtPos1.getprestatus()){//sysj\RotaryController.sysj line: 40, column: 12
+                    S4479=0;
+                    if((Integer)(wsActiveRC.getpreval() == null ? null : ((Integer)wsActiveRC.getpreval())) > 4){//sysj\RotaryController.sysj line: 41, column: 9
+                      active[1]=1;
+                      ends[1]=1;
+                      break RUN;
+                    }
+                    else {
+                      System.out.println("awaiting trap");//sysj\RotaryController.sysj line: 45, column: 5
+                      S4479=1;
+                      thread7224(tdone,ends);
+                      thread7225(tdone,ends);
+                      int biggest7226 = 0;
+                      if(ends[5]>=biggest7226){
+                        biggest7226=ends[5];
+                      }
+                      if(ends[6]>=biggest7226){
+                        biggest7226=ends[6];
+                      }
+                      if(biggest7226 == 1){
+                        active[1]=1;
+                        ends[1]=1;
+                        break RUN;
+                      }
+                      if(biggest7226 == 2){
+                        ends[1]=2;
+                        ;//sysj\RotaryController.sysj line: 47, column: 5
+                        System.out.println("exited the trap");//sysj\RotaryController.sysj line: 55, column: 5
+                        S4479=2;
+                        active[1]=1;
+                        ends[1]=1;
+                        break RUN;
+                      }
+                    }
+                  }
+                  else {
+                    S4454=0;
                     active[1]=1;
                     ends[1]=1;
                     break RUN;
+                  }
+                }
+              }
+            
+            case 3 : 
+              if(capRemoved.getprestatus()){//sysj\RotaryController.sysj line: 35, column: 11
+                S4454=4;
+                if(!capOnBottleAtPos1.getprestatus()){//sysj\RotaryController.sysj line: 40, column: 12
+                  S4479=0;
+                  if((Integer)(wsActiveRC.getpreval() == null ? null : ((Integer)wsActiveRC.getpreval())) > 4){//sysj\RotaryController.sysj line: 41, column: 9
+                    active[1]=1;
+                    ends[1]=1;
+                    break RUN;
+                  }
+                  else {
+                    System.out.println("awaiting trap");//sysj\RotaryController.sysj line: 45, column: 5
+                    S4479=1;
+                    thread7227(tdone,ends);
+                    thread7228(tdone,ends);
+                    int biggest7229 = 0;
+                    if(ends[5]>=biggest7229){
+                      biggest7229=ends[5];
+                    }
+                    if(ends[6]>=biggest7229){
+                      biggest7229=ends[6];
+                    }
+                    if(biggest7229 == 1){
+                      active[1]=1;
+                      ends[1]=1;
+                      break RUN;
+                    }
+                    if(biggest7229 == 2){
+                      ends[1]=2;
+                      ;//sysj\RotaryController.sysj line: 47, column: 5
+                      System.out.println("exited the trap");//sysj\RotaryController.sysj line: 55, column: 5
+                      S4479=2;
+                      active[1]=1;
+                      ends[1]=1;
+                      break RUN;
+                    }
+                  }
+                }
+                else {
+                  S4454=0;
+                  active[1]=1;
+                  ends[1]=1;
+                  break RUN;
+                }
+              }
+              else {
+                active[1]=1;
+                ends[1]=1;
+                break RUN;
+              }
+            
+            case 4 : 
+              switch(S4479){
+                case 0 : 
+                  if(bottleLeftPos5RC.getprestatus()){//sysj\RotaryController.sysj line: 42, column: 13
+                    System.out.println("awaiting trap");//sysj\RotaryController.sysj line: 45, column: 5
+                    S4479=1;
+                    thread7230(tdone,ends);
+                    thread7231(tdone,ends);
+                    int biggest7232 = 0;
+                    if(ends[5]>=biggest7232){
+                      biggest7232=ends[5];
+                    }
+                    if(ends[6]>=biggest7232){
+                      biggest7232=ends[6];
+                    }
+                    if(biggest7232 == 1){
+                      active[1]=1;
+                      ends[1]=1;
+                      break RUN;
+                    }
+                    if(biggest7232 == 2){
+                      ends[1]=2;
+                      ;//sysj\RotaryController.sysj line: 47, column: 5
+                      System.out.println("exited the trap");//sysj\RotaryController.sysj line: 55, column: 5
+                      S4479=2;
+                      active[1]=1;
+                      ends[1]=1;
+                      break RUN;
+                    }
                   }
                   else {
                     active[1]=1;
@@ -340,310 +488,58 @@ public class RotaryController extends ClockDomain{
                   }
                 
                 case 1 : 
-                  S5529=1;
-                  S5529=2;
-                  if((Integer)(bottleTotalRC.getpreval() == null ? null : ((Integer)bottleTotalRC.getpreval())) < (Integer)(BatchQuantityRC.getpreval() == null ? null : ((Integer)BatchQuantityRC.getpreval()))){//sysj\RotaryController.sysj line: 21, column: 8
+                  thread7233(tdone,ends);
+                  thread7234(tdone,ends);
+                  int biggest7235 = 0;
+                  if(ends[5]>=biggest7235){
+                    biggest7235=ends[5];
+                  }
+                  if(ends[6]>=biggest7235){
+                    biggest7235=ends[6];
+                  }
+                  if(biggest7235 == 1){
                     active[1]=1;
                     ends[1]=1;
                     break RUN;
                   }
-                  else {
-                    S5529=3;
-                    thread8430(tdone,ends);
-                    thread8431(tdone,ends);
-                    thread8432(tdone,ends);
-                    int biggest8433 = 0;
-                    if(ends[2]>=biggest8433){
-                      biggest8433=ends[2];
-                    }
-                    if(ends[3]>=biggest8433){
-                      biggest8433=ends[3];
-                    }
-                    if(ends[4]>=biggest8433){
-                      biggest8433=ends[4];
-                    }
-                    if(biggest8433 == 1){
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
-                    }
-                  }
-                
-                case 2 : 
-                  if(bottleAtPos1RC.getprestatus()){//sysj\RotaryController.sysj line: 22, column: 11
-                    S5529=3;
-                    thread8434(tdone,ends);
-                    thread8435(tdone,ends);
-                    thread8436(tdone,ends);
-                    int biggest8437 = 0;
-                    if(ends[2]>=biggest8437){
-                      biggest8437=ends[2];
-                    }
-                    if(ends[3]>=biggest8437){
-                      biggest8437=ends[3];
-                    }
-                    if(ends[4]>=biggest8437){
-                      biggest8437=ends[4];
-                    }
-                    if(biggest8437 == 1){
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
-                    }
-                  }
-                  else {
-                    active[1]=1;
-                    ends[1]=1;
-                    break RUN;
-                  }
-                
-                case 3 : 
-                  thread8438(tdone,ends);
-                  thread8439(tdone,ends);
-                  thread8440(tdone,ends);
-                  int biggest8441 = 0;
-                  if(ends[2]>=biggest8441){
-                    biggest8441=ends[2];
-                  }
-                  if(ends[3]>=biggest8441){
-                    biggest8441=ends[3];
-                  }
-                  if(ends[4]>=biggest8441){
-                    biggest8441=ends[4];
-                  }
-                  if(biggest8441 == 1){
+                  if(biggest7235 == 2){
+                    ends[1]=2;
+                    ;//sysj\RotaryController.sysj line: 47, column: 5
+                    System.out.println("exited the trap");//sysj\RotaryController.sysj line: 55, column: 5
+                    S4479=2;
                     active[1]=1;
                     ends[1]=1;
                     break RUN;
                   }
                   //FINXME code
-                  if(biggest8441 == 0){
-                    System.out.println("all ready signals received");//sysj\RotaryController.sysj line: 26, column: 4
-                    S5529=4;
-                    if(capOnBottleAtPos1.getprestatus()){//sysj\RotaryController.sysj line: 29, column: 12
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
-                    }
-                    else {
-                      S5529=5;
-                      if(!capOnBottleAtPos1.getprestatus()){//sysj\RotaryController.sysj line: 35, column: 12
-                        S5567=0;
-                        if((Integer)(wsActiveRC.getpreval() == null ? null : ((Integer)wsActiveRC.getpreval())) > 4){//sysj\RotaryController.sysj line: 36, column: 9
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          System.out.println("awaiting trap");//sysj\RotaryController.sysj line: 40, column: 5
-                          S5567=1;
-                          thread8442(tdone,ends);
-                          thread8443(tdone,ends);
-                          int biggest8444 = 0;
-                          if(ends[5]>=biggest8444){
-                            biggest8444=ends[5];
-                          }
-                          if(ends[6]>=biggest8444){
-                            biggest8444=ends[6];
-                          }
-                          if(biggest8444 == 1){
-                            active[1]=1;
-                            ends[1]=1;
-                            break RUN;
-                          }
-                          if(biggest8444 == 2){
-                            ends[1]=2;
-                            ;//sysj\RotaryController.sysj line: 42, column: 5
-                            S5567=2;
-                            active[1]=1;
-                            ends[1]=1;
-                            break RUN;
-                          }
-                        }
-                      }
-                      else {
-                        System.out.println("awaiting start");//sysj\RotaryController.sysj line: 16, column: 4
-                        S5529=0;
-                        if(start.getprestatus()){//sysj\RotaryController.sysj line: 17, column: 20
-                          System.out.println("received start");//sysj\RotaryController.sysj line: 18, column: 4
-                          S5529=1;
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                    }
+                  if(biggest7235 == 0){
+                    System.out.println("exited the trap");//sysj\RotaryController.sysj line: 55, column: 5
+                    S4479=2;
+                    active[1]=1;
+                    ends[1]=1;
+                    break RUN;
                   }
                 
-                case 4 : 
-                  if(capRemoved.getprestatus()){//sysj\RotaryController.sysj line: 30, column: 11
-                    S5529=5;
-                    if(!capOnBottleAtPos1.getprestatus()){//sysj\RotaryController.sysj line: 35, column: 12
-                      S5567=0;
-                      if((Integer)(wsActiveRC.getpreval() == null ? null : ((Integer)wsActiveRC.getpreval())) > 4){//sysj\RotaryController.sysj line: 36, column: 9
-                        active[1]=1;
-                        ends[1]=1;
-                        break RUN;
-                      }
-                      else {
-                        System.out.println("awaiting trap");//sysj\RotaryController.sysj line: 40, column: 5
-                        S5567=1;
-                        thread8445(tdone,ends);
-                        thread8446(tdone,ends);
-                        int biggest8447 = 0;
-                        if(ends[5]>=biggest8447){
-                          biggest8447=ends[5];
-                        }
-                        if(ends[6]>=biggest8447){
-                          biggest8447=ends[6];
-                        }
-                        if(biggest8447 == 1){
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        if(biggest8447 == 2){
-                          ends[1]=2;
-                          ;//sysj\RotaryController.sysj line: 42, column: 5
-                          S5567=2;
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                    }
-                    else {
-                      System.out.println("awaiting start");//sysj\RotaryController.sysj line: 16, column: 4
-                      S5529=0;
-                      if(start.getprestatus()){//sysj\RotaryController.sysj line: 17, column: 20
-                        System.out.println("received start");//sysj\RotaryController.sysj line: 18, column: 4
-                        S5529=1;
-                        active[1]=1;
-                        ends[1]=1;
-                        break RUN;
-                      }
-                      else {
-                        active[1]=1;
-                        ends[1]=1;
-                        break RUN;
-                      }
-                    }
+                case 2 : 
+                  if(tableAlignedWithSensor.getprestatus()){//sysj\RotaryController.sysj line: 56, column: 11
+                    System.out.println("received aligned signal");//sysj\RotaryController.sysj line: 57, column: 5
+                    rotated.setPresent();//sysj\RotaryController.sysj line: 58, column: 5
+                    currsigs.addElement(rotated);
+                    rotatedConvP.setPresent();//sysj\RotaryController.sysj line: 59, column: 5
+                    currsigs.addElement(rotatedConvP);
+                    rotatedM.setPresent();//sysj\RotaryController.sysj line: 60, column: 5
+                    currsigs.addElement(rotatedM);
+                    System.out.println("rotated emitted");//sysj\RotaryController.sysj line: 61, column: 5
+                    S4454=0;
+                    active[1]=1;
+                    ends[1]=1;
+                    break RUN;
                   }
                   else {
                     active[1]=1;
                     ends[1]=1;
                     break RUN;
                   }
-                
-                case 5 : 
-                  switch(S5567){
-                    case 0 : 
-                      if(bottleLeftPos5RC.getprestatus()){//sysj\RotaryController.sysj line: 37, column: 13
-                        System.out.println("awaiting trap");//sysj\RotaryController.sysj line: 40, column: 5
-                        S5567=1;
-                        thread8448(tdone,ends);
-                        thread8449(tdone,ends);
-                        int biggest8450 = 0;
-                        if(ends[5]>=biggest8450){
-                          biggest8450=ends[5];
-                        }
-                        if(ends[6]>=biggest8450){
-                          biggest8450=ends[6];
-                        }
-                        if(biggest8450 == 1){
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        if(biggest8450 == 2){
-                          ends[1]=2;
-                          ;//sysj\RotaryController.sysj line: 42, column: 5
-                          S5567=2;
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                      else {
-                        active[1]=1;
-                        ends[1]=1;
-                        break RUN;
-                      }
-                    
-                    case 1 : 
-                      thread8451(tdone,ends);
-                      thread8452(tdone,ends);
-                      int biggest8453 = 0;
-                      if(ends[5]>=biggest8453){
-                        biggest8453=ends[5];
-                      }
-                      if(ends[6]>=biggest8453){
-                        biggest8453=ends[6];
-                      }
-                      if(biggest8453 == 1){
-                        active[1]=1;
-                        ends[1]=1;
-                        break RUN;
-                      }
-                      if(biggest8453 == 2){
-                        ends[1]=2;
-                        ;//sysj\RotaryController.sysj line: 42, column: 5
-                        S5567=2;
-                        active[1]=1;
-                        ends[1]=1;
-                        break RUN;
-                      }
-                      //FINXME code
-                      if(biggest8453 == 0){
-                        S5567=2;
-                        active[1]=1;
-                        ends[1]=1;
-                        break RUN;
-                      }
-                    
-                    case 2 : 
-                      if(tableAlignedWithSensor.getprestatus()){//sysj\RotaryController.sysj line: 51, column: 11
-                        System.out.println("received aligned signal");//sysj\RotaryController.sysj line: 52, column: 5
-                        rotated.setPresent();//sysj\RotaryController.sysj line: 53, column: 5
-                        currsigs.addElement(rotated);
-                        rotatedConvP.setPresent();//sysj\RotaryController.sysj line: 54, column: 5
-                        currsigs.addElement(rotatedConvP);
-                        System.out.println("rotated emitted");//sysj\RotaryController.sysj line: 55, column: 5
-                        S5567=3;
-                        active[1]=1;
-                        ends[1]=1;
-                        break RUN;
-                      }
-                      else {
-                        active[1]=1;
-                        ends[1]=1;
-                        break RUN;
-                      }
-                    
-                    case 3 : 
-                      S5567=3;
-                      System.out.println("awaiting start");//sysj\RotaryController.sysj line: 16, column: 4
-                      S5529=0;
-                      if(start.getprestatus()){//sysj\RotaryController.sysj line: 17, column: 20
-                        System.out.println("received start");//sysj\RotaryController.sysj line: 18, column: 4
-                        S5529=1;
-                        active[1]=1;
-                        ends[1]=1;
-                        break RUN;
-                      }
-                      else {
-                        active[1]=1;
-                        ends[1]=1;
-                        break RUN;
-                      }
-                    
-                  }
-                  break;
                 
               }
               break;
@@ -684,7 +580,6 @@ public class RotaryController extends ClockDomain{
           fillerReady.gethook();
           capperReady.gethook();
           lidLoaderReady.gethook();
-          start.gethook();
           wsActiveRC.gethook();
           bottleTotalRC.gethook();
           BatchQuantityRC.gethook();
@@ -700,16 +595,17 @@ public class RotaryController extends ClockDomain{
       fillerReady.setpreclear();
       capperReady.setpreclear();
       lidLoaderReady.setpreclear();
-      start.setpreclear();
       wsActiveRC.setpreclear();
       bottleTotalRC.setpreclear();
       BatchQuantityRC.setpreclear();
       rotaryTableTrigger.setpreclear();
       rotated.setpreclear();
+      rotatedM.setpreclear();
       rotatedConvP.setpreclear();
       bottleAtPos2.setpreclear();
       bottleAtPos3.setpreclear();
       bottleAtPos4.setpreclear();
+      start_r.setpreclear();
       int dummyint = 0;
       for(int qw=0;qw<currsigs.size();++qw){
         dummyint = ((Signal)currsigs.elementAt(qw)).getStatus() ? ((Signal)currsigs.elementAt(qw)).setprepresent() : ((Signal)currsigs.elementAt(qw)).setpreclear();
@@ -740,9 +636,6 @@ public class RotaryController extends ClockDomain{
       dummyint = lidLoaderReady.getStatus() ? lidLoaderReady.setprepresent() : lidLoaderReady.setpreclear();
       lidLoaderReady.setpreval(lidLoaderReady.getValue());
       lidLoaderReady.setClear();
-      dummyint = start.getStatus() ? start.setprepresent() : start.setpreclear();
-      start.setpreval(start.getValue());
-      start.setClear();
       dummyint = wsActiveRC.getStatus() ? wsActiveRC.setprepresent() : wsActiveRC.setpreclear();
       wsActiveRC.setpreval(wsActiveRC.getValue());
       wsActiveRC.setClear();
@@ -756,6 +649,8 @@ public class RotaryController extends ClockDomain{
       rotaryTableTrigger.setClear();
       rotated.sethook();
       rotated.setClear();
+      rotatedM.sethook();
+      rotatedM.setClear();
       rotatedConvP.sethook();
       rotatedConvP.setClear();
       bottleAtPos2.sethook();
@@ -764,6 +659,8 @@ public class RotaryController extends ClockDomain{
       bottleAtPos3.setClear();
       bottleAtPos4.sethook();
       bottleAtPos4.setClear();
+      start_r.sethook();
+      start_r.setClear();
       if(paused[1]!=0 || suspended[1]!=0 || active[1]!=1);
       else{
         tableAlignedWithSensor.gethook();
@@ -774,7 +671,6 @@ public class RotaryController extends ClockDomain{
         fillerReady.gethook();
         capperReady.gethook();
         lidLoaderReady.gethook();
-        start.gethook();
         wsActiveRC.gethook();
         bottleTotalRC.gethook();
         BatchQuantityRC.gethook();

@@ -1,41 +1,46 @@
 ConveyorController(
-		input signal bottleAtLoad, bottleAtPos1ConvC, bottleLeftPos5ConvC, start; // these are input signals from ConveyorControllerCD
+		input signal bottleAtPos1ConvC, bottleLeftPos5ConvC; // these are input signals from ConveyorControllerCD
 		input Integer signal wsActiveConvC, bottleTotalConvC, BatchQuantityConvC;
+		input signal start_conveyor;
 		
-		output signal motConveyorOn;
+		output signal motConveyorOn, start;
 		)
 ->
 {	
+	System.out.println("awaiting start");
+	await(immediate start_conveyor);
+	System.out.println("received start");
+	emit start;
 		
 	while (true){
-		System.out.println("awaiting start");
-		await(start);
-		System.out.println("1");
+
+		//await(start);
+		//System.out.println("1");
 			
 			if ((Integer)#wsActiveConvC > 4) {
-				System.out.println("5");
+				//System.out.println("5");
 				abort(bottleAtPos1ConvC && bottleLeftPos5ConvC) {
-					System.out.println("4");
+					//System.out.println("4");
 					sustain motConveyorOn; 
 				}
 			}
 			
 			else if ((Integer)#wsActiveConvC < 4  && (Integer)#bottleTotalConvC < (Integer)#BatchQuantityConvC) {
-				System.out.println("6");
+				//System.out.println("6");
 				abort(bottleAtPos1ConvC) {
-					System.out.println("2");
+					//System.out.println("2");
 					sustain motConveyorOn; 
 				}
 			}
 			
 			else {
-				System.out.println("7");
+				//System.out.println("7");
 				abort(bottleLeftPos5ConvC) {
-					System.out.println("3");
+					//System.out.println("3");
 					sustain motConveyorOn; 
 				}
 			}
-			System.out.println("conveyor not moving");
+			//System.out.println("conveyor not moving");
 
 	}
 

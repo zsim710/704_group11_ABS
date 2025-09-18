@@ -1,13 +1,14 @@
 LidLoaderController(
 		input signal pusherRetracted,pusherExtended,WPgripped,armAtSource,armAtDest,empty,bottleAtPos3;
-		output signal pusherExtend,vacOn,armSource,armDest, lidLoaderReady;
-		input Integer signal mode;
+		output signal pusherExtend,vacOn,armSource,armDest, lidLoaderReady, start;
 		)
 ->{
 	while(true) {
 			abort(bottleAtPos3) {
 				sustain lidLoaderReady;
 			}
+			
+			emit start;
 			
 			abort(armAtDest) {
 				sustain armDest;

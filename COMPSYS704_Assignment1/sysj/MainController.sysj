@@ -1,138 +1,79 @@
 MainController(
-input signal bottleAtPos1M,bottleLeftPos5M, enable;
+input signal bottleAtPos1M,bottleLeftPos5M, posOrder, rotatedM;
 input Integer signal BatchQuantity, LiquidAmount1, LiquidAmount2; 
-output signal enableConvP, enableCapP, enableFP, enableRP, enableLL;
-output Integer signal wsActive, wsActiveRC, wsActiveRP, wsActiveConvC, bottleTotal, bottleTotalRC, bottleTotalRP, bottleTotalConvC, BatchQuantityRC, BatchQuantityRP, BatchQuantityConvC, LiquidAmount1FC, LiquidAmount2FC;
-)->{
-	{
-		emit wsActive(0);
-		emit bottleTotal(0);
+output Integer signal wsActiveRC, wsActiveRP, wsActiveConvC, bottleTotalRC, bottleTotalRP, bottleTotalConvC, BatchQuantityRC, BatchQuantityRP, BatchQuantityConvC, LiquidAmount1FC, LiquidAmount2FC;
+output signal start_conveyor;
+		)->{
+	
+int signal bottleTotal, wsActive;
+	
+emit wsActive(0);
+emit bottleTotal(0);
 
+await(immediate posOrder);
+
+System.out.println("emiting start conveyor");
+emit start_conveyor;
+
+	{
 		loop {	
 			
-				present(bottleAtPos1M) {
-					System.out.println("received bottleAtPos1M");
+				present(rotatedM) {
+					// this will need a signal for when it recieved rotated but quantity == bottletotal then dont incrmeent botlte total anymore and wsactive  
+					System.out.println("received rotatedM");
+					
 					emit wsActive((Integer)#wsActive + 1); 
 					System.out.println("wsActive" + #wsActive);
+					
 					emit bottleTotal((Integer)#bottleTotal + 1); 
 					System.out.println("bottleTotal" + #bottleTotal);
 				}
 				
 				present(bottleLeftPos5M) {
 					emit wsActive((Integer)#wsActive - 1); 
+					System.out.println("decremented wsActive");
 				}
-				pause;
+				pause; // end up here on tick 2
 		}
 	}
 	||
 	{
-		pause;
 		loop {
 			present(wsActive) {
-				System.out.println("emeitting wsActives" + #wsActive);
+				System.out.println("emitting wsActives" + #wsActive);
 				emit wsActiveRC(#wsActive);
 				emit wsActiveRP(#wsActive);
 				emit wsActiveConvC(#wsActive);
 			}
 			
 			present(bottleTotal) {
-				System.out.println("emeitting bottleTotals");
+				System.out.println("emitting bottleTotals");
 				emit bottleTotalRC(#bottleTotal);
 				emit bottleTotalRP(#bottleTotal);
 				emit bottleTotalConvC(#bottleTotal);
 			}
 			
 			present(BatchQuantity) {
-				System.out.println("emeitting batchQuants");
+				System.out.println("emitting batchQuants");
 				emit BatchQuantityRC(#BatchQuantity);
 				emit BatchQuantityRP(#BatchQuantity);
 				emit BatchQuantityConvC(#BatchQuantity);
 			}
-			pause;
+			pause; // tick 2
 		}
 	}
 	||
 	{ 
 		loop {
 //			if (Integer)#bottleTotal =< ((Integer)#BatchQuantity + 2)) {
-			System.out.println("emeitting liqs");
-				emit LiquidAmount1FC;
-				emit LiquidAmount2FC;
-				pause;
+			System.out.println("emitting liqs");
+				emit LiquidAmount1FC(#LiquidAmount1);
+				emit LiquidAmount2FC(#LiquidAmount2);
+				pause; // tick 2
 //			/}
 		}
 	}
-	||
-	{
-		loop {
-			System.out.println("1");
-			pause;
-			pause;
-			System.out.println("2");
-			present(enable){
-				System.out.println("3");
-				if ((Integer)#bottleTotalRP < (Integer)#BatchQuantityRP) { 
-					System.out.println("4");
-					if((Integer)#wsActiveRP == 2) {
-						emit enableConvP;
-						emit enableFP;
-						emit enableRP;
-						
-					}
-					else if((Integer)#wsActiveRP == 3) {
-						emit enableConvP;
-						emit enableFP;
-						emit enableRP;
-						emit enableLL;
-					}
-					else if((Integer)#wsActiveRP == 4) {
-						emit enableFP;
-						emit enableCapP;
-						emit enableConvP;
-						emit enableRP;
-						emit enableLL;		
-					}
-					else {
-						System.out.println("5");
-						emit enableConvP;
-					}
-				}
-				//------------ switch to last 5 -------------
-				else {
-					if((Integer)#wsActiveRP == 4) {
-						emit enableFP;
-						emit enableCapP;
-						emit enableConvP;
-						emit enableRP;
-						emit enableLL;	
-					}
-					else if((Integer)#wsActiveRP == 3) {
-						emit enableCapP;
-						emit enableConvP;
-						emit enableRP;
-						emit enableLL;	
-					}
-					else if((Integer)#wsActiveRP == 2) {
-						emit enableCapP;
-						emit enableConvP;
-						emit enableRP;
-							
-					}
-					else if((Integer)#wsActiveRP == 1) {
-						emit enableConvP;
-						emit enableRP;
-							
-					}
-					else {
-						emit enableConvP;
-					}
-				}
-				
-			}
 			
-		}
-	}
-
 }
 	
 
