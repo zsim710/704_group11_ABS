@@ -1,6 +1,6 @@
 MainController(
-input signal bottleAtPos1M,bottleLeftPos5M, posOrder, rotatedM;
-input Integer signal BatchQuantity, LiquidAmount1, LiquidAmount2; 
+input signal bottleAtPos1M,bottleLeftPos5M, rotatedM;
+input Integer signal posOrder, BatchQuantity, LiquidAmount1, LiquidAmount2; 
 output Integer signal wsActiveRC, wsActiveRP, wsActiveConvC, bottleTotalRC, bottleTotalRP, bottleTotalConvC, BatchQuantityRC, BatchQuantityRP, BatchQuantityConvC, LiquidAmount1FC, LiquidAmount2FC;
 output signal start_conveyor;
 		)->{
