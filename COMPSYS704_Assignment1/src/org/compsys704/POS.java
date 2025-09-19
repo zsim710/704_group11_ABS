@@ -539,12 +539,13 @@ SimpleClient BottleSend, LiquidAmount1, LiquidAmount2, posOrder, systemEnable;
             BottleSend.sustain(currentProcessingOrder.getBottleQuantity());
             LiquidAmount1.sustain(currentProcessingOrder.getLiquidAmount1());
             LiquidAmount2.sustain(currentProcessingOrder.getLiquidAmount2());
-            posOrder.sustain(currentProcessingOrder.getOrderId());
+            posOrder.sustain(); // Send just the signal without any data
             
             System.out.println("Order sent to SystemJ: " + currentProcessingOrder.getOrderId() + 
                              " | Bottles: " + currentProcessingOrder.getBottleQuantity() +
                              " | Liquid1: " + currentProcessingOrder.getLiquidAmount1() +
-                             " | Liquid2: " + currentProcessingOrder.getLiquidAmount2());
+                             " | Liquid2: " + currentProcessingOrder.getLiquidAmount2() +
+                             " | PosOrder signal sent");
             
             // Remove processed order from queue (it's now being processed)
             orderQueue.remove(0);
