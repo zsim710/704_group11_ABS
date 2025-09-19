@@ -17,14 +17,16 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
-public class BottleLoader extends JFrame {
+import org.compsys704.LoaderConveyorWorker;
+import org.compsys704.Ports;
+
+public class Filler extends JFrame {
 	private JPanel panel;
 	
-	public BottleLoader() {
-//		this.setPreferredSize(new Dimension(200, 300));
+	public Filler() {
 
-		panel = new Canvas(); // canvas creates the image panel
-		panel.setPreferredSize(new Dimension(360, 350));
+		panel = new FillerCanvas(); // canvas creates the image panel
+		panel.setPreferredSize(new Dimension(400, 400));
 		panel.setBackground(Color.WHITE);
 		
 		this.setLayout(new GridBagLayout());
@@ -35,12 +37,14 @@ public class BottleLoader extends JFrame {
 		
 		JPanel pan = new JPanel(new GridLayout(1, 0));
 		pan.setBackground(Color.magenta);
-		
-		// for tests
-//		JCheckBox pe = new JCheckBox("smth");
-//		pe.setEnabled(false);
-//		pe.addItemListener(new SignalCheckBoxClient(Ports.PORT_LOADER_CONTROLLER, Ports.SIGNAL_PUSHER_EXTEND)); // todo
-//		pan.add(pe);
+
+		// stop button
+		JButton button1 = new JButton("Resume");
+		JButton button2 = new JButton("Stop");
+//		button2.addActionListener(new SignalClient(Ports.PORT_Conveyor_PLANT, Ports.Conveyor_motConveyorOnOff));
+
+		pan.add(button1);
+		pan.add(button2);
 		
 		c.gridx = 0;
 		c.gridy = 2;
@@ -49,31 +53,14 @@ public class BottleLoader extends JFrame {
 		JPanel pan2 = new JPanel(new GridLayout(2, 2));
 		pan2.setBackground(Color.black);
 
-//		if(States.POSA){
-//			pan2.setBackground(Color.green);
-//		} 
-//		if(States.POSB){
-//			pan2.setBackground(Color.blue);
-//		} 
-//		if(States.POSC){
-//			pan2.setBackground(Color.yellow);
-//		} 
-//		if(States.POSD){
-//			pan2.setBackground(Color.orange);
-//		} 
-//		if(States.GRIPDAT){
-//			pan2.setBackground(Color.red);
-//		}
-		// pan2.setBorder(BorderFactory.createTitledBorder("Manual control"));
-
 		JPanel pan3 = new JPanel(new GridLayout(0, 2));
 		pan3.add(pan);
 		pan3.add(pan2);
 		c.gridx = 0;
-		c.gridy = 2;
+		c.gridy = 2; 
 		this.add(pan3,c);
 		
-		this.setTitle("Bottle Loader");
+		this.setTitle("Filler");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
@@ -81,17 +68,17 @@ public class BottleLoader extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		BottleLoader cl = new BottleLoader();
+		Filler cl = new Filler();
 		cl.pack();
 		cl.setVisible(true);
 		
-		SignalServer<LoaderVizWorker> server = new SignalServer<LoaderVizWorker>(Ports.PORT_BOTTLELOADER_VIZ, LoaderVizWorker.class);
-		System.out.println("Starting SignalServer on port " + Ports.PORT_BOTTLELOADER_VIZ);
+		SignalServer<LoaderFillerWorker> server = new SignalServer<LoaderFillerWorker>(Ports.PORT_FILLER_VIZ, LoaderFillerWorker.class);
+		System.out.println("Starting SignalServer on port " + Ports.PORT_FILLER_VIZ);
 		new Thread(server).start();
 		while(true){
 			try {
 				cl.repaint();
-				Thread.sleep(5);
+				Thread.sleep(250);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

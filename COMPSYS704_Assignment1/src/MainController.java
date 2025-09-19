@@ -3,6 +3,7 @@ import com.systemj.ClockDomain;
 import com.systemj.Signal;
 import com.systemj.input_Channel;
 import com.systemj.output_Channel;
+import run.GUI;//sysj\simpleabro.sysj line: 1, column: 1
 
 public class MainController extends ClockDomain{
   public MainController(String name){super(name);}
@@ -21,11 +22,11 @@ public class MainController extends ClockDomain{
   public Signal pos4 = new Signal("pos4", Signal.OUTPUT);
   public Signal pos5 = new Signal("pos5", Signal.OUTPUT);
   private Signal totalBot_1;
-  private long __start_thread_1;//sysj\simpleabro.sysj line: 17, column: 16
-  private int S8105 = 1;
-  private int S2732 = 1;
-  private int S2210 = 1;
-  private int S2197 = 1;
+  private long __start_thread_1;//sysj\simpleabro.sysj line: 20, column: 16
+  private int S13641 = 1;
+  private int S2360 = 1;
+  private int S1838 = 1;
+  private int S1825 = 1;
   
   private int[] ends = new int[2];
   private int[] tdone = new int[2];
@@ -37,90 +38,91 @@ public class MainController extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S8105){
+      switch(S13641){
         case 0 : 
-          S8105=0;
+          S13641=0;
           break RUN;
         
         case 1 : 
-          S8105=2;
-          S8105=2;
-          totalBot_1.setClear();//sysj\simpleabro.sysj line: 10, column: 2
-          S2732=0;
+          S13641=2;
+          S13641=2;
+          totalBot_1.setClear();//sysj\simpleabro.sysj line: 11, column: 2
+          new Thread(new GUI()).start();//sysj\simpleabro.sysj line: 12, column: 2
+          S2360=0;
           active[1]=1;
           ends[1]=1;
           break RUN;
         
         case 2 : 
-          totalBot_1.setClear();//sysj\simpleabro.sysj line: 10, column: 2
-          switch(S2732){
+          totalBot_1.setClear();//sysj\simpleabro.sysj line: 11, column: 2
+          switch(S2360){
             case 0 : 
-              S2732=0;
-              S2732=1;
-              if((Integer)(BottleQuantity.getpreval() == null ? null : ((Integer)BottleQuantity.getpreval())) == (Integer)(totalBot_1.getpreval() == null ? 0 : ((Integer)totalBot_1.getpreval()).intValue())){//sysj\simpleabro.sysj line: 14, column: 14
+              S2360=0;
+              S2360=1;
+              if((Integer)(BottleQuantity.getpreval() == null ? null : ((Integer)BottleQuantity.getpreval())) == (Integer)(totalBot_1.getpreval() == null ? 0 : ((Integer)totalBot_1.getpreval()).intValue())){//sysj\simpleabro.sysj line: 17, column: 14
                 ends[1]=2;
-                ;//sysj\simpleabro.sysj line: 11, column: 3
-                S8105=0;
+                ;//sysj\simpleabro.sysj line: 13, column: 3
+                S13641=0;
                 active[1]=0;
                 ends[1]=0;
-                S8105=0;
+                S13641=0;
                 break RUN;
               }
               else {
-                S2210=0;
-                __start_thread_1 = com.systemj.Timer.getMs();//sysj\simpleabro.sysj line: 17, column: 16
-                S2197=0;
-                if(com.systemj.Timer.getMs() - __start_thread_1 >= (5) * 1000){//sysj\simpleabro.sysj line: 17, column: 16
+                S1838=0;
+                __start_thread_1 = com.systemj.Timer.getMs();//sysj\simpleabro.sysj line: 20, column: 16
+                S1825=0;
+                if(com.systemj.Timer.getMs() - __start_thread_1 >= (5) * 1000){//sysj\simpleabro.sysj line: 20, column: 16
                   ends[1]=6;
-                  ;//sysj\simpleabro.sysj line: 17, column: 16
-                  pos1.setPresent();//sysj\simpleabro.sysj line: 19, column: 14
+                  ;//sysj\simpleabro.sysj line: 20, column: 16
+                  pos1.setPresent();//sysj\simpleabro.sysj line: 22, column: 14
                   currsigs.addElement(pos1);
-                  totalBot_1.setPresent();//sysj\simpleabro.sysj line: 20, column: 14
+                  totalBot_1.setPresent();//sysj\simpleabro.sysj line: 23, column: 14
                   currsigs.addElement(totalBot_1);
-                  totalBot_1.setValue((Integer)(totalBot_1.getpreval() == null ? 0 : ((Integer)totalBot_1.getpreval()).intValue()) + 1);//sysj\simpleabro.sysj line: 20, column: 14
-                  S2210=1;
-                  __start_thread_1 = com.systemj.Timer.getMs();//sysj\simpleabro.sysj line: 17, column: 16
-                  if(com.systemj.Timer.getMs() - __start_thread_1 >= (5) * 1000){//sysj\simpleabro.sysj line: 17, column: 16
+                  totalBot_1.setValue((Integer)(totalBot_1.getpreval() == null ? 0 : ((Integer)totalBot_1.getpreval()).intValue()) + 1);//sysj\simpleabro.sysj line: 23, column: 14
+                  S1838=1;
+                  __start_thread_1 = com.systemj.Timer.getMs();//sysj\simpleabro.sysj line: 20, column: 16
+                  if(com.systemj.Timer.getMs() - __start_thread_1 >= (5) * 1000){//sysj\simpleabro.sysj line: 20, column: 16
                     ends[1]=5;
-                    ;//sysj\simpleabro.sysj line: 17, column: 16
-                    pos2.setPresent();//sysj\simpleabro.sysj line: 23, column: 14
+                    ;//sysj\simpleabro.sysj line: 20, column: 16
+                    pos2.setPresent();//sysj\simpleabro.sysj line: 26, column: 14
                     currsigs.addElement(pos2);
-                    pos1.setPresent();//sysj\simpleabro.sysj line: 24, column: 14
+                    pos1.setPresent();//sysj\simpleabro.sysj line: 27, column: 14
                     currsigs.addElement(pos1);
-                    totalBot_1.setPresent();//sysj\simpleabro.sysj line: 25, column: 14
+                    totalBot_1.setPresent();//sysj\simpleabro.sysj line: 28, column: 14
                     currsigs.addElement(totalBot_1);
-                    totalBot_1.setValue((Integer)(totalBot_1.getpreval() == null ? 0 : ((Integer)totalBot_1.getpreval()).intValue()) + 1);//sysj\simpleabro.sysj line: 25, column: 14
-                    S2210=2;
-                    __start_thread_1 = com.systemj.Timer.getMs();//sysj\simpleabro.sysj line: 17, column: 16
-                    if(com.systemj.Timer.getMs() - __start_thread_1 >= (5) * 1000){//sysj\simpleabro.sysj line: 17, column: 16
+                    totalBot_1.setValue((Integer)(totalBot_1.getpreval() == null ? 0 : ((Integer)totalBot_1.getpreval()).intValue()) + 1);//sysj\simpleabro.sysj line: 28, column: 14
+                    S1838=2;
+                    __start_thread_1 = com.systemj.Timer.getMs();//sysj\simpleabro.sysj line: 20, column: 16
+                    if(com.systemj.Timer.getMs() - __start_thread_1 >= (5) * 1000){//sysj\simpleabro.sysj line: 20, column: 16
                       ends[1]=4;
-                      ;//sysj\simpleabro.sysj line: 17, column: 16
-                      pos2.setPresent();//sysj\simpleabro.sysj line: 27, column: 14
+                      ;//sysj\simpleabro.sysj line: 20, column: 16
+                      pos2.setPresent();//sysj\simpleabro.sysj line: 30, column: 14
                       currsigs.addElement(pos2);
-                      pos1.setPresent();//sysj\simpleabro.sysj line: 28, column: 14
+                      pos1.setPresent();//sysj\simpleabro.sysj line: 31, column: 14
                       currsigs.addElement(pos1);
-                      pos3.setPresent();//sysj\simpleabro.sysj line: 29, column: 14
+                      pos3.setPresent();//sysj\simpleabro.sysj line: 32, column: 14
                       currsigs.addElement(pos3);
-                      totalBot_1.setPresent();//sysj\simpleabro.sysj line: 30, column: 14
+                      totalBot_1.setPresent();//sysj\simpleabro.sysj line: 33, column: 14
                       currsigs.addElement(totalBot_1);
-                      totalBot_1.setValue((Integer)(totalBot_1.getpreval() == null ? 0 : ((Integer)totalBot_1.getpreval()).intValue()) + 1);//sysj\simpleabro.sysj line: 30, column: 14
-                      S2210=3;
-                      __start_thread_1 = com.systemj.Timer.getMs();//sysj\simpleabro.sysj line: 17, column: 16
-                      if(com.systemj.Timer.getMs() - __start_thread_1 >= (5) * 1000){//sysj\simpleabro.sysj line: 17, column: 16
+                      totalBot_1.setValue((Integer)(totalBot_1.getpreval() == null ? 0 : ((Integer)totalBot_1.getpreval()).intValue()) + 1);//sysj\simpleabro.sysj line: 33, column: 14
+                      S1838=3;
+                      __start_thread_1 = com.systemj.Timer.getMs();//sysj\simpleabro.sysj line: 20, column: 16
+                      if(com.systemj.Timer.getMs() - __start_thread_1 >= (5) * 1000){//sysj\simpleabro.sysj line: 20, column: 16
                         ends[1]=3;
-                        ;//sysj\simpleabro.sysj line: 17, column: 16
-                        pos4.setPresent();//sysj\simpleabro.sysj line: 32, column: 14
+                        ;//sysj\simpleabro.sysj line: 20, column: 16
+                        pos4.setPresent();//sysj\simpleabro.sysj line: 35, column: 14
                         currsigs.addElement(pos4);
-                        pos2.setPresent();//sysj\simpleabro.sysj line: 33, column: 14
+                        pos2.setPresent();//sysj\simpleabro.sysj line: 36, column: 14
                         currsigs.addElement(pos2);
-                        pos1.setPresent();//sysj\simpleabro.sysj line: 34, column: 14
+                        pos1.setPresent();//sysj\simpleabro.sysj line: 37, column: 14
                         currsigs.addElement(pos1);
-                        pos3.setPresent();//sysj\simpleabro.sysj line: 35, column: 14
+                        pos3.setPresent();//sysj\simpleabro.sysj line: 38, column: 14
                         currsigs.addElement(pos3);
-                        totalBot_1.setPresent();//sysj\simpleabro.sysj line: 36, column: 14
+                        totalBot_1.setPresent();//sysj\simpleabro.sysj line: 39, column: 14
                         currsigs.addElement(totalBot_1);
-                        totalBot_1.setValue((Integer)(totalBot_1.getpreval() == null ? 0 : ((Integer)totalBot_1.getpreval()).intValue()) + 1);//sysj\simpleabro.sysj line: 36, column: 14
-                        S2732=0;
+                        totalBot_1.setValue((Integer)(totalBot_1.getpreval() == null ? 0 : ((Integer)totalBot_1.getpreval()).intValue()) + 1);//sysj\simpleabro.sysj line: 39, column: 14
+                        S2360=0;
                         active[1]=1;
                         ends[1]=1;
                         break RUN;
@@ -144,7 +146,7 @@ public class MainController extends ClockDomain{
                   }
                 }
                 else {
-                  S2197=1;
+                  S1825=1;
                   active[1]=1;
                   ends[1]=1;
                   break RUN;
@@ -152,62 +154,62 @@ public class MainController extends ClockDomain{
               }
             
             case 1 : 
-              switch(S2210){
+              switch(S1838){
                 case 0 : 
-                  switch(S2197){
+                  switch(S1825){
                     case 0 : 
-                      S2197=0;
-                      if(com.systemj.Timer.getMs() - __start_thread_1 >= (5) * 1000){//sysj\simpleabro.sysj line: 17, column: 16
+                      S1825=0;
+                      if(com.systemj.Timer.getMs() - __start_thread_1 >= (5) * 1000){//sysj\simpleabro.sysj line: 20, column: 16
                         ends[1]=6;
-                        ;//sysj\simpleabro.sysj line: 17, column: 16
-                        pos1.setPresent();//sysj\simpleabro.sysj line: 19, column: 14
+                        ;//sysj\simpleabro.sysj line: 20, column: 16
+                        pos1.setPresent();//sysj\simpleabro.sysj line: 22, column: 14
                         currsigs.addElement(pos1);
-                        totalBot_1.setPresent();//sysj\simpleabro.sysj line: 20, column: 14
+                        totalBot_1.setPresent();//sysj\simpleabro.sysj line: 23, column: 14
                         currsigs.addElement(totalBot_1);
-                        totalBot_1.setValue((Integer)(totalBot_1.getpreval() == null ? 0 : ((Integer)totalBot_1.getpreval()).intValue()) + 1);//sysj\simpleabro.sysj line: 20, column: 14
-                        S2210=1;
-                        __start_thread_1 = com.systemj.Timer.getMs();//sysj\simpleabro.sysj line: 17, column: 16
-                        if(com.systemj.Timer.getMs() - __start_thread_1 >= (5) * 1000){//sysj\simpleabro.sysj line: 17, column: 16
+                        totalBot_1.setValue((Integer)(totalBot_1.getpreval() == null ? 0 : ((Integer)totalBot_1.getpreval()).intValue()) + 1);//sysj\simpleabro.sysj line: 23, column: 14
+                        S1838=1;
+                        __start_thread_1 = com.systemj.Timer.getMs();//sysj\simpleabro.sysj line: 20, column: 16
+                        if(com.systemj.Timer.getMs() - __start_thread_1 >= (5) * 1000){//sysj\simpleabro.sysj line: 20, column: 16
                           ends[1]=5;
-                          ;//sysj\simpleabro.sysj line: 17, column: 16
-                          pos2.setPresent();//sysj\simpleabro.sysj line: 23, column: 14
+                          ;//sysj\simpleabro.sysj line: 20, column: 16
+                          pos2.setPresent();//sysj\simpleabro.sysj line: 26, column: 14
                           currsigs.addElement(pos2);
-                          pos1.setPresent();//sysj\simpleabro.sysj line: 24, column: 14
+                          pos1.setPresent();//sysj\simpleabro.sysj line: 27, column: 14
                           currsigs.addElement(pos1);
-                          totalBot_1.setPresent();//sysj\simpleabro.sysj line: 25, column: 14
+                          totalBot_1.setPresent();//sysj\simpleabro.sysj line: 28, column: 14
                           currsigs.addElement(totalBot_1);
-                          totalBot_1.setValue((Integer)(totalBot_1.getpreval() == null ? 0 : ((Integer)totalBot_1.getpreval()).intValue()) + 1);//sysj\simpleabro.sysj line: 25, column: 14
-                          S2210=2;
-                          __start_thread_1 = com.systemj.Timer.getMs();//sysj\simpleabro.sysj line: 17, column: 16
-                          if(com.systemj.Timer.getMs() - __start_thread_1 >= (5) * 1000){//sysj\simpleabro.sysj line: 17, column: 16
+                          totalBot_1.setValue((Integer)(totalBot_1.getpreval() == null ? 0 : ((Integer)totalBot_1.getpreval()).intValue()) + 1);//sysj\simpleabro.sysj line: 28, column: 14
+                          S1838=2;
+                          __start_thread_1 = com.systemj.Timer.getMs();//sysj\simpleabro.sysj line: 20, column: 16
+                          if(com.systemj.Timer.getMs() - __start_thread_1 >= (5) * 1000){//sysj\simpleabro.sysj line: 20, column: 16
                             ends[1]=4;
-                            ;//sysj\simpleabro.sysj line: 17, column: 16
-                            pos2.setPresent();//sysj\simpleabro.sysj line: 27, column: 14
+                            ;//sysj\simpleabro.sysj line: 20, column: 16
+                            pos2.setPresent();//sysj\simpleabro.sysj line: 30, column: 14
                             currsigs.addElement(pos2);
-                            pos1.setPresent();//sysj\simpleabro.sysj line: 28, column: 14
+                            pos1.setPresent();//sysj\simpleabro.sysj line: 31, column: 14
                             currsigs.addElement(pos1);
-                            pos3.setPresent();//sysj\simpleabro.sysj line: 29, column: 14
+                            pos3.setPresent();//sysj\simpleabro.sysj line: 32, column: 14
                             currsigs.addElement(pos3);
-                            totalBot_1.setPresent();//sysj\simpleabro.sysj line: 30, column: 14
+                            totalBot_1.setPresent();//sysj\simpleabro.sysj line: 33, column: 14
                             currsigs.addElement(totalBot_1);
-                            totalBot_1.setValue((Integer)(totalBot_1.getpreval() == null ? 0 : ((Integer)totalBot_1.getpreval()).intValue()) + 1);//sysj\simpleabro.sysj line: 30, column: 14
-                            S2210=3;
-                            __start_thread_1 = com.systemj.Timer.getMs();//sysj\simpleabro.sysj line: 17, column: 16
-                            if(com.systemj.Timer.getMs() - __start_thread_1 >= (5) * 1000){//sysj\simpleabro.sysj line: 17, column: 16
+                            totalBot_1.setValue((Integer)(totalBot_1.getpreval() == null ? 0 : ((Integer)totalBot_1.getpreval()).intValue()) + 1);//sysj\simpleabro.sysj line: 33, column: 14
+                            S1838=3;
+                            __start_thread_1 = com.systemj.Timer.getMs();//sysj\simpleabro.sysj line: 20, column: 16
+                            if(com.systemj.Timer.getMs() - __start_thread_1 >= (5) * 1000){//sysj\simpleabro.sysj line: 20, column: 16
                               ends[1]=3;
-                              ;//sysj\simpleabro.sysj line: 17, column: 16
-                              pos4.setPresent();//sysj\simpleabro.sysj line: 32, column: 14
+                              ;//sysj\simpleabro.sysj line: 20, column: 16
+                              pos4.setPresent();//sysj\simpleabro.sysj line: 35, column: 14
                               currsigs.addElement(pos4);
-                              pos2.setPresent();//sysj\simpleabro.sysj line: 33, column: 14
+                              pos2.setPresent();//sysj\simpleabro.sysj line: 36, column: 14
                               currsigs.addElement(pos2);
-                              pos1.setPresent();//sysj\simpleabro.sysj line: 34, column: 14
+                              pos1.setPresent();//sysj\simpleabro.sysj line: 37, column: 14
                               currsigs.addElement(pos1);
-                              pos3.setPresent();//sysj\simpleabro.sysj line: 35, column: 14
+                              pos3.setPresent();//sysj\simpleabro.sysj line: 38, column: 14
                               currsigs.addElement(pos3);
-                              totalBot_1.setPresent();//sysj\simpleabro.sysj line: 36, column: 14
+                              totalBot_1.setPresent();//sysj\simpleabro.sysj line: 39, column: 14
                               currsigs.addElement(totalBot_1);
-                              totalBot_1.setValue((Integer)(totalBot_1.getpreval() == null ? 0 : ((Integer)totalBot_1.getpreval()).intValue()) + 1);//sysj\simpleabro.sysj line: 36, column: 14
-                              S2732=0;
+                              totalBot_1.setValue((Integer)(totalBot_1.getpreval() == null ? 0 : ((Integer)totalBot_1.getpreval()).intValue()) + 1);//sysj\simpleabro.sysj line: 39, column: 14
+                              S2360=0;
                               active[1]=1;
                               ends[1]=1;
                               break RUN;
@@ -231,66 +233,66 @@ public class MainController extends ClockDomain{
                         }
                       }
                       else {
-                        S2197=1;
+                        S1825=1;
                         active[1]=1;
                         ends[1]=1;
                         break RUN;
                       }
                     
                     case 1 : 
-                      S2197=1;
-                      S2197=0;
-                      if(com.systemj.Timer.getMs() - __start_thread_1 >= (5) * 1000){//sysj\simpleabro.sysj line: 17, column: 16
+                      S1825=1;
+                      S1825=0;
+                      if(com.systemj.Timer.getMs() - __start_thread_1 >= (5) * 1000){//sysj\simpleabro.sysj line: 20, column: 16
                         ends[1]=6;
-                        ;//sysj\simpleabro.sysj line: 17, column: 16
-                        pos1.setPresent();//sysj\simpleabro.sysj line: 19, column: 14
+                        ;//sysj\simpleabro.sysj line: 20, column: 16
+                        pos1.setPresent();//sysj\simpleabro.sysj line: 22, column: 14
                         currsigs.addElement(pos1);
-                        totalBot_1.setPresent();//sysj\simpleabro.sysj line: 20, column: 14
+                        totalBot_1.setPresent();//sysj\simpleabro.sysj line: 23, column: 14
                         currsigs.addElement(totalBot_1);
-                        totalBot_1.setValue((Integer)(totalBot_1.getpreval() == null ? 0 : ((Integer)totalBot_1.getpreval()).intValue()) + 1);//sysj\simpleabro.sysj line: 20, column: 14
-                        S2210=1;
-                        __start_thread_1 = com.systemj.Timer.getMs();//sysj\simpleabro.sysj line: 17, column: 16
-                        if(com.systemj.Timer.getMs() - __start_thread_1 >= (5) * 1000){//sysj\simpleabro.sysj line: 17, column: 16
+                        totalBot_1.setValue((Integer)(totalBot_1.getpreval() == null ? 0 : ((Integer)totalBot_1.getpreval()).intValue()) + 1);//sysj\simpleabro.sysj line: 23, column: 14
+                        S1838=1;
+                        __start_thread_1 = com.systemj.Timer.getMs();//sysj\simpleabro.sysj line: 20, column: 16
+                        if(com.systemj.Timer.getMs() - __start_thread_1 >= (5) * 1000){//sysj\simpleabro.sysj line: 20, column: 16
                           ends[1]=5;
-                          ;//sysj\simpleabro.sysj line: 17, column: 16
-                          pos2.setPresent();//sysj\simpleabro.sysj line: 23, column: 14
+                          ;//sysj\simpleabro.sysj line: 20, column: 16
+                          pos2.setPresent();//sysj\simpleabro.sysj line: 26, column: 14
                           currsigs.addElement(pos2);
-                          pos1.setPresent();//sysj\simpleabro.sysj line: 24, column: 14
+                          pos1.setPresent();//sysj\simpleabro.sysj line: 27, column: 14
                           currsigs.addElement(pos1);
-                          totalBot_1.setPresent();//sysj\simpleabro.sysj line: 25, column: 14
+                          totalBot_1.setPresent();//sysj\simpleabro.sysj line: 28, column: 14
                           currsigs.addElement(totalBot_1);
-                          totalBot_1.setValue((Integer)(totalBot_1.getpreval() == null ? 0 : ((Integer)totalBot_1.getpreval()).intValue()) + 1);//sysj\simpleabro.sysj line: 25, column: 14
-                          S2210=2;
-                          __start_thread_1 = com.systemj.Timer.getMs();//sysj\simpleabro.sysj line: 17, column: 16
-                          if(com.systemj.Timer.getMs() - __start_thread_1 >= (5) * 1000){//sysj\simpleabro.sysj line: 17, column: 16
+                          totalBot_1.setValue((Integer)(totalBot_1.getpreval() == null ? 0 : ((Integer)totalBot_1.getpreval()).intValue()) + 1);//sysj\simpleabro.sysj line: 28, column: 14
+                          S1838=2;
+                          __start_thread_1 = com.systemj.Timer.getMs();//sysj\simpleabro.sysj line: 20, column: 16
+                          if(com.systemj.Timer.getMs() - __start_thread_1 >= (5) * 1000){//sysj\simpleabro.sysj line: 20, column: 16
                             ends[1]=4;
-                            ;//sysj\simpleabro.sysj line: 17, column: 16
-                            pos2.setPresent();//sysj\simpleabro.sysj line: 27, column: 14
+                            ;//sysj\simpleabro.sysj line: 20, column: 16
+                            pos2.setPresent();//sysj\simpleabro.sysj line: 30, column: 14
                             currsigs.addElement(pos2);
-                            pos1.setPresent();//sysj\simpleabro.sysj line: 28, column: 14
+                            pos1.setPresent();//sysj\simpleabro.sysj line: 31, column: 14
                             currsigs.addElement(pos1);
-                            pos3.setPresent();//sysj\simpleabro.sysj line: 29, column: 14
+                            pos3.setPresent();//sysj\simpleabro.sysj line: 32, column: 14
                             currsigs.addElement(pos3);
-                            totalBot_1.setPresent();//sysj\simpleabro.sysj line: 30, column: 14
+                            totalBot_1.setPresent();//sysj\simpleabro.sysj line: 33, column: 14
                             currsigs.addElement(totalBot_1);
-                            totalBot_1.setValue((Integer)(totalBot_1.getpreval() == null ? 0 : ((Integer)totalBot_1.getpreval()).intValue()) + 1);//sysj\simpleabro.sysj line: 30, column: 14
-                            S2210=3;
-                            __start_thread_1 = com.systemj.Timer.getMs();//sysj\simpleabro.sysj line: 17, column: 16
-                            if(com.systemj.Timer.getMs() - __start_thread_1 >= (5) * 1000){//sysj\simpleabro.sysj line: 17, column: 16
+                            totalBot_1.setValue((Integer)(totalBot_1.getpreval() == null ? 0 : ((Integer)totalBot_1.getpreval()).intValue()) + 1);//sysj\simpleabro.sysj line: 33, column: 14
+                            S1838=3;
+                            __start_thread_1 = com.systemj.Timer.getMs();//sysj\simpleabro.sysj line: 20, column: 16
+                            if(com.systemj.Timer.getMs() - __start_thread_1 >= (5) * 1000){//sysj\simpleabro.sysj line: 20, column: 16
                               ends[1]=3;
-                              ;//sysj\simpleabro.sysj line: 17, column: 16
-                              pos4.setPresent();//sysj\simpleabro.sysj line: 32, column: 14
+                              ;//sysj\simpleabro.sysj line: 20, column: 16
+                              pos4.setPresent();//sysj\simpleabro.sysj line: 35, column: 14
                               currsigs.addElement(pos4);
-                              pos2.setPresent();//sysj\simpleabro.sysj line: 33, column: 14
+                              pos2.setPresent();//sysj\simpleabro.sysj line: 36, column: 14
                               currsigs.addElement(pos2);
-                              pos1.setPresent();//sysj\simpleabro.sysj line: 34, column: 14
+                              pos1.setPresent();//sysj\simpleabro.sysj line: 37, column: 14
                               currsigs.addElement(pos1);
-                              pos3.setPresent();//sysj\simpleabro.sysj line: 35, column: 14
+                              pos3.setPresent();//sysj\simpleabro.sysj line: 38, column: 14
                               currsigs.addElement(pos3);
-                              totalBot_1.setPresent();//sysj\simpleabro.sysj line: 36, column: 14
+                              totalBot_1.setPresent();//sysj\simpleabro.sysj line: 39, column: 14
                               currsigs.addElement(totalBot_1);
-                              totalBot_1.setValue((Integer)(totalBot_1.getpreval() == null ? 0 : ((Integer)totalBot_1.getpreval()).intValue()) + 1);//sysj\simpleabro.sysj line: 36, column: 14
-                              S2732=0;
+                              totalBot_1.setValue((Integer)(totalBot_1.getpreval() == null ? 0 : ((Integer)totalBot_1.getpreval()).intValue()) + 1);//sysj\simpleabro.sysj line: 39, column: 14
+                              S2360=0;
                               active[1]=1;
                               ends[1]=1;
                               break RUN;
@@ -314,7 +316,7 @@ public class MainController extends ClockDomain{
                         }
                       }
                       else {
-                        S2197=1;
+                        S1825=1;
                         active[1]=1;
                         ends[1]=1;
                         break RUN;
@@ -324,47 +326,47 @@ public class MainController extends ClockDomain{
                   break;
                 
                 case 1 : 
-                  if(com.systemj.Timer.getMs() - __start_thread_1 >= (5) * 1000){//sysj\simpleabro.sysj line: 17, column: 16
+                  if(com.systemj.Timer.getMs() - __start_thread_1 >= (5) * 1000){//sysj\simpleabro.sysj line: 20, column: 16
                     ends[1]=5;
-                    ;//sysj\simpleabro.sysj line: 17, column: 16
-                    pos2.setPresent();//sysj\simpleabro.sysj line: 23, column: 14
+                    ;//sysj\simpleabro.sysj line: 20, column: 16
+                    pos2.setPresent();//sysj\simpleabro.sysj line: 26, column: 14
                     currsigs.addElement(pos2);
-                    pos1.setPresent();//sysj\simpleabro.sysj line: 24, column: 14
+                    pos1.setPresent();//sysj\simpleabro.sysj line: 27, column: 14
                     currsigs.addElement(pos1);
-                    totalBot_1.setPresent();//sysj\simpleabro.sysj line: 25, column: 14
+                    totalBot_1.setPresent();//sysj\simpleabro.sysj line: 28, column: 14
                     currsigs.addElement(totalBot_1);
-                    totalBot_1.setValue((Integer)(totalBot_1.getpreval() == null ? 0 : ((Integer)totalBot_1.getpreval()).intValue()) + 1);//sysj\simpleabro.sysj line: 25, column: 14
-                    S2210=2;
-                    __start_thread_1 = com.systemj.Timer.getMs();//sysj\simpleabro.sysj line: 17, column: 16
-                    if(com.systemj.Timer.getMs() - __start_thread_1 >= (5) * 1000){//sysj\simpleabro.sysj line: 17, column: 16
+                    totalBot_1.setValue((Integer)(totalBot_1.getpreval() == null ? 0 : ((Integer)totalBot_1.getpreval()).intValue()) + 1);//sysj\simpleabro.sysj line: 28, column: 14
+                    S1838=2;
+                    __start_thread_1 = com.systemj.Timer.getMs();//sysj\simpleabro.sysj line: 20, column: 16
+                    if(com.systemj.Timer.getMs() - __start_thread_1 >= (5) * 1000){//sysj\simpleabro.sysj line: 20, column: 16
                       ends[1]=4;
-                      ;//sysj\simpleabro.sysj line: 17, column: 16
-                      pos2.setPresent();//sysj\simpleabro.sysj line: 27, column: 14
+                      ;//sysj\simpleabro.sysj line: 20, column: 16
+                      pos2.setPresent();//sysj\simpleabro.sysj line: 30, column: 14
                       currsigs.addElement(pos2);
-                      pos1.setPresent();//sysj\simpleabro.sysj line: 28, column: 14
+                      pos1.setPresent();//sysj\simpleabro.sysj line: 31, column: 14
                       currsigs.addElement(pos1);
-                      pos3.setPresent();//sysj\simpleabro.sysj line: 29, column: 14
+                      pos3.setPresent();//sysj\simpleabro.sysj line: 32, column: 14
                       currsigs.addElement(pos3);
-                      totalBot_1.setPresent();//sysj\simpleabro.sysj line: 30, column: 14
+                      totalBot_1.setPresent();//sysj\simpleabro.sysj line: 33, column: 14
                       currsigs.addElement(totalBot_1);
-                      totalBot_1.setValue((Integer)(totalBot_1.getpreval() == null ? 0 : ((Integer)totalBot_1.getpreval()).intValue()) + 1);//sysj\simpleabro.sysj line: 30, column: 14
-                      S2210=3;
-                      __start_thread_1 = com.systemj.Timer.getMs();//sysj\simpleabro.sysj line: 17, column: 16
-                      if(com.systemj.Timer.getMs() - __start_thread_1 >= (5) * 1000){//sysj\simpleabro.sysj line: 17, column: 16
+                      totalBot_1.setValue((Integer)(totalBot_1.getpreval() == null ? 0 : ((Integer)totalBot_1.getpreval()).intValue()) + 1);//sysj\simpleabro.sysj line: 33, column: 14
+                      S1838=3;
+                      __start_thread_1 = com.systemj.Timer.getMs();//sysj\simpleabro.sysj line: 20, column: 16
+                      if(com.systemj.Timer.getMs() - __start_thread_1 >= (5) * 1000){//sysj\simpleabro.sysj line: 20, column: 16
                         ends[1]=3;
-                        ;//sysj\simpleabro.sysj line: 17, column: 16
-                        pos4.setPresent();//sysj\simpleabro.sysj line: 32, column: 14
+                        ;//sysj\simpleabro.sysj line: 20, column: 16
+                        pos4.setPresent();//sysj\simpleabro.sysj line: 35, column: 14
                         currsigs.addElement(pos4);
-                        pos2.setPresent();//sysj\simpleabro.sysj line: 33, column: 14
+                        pos2.setPresent();//sysj\simpleabro.sysj line: 36, column: 14
                         currsigs.addElement(pos2);
-                        pos1.setPresent();//sysj\simpleabro.sysj line: 34, column: 14
+                        pos1.setPresent();//sysj\simpleabro.sysj line: 37, column: 14
                         currsigs.addElement(pos1);
-                        pos3.setPresent();//sysj\simpleabro.sysj line: 35, column: 14
+                        pos3.setPresent();//sysj\simpleabro.sysj line: 38, column: 14
                         currsigs.addElement(pos3);
-                        totalBot_1.setPresent();//sysj\simpleabro.sysj line: 36, column: 14
+                        totalBot_1.setPresent();//sysj\simpleabro.sysj line: 39, column: 14
                         currsigs.addElement(totalBot_1);
-                        totalBot_1.setValue((Integer)(totalBot_1.getpreval() == null ? 0 : ((Integer)totalBot_1.getpreval()).intValue()) + 1);//sysj\simpleabro.sysj line: 36, column: 14
-                        S2732=0;
+                        totalBot_1.setValue((Integer)(totalBot_1.getpreval() == null ? 0 : ((Integer)totalBot_1.getpreval()).intValue()) + 1);//sysj\simpleabro.sysj line: 39, column: 14
+                        S2360=0;
                         active[1]=1;
                         ends[1]=1;
                         break RUN;
@@ -388,35 +390,35 @@ public class MainController extends ClockDomain{
                   }
                 
                 case 2 : 
-                  if(com.systemj.Timer.getMs() - __start_thread_1 >= (5) * 1000){//sysj\simpleabro.sysj line: 17, column: 16
+                  if(com.systemj.Timer.getMs() - __start_thread_1 >= (5) * 1000){//sysj\simpleabro.sysj line: 20, column: 16
                     ends[1]=4;
-                    ;//sysj\simpleabro.sysj line: 17, column: 16
-                    pos2.setPresent();//sysj\simpleabro.sysj line: 27, column: 14
+                    ;//sysj\simpleabro.sysj line: 20, column: 16
+                    pos2.setPresent();//sysj\simpleabro.sysj line: 30, column: 14
                     currsigs.addElement(pos2);
-                    pos1.setPresent();//sysj\simpleabro.sysj line: 28, column: 14
+                    pos1.setPresent();//sysj\simpleabro.sysj line: 31, column: 14
                     currsigs.addElement(pos1);
-                    pos3.setPresent();//sysj\simpleabro.sysj line: 29, column: 14
+                    pos3.setPresent();//sysj\simpleabro.sysj line: 32, column: 14
                     currsigs.addElement(pos3);
-                    totalBot_1.setPresent();//sysj\simpleabro.sysj line: 30, column: 14
+                    totalBot_1.setPresent();//sysj\simpleabro.sysj line: 33, column: 14
                     currsigs.addElement(totalBot_1);
-                    totalBot_1.setValue((Integer)(totalBot_1.getpreval() == null ? 0 : ((Integer)totalBot_1.getpreval()).intValue()) + 1);//sysj\simpleabro.sysj line: 30, column: 14
-                    S2210=3;
-                    __start_thread_1 = com.systemj.Timer.getMs();//sysj\simpleabro.sysj line: 17, column: 16
-                    if(com.systemj.Timer.getMs() - __start_thread_1 >= (5) * 1000){//sysj\simpleabro.sysj line: 17, column: 16
+                    totalBot_1.setValue((Integer)(totalBot_1.getpreval() == null ? 0 : ((Integer)totalBot_1.getpreval()).intValue()) + 1);//sysj\simpleabro.sysj line: 33, column: 14
+                    S1838=3;
+                    __start_thread_1 = com.systemj.Timer.getMs();//sysj\simpleabro.sysj line: 20, column: 16
+                    if(com.systemj.Timer.getMs() - __start_thread_1 >= (5) * 1000){//sysj\simpleabro.sysj line: 20, column: 16
                       ends[1]=3;
-                      ;//sysj\simpleabro.sysj line: 17, column: 16
-                      pos4.setPresent();//sysj\simpleabro.sysj line: 32, column: 14
+                      ;//sysj\simpleabro.sysj line: 20, column: 16
+                      pos4.setPresent();//sysj\simpleabro.sysj line: 35, column: 14
                       currsigs.addElement(pos4);
-                      pos2.setPresent();//sysj\simpleabro.sysj line: 33, column: 14
+                      pos2.setPresent();//sysj\simpleabro.sysj line: 36, column: 14
                       currsigs.addElement(pos2);
-                      pos1.setPresent();//sysj\simpleabro.sysj line: 34, column: 14
+                      pos1.setPresent();//sysj\simpleabro.sysj line: 37, column: 14
                       currsigs.addElement(pos1);
-                      pos3.setPresent();//sysj\simpleabro.sysj line: 35, column: 14
+                      pos3.setPresent();//sysj\simpleabro.sysj line: 38, column: 14
                       currsigs.addElement(pos3);
-                      totalBot_1.setPresent();//sysj\simpleabro.sysj line: 36, column: 14
+                      totalBot_1.setPresent();//sysj\simpleabro.sysj line: 39, column: 14
                       currsigs.addElement(totalBot_1);
-                      totalBot_1.setValue((Integer)(totalBot_1.getpreval() == null ? 0 : ((Integer)totalBot_1.getpreval()).intValue()) + 1);//sysj\simpleabro.sysj line: 36, column: 14
-                      S2732=0;
+                      totalBot_1.setValue((Integer)(totalBot_1.getpreval() == null ? 0 : ((Integer)totalBot_1.getpreval()).intValue()) + 1);//sysj\simpleabro.sysj line: 39, column: 14
+                      S2360=0;
                       active[1]=1;
                       ends[1]=1;
                       break RUN;
@@ -434,21 +436,21 @@ public class MainController extends ClockDomain{
                   }
                 
                 case 3 : 
-                  if(com.systemj.Timer.getMs() - __start_thread_1 >= (5) * 1000){//sysj\simpleabro.sysj line: 17, column: 16
+                  if(com.systemj.Timer.getMs() - __start_thread_1 >= (5) * 1000){//sysj\simpleabro.sysj line: 20, column: 16
                     ends[1]=3;
-                    ;//sysj\simpleabro.sysj line: 17, column: 16
-                    pos4.setPresent();//sysj\simpleabro.sysj line: 32, column: 14
+                    ;//sysj\simpleabro.sysj line: 20, column: 16
+                    pos4.setPresent();//sysj\simpleabro.sysj line: 35, column: 14
                     currsigs.addElement(pos4);
-                    pos2.setPresent();//sysj\simpleabro.sysj line: 33, column: 14
+                    pos2.setPresent();//sysj\simpleabro.sysj line: 36, column: 14
                     currsigs.addElement(pos2);
-                    pos1.setPresent();//sysj\simpleabro.sysj line: 34, column: 14
+                    pos1.setPresent();//sysj\simpleabro.sysj line: 37, column: 14
                     currsigs.addElement(pos1);
-                    pos3.setPresent();//sysj\simpleabro.sysj line: 35, column: 14
+                    pos3.setPresent();//sysj\simpleabro.sysj line: 38, column: 14
                     currsigs.addElement(pos3);
-                    totalBot_1.setPresent();//sysj\simpleabro.sysj line: 36, column: 14
+                    totalBot_1.setPresent();//sysj\simpleabro.sysj line: 39, column: 14
                     currsigs.addElement(totalBot_1);
-                    totalBot_1.setValue((Integer)(totalBot_1.getpreval() == null ? 0 : ((Integer)totalBot_1.getpreval()).intValue()) + 1);//sysj\simpleabro.sysj line: 36, column: 14
-                    S2732=0;
+                    totalBot_1.setValue((Integer)(totalBot_1.getpreval() == null ? 0 : ((Integer)totalBot_1.getpreval()).intValue()) + 1);//sysj\simpleabro.sysj line: 39, column: 14
+                    S2360=0;
                     active[1]=1;
                     ends[1]=1;
                     break RUN;

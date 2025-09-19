@@ -35,10 +35,10 @@ public class BottleLoaderVizWorker extends Worker{
 			States.POSD = false;
 			break;
 		case "POSD":
-			States.POSD = status;
+			States.POSD = status; 
 			States.POSA = false;
 			States.POSB = false;
-			States.POSC = false;
+			States.POSC = false; 
 			break;
 		case "GRIPDAT":
 			States.GRIPDAT = status;

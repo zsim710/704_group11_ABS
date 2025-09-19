@@ -1,3 +1,4 @@
+import run.GUI;
 
 MainController(
 		input Integer signal BottleQuantity;
@@ -8,8 +9,10 @@ MainController(
 		)
 ->{
 	int signal totalBot;
+	new Thread(new GUI()).start();
 		trap(T){
         while(true) {
+			
         	pause;
 	        	if((Integer)#BottleQuantity == (Integer)#totalBot) {
 	        		exit(T);
