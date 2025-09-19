@@ -31,7 +31,7 @@ public abstract class Worker implements Runnable {
 	
 	public boolean initTimeElapsed(){
 		if(!elapsed){
-			if(System.currentTimeMillis() - startTime > 500){ 
+			if(System.currentTimeMillis() - startTime > 500){
 				elapsed = true;
 			}
 		}

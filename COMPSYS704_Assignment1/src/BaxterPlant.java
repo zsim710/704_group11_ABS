@@ -3,7 +3,7 @@ import com.systemj.ClockDomain;
 import com.systemj.Signal;
 import com.systemj.input_Channel;
 import com.systemj.output_Channel;
-import run.GUI;//sysj\BaxterPlant.sysj line: 1, column: 1
+import run.GUI;//sysj\baxterplant.sysj line: 1, column: 1
 
 public class BaxterPlant extends ClockDomain{
   public BaxterPlant(String name){super(name);}
@@ -13,19 +13,17 @@ public class BaxterPlant extends ClockDomain{
   private char [] paused;
   private char [] suspended;
   public Signal CMD = new Signal("CMD", Signal.INPUT);
-  public Signal failT = new Signal("failT", Signal.INPUT);
   public Signal CMDfb = new Signal("CMDfb", Signal.OUTPUT);
-  public Signal bottleAtLoad = new Signal("bottleAtLoad", Signal.OUTPUT);
+  public Signal bottleAtPoint = new Signal("bottleAtPoint", Signal.OUTPUT);
   public Signal POSA = new Signal("POSA", Signal.OUTPUT);
   public Signal POSB = new Signal("POSB", Signal.OUTPUT);
   public Signal POSC = new Signal("POSC", Signal.OUTPUT);
   public Signal POSD = new Signal("POSD", Signal.OUTPUT);
   public Signal GripDat = new Signal("GripDat", Signal.OUTPUT);
-  private String command_thread_1;//sysj\BaxterPlant.sysj line: 23, column: 4
-  private java.lang.String []  parts_thread_1;//sysj\BaxterPlant.sysj line: 24, column: 4
-  private int S464 = 1;
-  private int S157 = 1;
-  private int S160 = 1;
+  private String command_thread_1;//sysj\baxterplant.sysj line: 22, column: 4
+  private java.lang.String []  parts_thread_1;//sysj\baxterplant.sysj line: 23, column: 4
+  private int S370 = 1;
+  private int S33 = 1;
   
   private int[] ends = new int[2];
   private int[] tdone = new int[2];
@@ -37,821 +35,107 @@ public class BaxterPlant extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S464){
+      switch(S370){
         case 0 : 
-          S464=0;
+          S370=0;
           break RUN;
         
         case 1 : 
-          S464=2;
-          S464=2;
-          new Thread(new GUI()).start();//sysj\BaxterPlant.sysj line: 11, column: 2
-          S157=0;
+          S370=2;
+          S370=2;
+          new Thread(new GUI()).start();//sysj\baxterplant.sysj line: 12, column: 2
+          S33=0;
           active[1]=1;
           ends[1]=1;
           break RUN;
         
         case 2 : 
-          switch(S157){
+          switch(S33){
             case 0 : 
-              S157=0;
-              S157=1;
-              bottleAtLoad.setPresent();//sysj\BaxterPlant.sysj line: 16, column: 3
-              currsigs.addElement(bottleAtLoad);
-              S160=0;
-              if(failT.getprestatus()){//sysj\BaxterPlant.sysj line: 18, column: 11
-                System.out.println("fail oii poopy");//sysj\BaxterPlant.sysj line: 19, column: 4
-                if(CMD.getprestatus()){//sysj\BaxterPlant.sysj line: 22, column: 11
-                  command_thread_1 = (String)(CMD.getpreval() == null ? null : ((String)CMD.getpreval()));//sysj\BaxterPlant.sysj line: 23, column: 4
-                  parts_thread_1 = command_thread_1.split(" ");//sysj\BaxterPlant.sysj line: 24, column: 4
-                  System.out.println(parts_thread_1[2]);//sysj\BaxterPlant.sysj line: 29, column: 4
-                  if(parts_thread_1[2].equals("A")){//sysj\BaxterPlant.sysj line: 32, column: 4
-                    POSA.setPresent();//sysj\BaxterPlant.sysj line: 33, column: 5
-                    currsigs.addElement(POSA);
-                    if(parts_thread_1[2].equals("close")){//sysj\BaxterPlant.sysj line: 46, column: 4
-                      GripDat.setPresent();//sysj\BaxterPlant.sysj line: 47, column: 5
-                      currsigs.addElement(GripDat);
-                      CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                      currsigs.addElement(CMDfb);
-                      S160=1;
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
-                    }
-                    else {
-                      CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                      currsigs.addElement(CMDfb);
-                      S160=1;
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
-                    }
-                  }
-                  else {
-                    if(parts_thread_1[2].equals("B")){//sysj\BaxterPlant.sysj line: 35, column: 11
-                      POSB.setPresent();//sysj\BaxterPlant.sysj line: 36, column: 5
-                      currsigs.addElement(POSB);
-                      if(parts_thread_1[2].equals("close")){//sysj\BaxterPlant.sysj line: 46, column: 4
-                        GripDat.setPresent();//sysj\BaxterPlant.sysj line: 47, column: 5
-                        currsigs.addElement(GripDat);
-                        CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                        currsigs.addElement(CMDfb);
-                        S160=1;
-                        active[1]=1;
-                        ends[1]=1;
-                        break RUN;
-                      }
-                      else {
-                        CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                        currsigs.addElement(CMDfb);
-                        S160=1;
-                        active[1]=1;
-                        ends[1]=1;
-                        break RUN;
-                      }
-                    }
-                    else {
-                      if(parts_thread_1[2].equals("C")){//sysj\BaxterPlant.sysj line: 38, column: 11
-                        POSC.setPresent();//sysj\BaxterPlant.sysj line: 39, column: 5
-                        currsigs.addElement(POSC);
-                        if(parts_thread_1[2].equals("close")){//sysj\BaxterPlant.sysj line: 46, column: 4
-                          GripDat.setPresent();//sysj\BaxterPlant.sysj line: 47, column: 5
-                          currsigs.addElement(GripDat);
-                          CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                          currsigs.addElement(CMDfb);
-                          S160=1;
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                          currsigs.addElement(CMDfb);
-                          S160=1;
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                      else {
-                        if(parts_thread_1[2].equals("D")){//sysj\BaxterPlant.sysj line: 41, column: 11
-                          POSD.setPresent();//sysj\BaxterPlant.sysj line: 42, column: 5
-                          currsigs.addElement(POSD);
-                          if(parts_thread_1[2].equals("close")){//sysj\BaxterPlant.sysj line: 46, column: 4
-                            GripDat.setPresent();//sysj\BaxterPlant.sysj line: 47, column: 5
-                            currsigs.addElement(GripDat);
-                            CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                            currsigs.addElement(CMDfb);
-                            S160=1;
-                            active[1]=1;
-                            ends[1]=1;
-                            break RUN;
-                          }
-                          else {
-                            CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                            currsigs.addElement(CMDfb);
-                            S160=1;
-                            active[1]=1;
-                            ends[1]=1;
-                            break RUN;
-                          }
-                        }
-                        else {
-                          if(parts_thread_1[2].equals("close")){//sysj\BaxterPlant.sysj line: 46, column: 4
-                            GripDat.setPresent();//sysj\BaxterPlant.sysj line: 47, column: 5
-                            currsigs.addElement(GripDat);
-                            CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                            currsigs.addElement(CMDfb);
-                            S160=1;
-                            active[1]=1;
-                            ends[1]=1;
-                            break RUN;
-                          }
-                          else {
-                            CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                            currsigs.addElement(CMDfb);
-                            S160=1;
-                            active[1]=1;
-                            ends[1]=1;
-                            break RUN;
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-                else {
-                  CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
+              S33=0;
+              S33=1;
+              bottleAtPoint.setPresent();//sysj\baxterplant.sysj line: 19, column: 3
+              currsigs.addElement(bottleAtPoint);
+              active[1]=1;
+              ends[1]=1;
+              break RUN;
+            
+            case 1 : 
+              if(CMD.getprestatus()){//sysj\baxterplant.sysj line: 21, column: 11
+                command_thread_1 = (String)(CMD.getpreval() == null ? null : ((String)CMD.getpreval()));//sysj\baxterplant.sysj line: 22, column: 4
+                parts_thread_1 = command_thread_1.split(" ");//sysj\baxterplant.sysj line: 23, column: 4
+                System.out.println(parts_thread_1[0]);//sysj\baxterplant.sysj line: 26, column: 4
+                System.out.println(parts_thread_1[1]);//sysj\baxterplant.sysj line: 27, column: 4
+                System.out.println(parts_thread_1[2]);//sysj\baxterplant.sysj line: 28, column: 4
+                if(parts_thread_1[2].equals("A")){//sysj\baxterplant.sysj line: 31, column: 4
+                  POSA.setPresent();//sysj\baxterplant.sysj line: 32, column: 5
+                  currsigs.addElement(POSA);
+                  CMDfb.setPresent();//sysj\baxterplant.sysj line: 46, column: 3
                   currsigs.addElement(CMDfb);
-                  S160=1;
+                  bottleAtPoint.setPresent();//sysj\baxterplant.sysj line: 19, column: 3
+                  currsigs.addElement(bottleAtPoint);
                   active[1]=1;
                   ends[1]=1;
                   break RUN;
+                }
+                else {
+                  if(parts_thread_1[2].equals("B")){//sysj\baxterplant.sysj line: 34, column: 11
+                    POSB.setPresent();//sysj\baxterplant.sysj line: 35, column: 5
+                    currsigs.addElement(POSB);
+                    CMDfb.setPresent();//sysj\baxterplant.sysj line: 46, column: 3
+                    currsigs.addElement(CMDfb);
+                    bottleAtPoint.setPresent();//sysj\baxterplant.sysj line: 19, column: 3
+                    currsigs.addElement(bottleAtPoint);
+                    active[1]=1;
+                    ends[1]=1;
+                    break RUN;
+                  }
+                  else {
+                    if(parts_thread_1[2].equals("C")){//sysj\baxterplant.sysj line: 37, column: 11
+                      POSC.setPresent();//sysj\baxterplant.sysj line: 38, column: 5
+                      currsigs.addElement(POSC);
+                      CMDfb.setPresent();//sysj\baxterplant.sysj line: 46, column: 3
+                      currsigs.addElement(CMDfb);
+                      bottleAtPoint.setPresent();//sysj\baxterplant.sysj line: 19, column: 3
+                      currsigs.addElement(bottleAtPoint);
+                      active[1]=1;
+                      ends[1]=1;
+                      break RUN;
+                    }
+                    else {
+                      if(parts_thread_1[2].equals("D")){//sysj\baxterplant.sysj line: 40, column: 11
+                        POSD.setPresent();//sysj\baxterplant.sysj line: 41, column: 5
+                        currsigs.addElement(POSD);
+                        CMDfb.setPresent();//sysj\baxterplant.sysj line: 46, column: 3
+                        currsigs.addElement(CMDfb);
+                        bottleAtPoint.setPresent();//sysj\baxterplant.sysj line: 19, column: 3
+                        currsigs.addElement(bottleAtPoint);
+                        active[1]=1;
+                        ends[1]=1;
+                        break RUN;
+                      }
+                      else {
+                        CMDfb.setPresent();//sysj\baxterplant.sysj line: 46, column: 3
+                        currsigs.addElement(CMDfb);
+                        bottleAtPoint.setPresent();//sysj\baxterplant.sysj line: 19, column: 3
+                        currsigs.addElement(bottleAtPoint);
+                        active[1]=1;
+                        ends[1]=1;
+                        break RUN;
+                      }
+                    }
+                  }
                 }
               }
               else {
-                if(CMD.getprestatus()){//sysj\BaxterPlant.sysj line: 22, column: 11
-                  command_thread_1 = (String)(CMD.getpreval() == null ? null : ((String)CMD.getpreval()));//sysj\BaxterPlant.sysj line: 23, column: 4
-                  parts_thread_1 = command_thread_1.split(" ");//sysj\BaxterPlant.sysj line: 24, column: 4
-                  System.out.println(parts_thread_1[2]);//sysj\BaxterPlant.sysj line: 29, column: 4
-                  if(parts_thread_1[2].equals("A")){//sysj\BaxterPlant.sysj line: 32, column: 4
-                    POSA.setPresent();//sysj\BaxterPlant.sysj line: 33, column: 5
-                    currsigs.addElement(POSA);
-                    if(parts_thread_1[2].equals("close")){//sysj\BaxterPlant.sysj line: 46, column: 4
-                      GripDat.setPresent();//sysj\BaxterPlant.sysj line: 47, column: 5
-                      currsigs.addElement(GripDat);
-                      CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                      currsigs.addElement(CMDfb);
-                      S160=1;
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
-                    }
-                    else {
-                      CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                      currsigs.addElement(CMDfb);
-                      S160=1;
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
-                    }
-                  }
-                  else {
-                    if(parts_thread_1[2].equals("B")){//sysj\BaxterPlant.sysj line: 35, column: 11
-                      POSB.setPresent();//sysj\BaxterPlant.sysj line: 36, column: 5
-                      currsigs.addElement(POSB);
-                      if(parts_thread_1[2].equals("close")){//sysj\BaxterPlant.sysj line: 46, column: 4
-                        GripDat.setPresent();//sysj\BaxterPlant.sysj line: 47, column: 5
-                        currsigs.addElement(GripDat);
-                        CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                        currsigs.addElement(CMDfb);
-                        S160=1;
-                        active[1]=1;
-                        ends[1]=1;
-                        break RUN;
-                      }
-                      else {
-                        CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                        currsigs.addElement(CMDfb);
-                        S160=1;
-                        active[1]=1;
-                        ends[1]=1;
-                        break RUN;
-                      }
-                    }
-                    else {
-                      if(parts_thread_1[2].equals("C")){//sysj\BaxterPlant.sysj line: 38, column: 11
-                        POSC.setPresent();//sysj\BaxterPlant.sysj line: 39, column: 5
-                        currsigs.addElement(POSC);
-                        if(parts_thread_1[2].equals("close")){//sysj\BaxterPlant.sysj line: 46, column: 4
-                          GripDat.setPresent();//sysj\BaxterPlant.sysj line: 47, column: 5
-                          currsigs.addElement(GripDat);
-                          CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                          currsigs.addElement(CMDfb);
-                          S160=1;
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                          currsigs.addElement(CMDfb);
-                          S160=1;
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                      else {
-                        if(parts_thread_1[2].equals("D")){//sysj\BaxterPlant.sysj line: 41, column: 11
-                          POSD.setPresent();//sysj\BaxterPlant.sysj line: 42, column: 5
-                          currsigs.addElement(POSD);
-                          if(parts_thread_1[2].equals("close")){//sysj\BaxterPlant.sysj line: 46, column: 4
-                            GripDat.setPresent();//sysj\BaxterPlant.sysj line: 47, column: 5
-                            currsigs.addElement(GripDat);
-                            CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                            currsigs.addElement(CMDfb);
-                            S160=1;
-                            active[1]=1;
-                            ends[1]=1;
-                            break RUN;
-                          }
-                          else {
-                            CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                            currsigs.addElement(CMDfb);
-                            S160=1;
-                            active[1]=1;
-                            ends[1]=1;
-                            break RUN;
-                          }
-                        }
-                        else {
-                          if(parts_thread_1[2].equals("close")){//sysj\BaxterPlant.sysj line: 46, column: 4
-                            GripDat.setPresent();//sysj\BaxterPlant.sysj line: 47, column: 5
-                            currsigs.addElement(GripDat);
-                            CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                            currsigs.addElement(CMDfb);
-                            S160=1;
-                            active[1]=1;
-                            ends[1]=1;
-                            break RUN;
-                          }
-                          else {
-                            CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                            currsigs.addElement(CMDfb);
-                            S160=1;
-                            active[1]=1;
-                            ends[1]=1;
-                            break RUN;
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-                else {
-                  CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                  currsigs.addElement(CMDfb);
-                  S160=1;
-                  active[1]=1;
-                  ends[1]=1;
-                  break RUN;
-                }
+                CMDfb.setPresent();//sysj\baxterplant.sysj line: 46, column: 3
+                currsigs.addElement(CMDfb);
+                bottleAtPoint.setPresent();//sysj\baxterplant.sysj line: 19, column: 3
+                currsigs.addElement(bottleAtPoint);
+                active[1]=1;
+                ends[1]=1;
+                break RUN;
               }
-            
-            case 1 : 
-              switch(S160){
-                case 0 : 
-                  bottleAtLoad.setPresent();//sysj\BaxterPlant.sysj line: 16, column: 3
-                  currsigs.addElement(bottleAtLoad);
-                  S160=0;
-                  if(failT.getprestatus()){//sysj\BaxterPlant.sysj line: 18, column: 11
-                    System.out.println("fail oii poopy");//sysj\BaxterPlant.sysj line: 19, column: 4
-                    if(CMD.getprestatus()){//sysj\BaxterPlant.sysj line: 22, column: 11
-                      command_thread_1 = (String)(CMD.getpreval() == null ? null : ((String)CMD.getpreval()));//sysj\BaxterPlant.sysj line: 23, column: 4
-                      parts_thread_1 = command_thread_1.split(" ");//sysj\BaxterPlant.sysj line: 24, column: 4
-                      System.out.println(parts_thread_1[2]);//sysj\BaxterPlant.sysj line: 29, column: 4
-                      if(parts_thread_1[2].equals("A")){//sysj\BaxterPlant.sysj line: 32, column: 4
-                        POSA.setPresent();//sysj\BaxterPlant.sysj line: 33, column: 5
-                        currsigs.addElement(POSA);
-                        if(parts_thread_1[2].equals("close")){//sysj\BaxterPlant.sysj line: 46, column: 4
-                          GripDat.setPresent();//sysj\BaxterPlant.sysj line: 47, column: 5
-                          currsigs.addElement(GripDat);
-                          CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                          currsigs.addElement(CMDfb);
-                          S160=1;
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                          currsigs.addElement(CMDfb);
-                          S160=1;
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                      else {
-                        if(parts_thread_1[2].equals("B")){//sysj\BaxterPlant.sysj line: 35, column: 11
-                          POSB.setPresent();//sysj\BaxterPlant.sysj line: 36, column: 5
-                          currsigs.addElement(POSB);
-                          if(parts_thread_1[2].equals("close")){//sysj\BaxterPlant.sysj line: 46, column: 4
-                            GripDat.setPresent();//sysj\BaxterPlant.sysj line: 47, column: 5
-                            currsigs.addElement(GripDat);
-                            CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                            currsigs.addElement(CMDfb);
-                            S160=1;
-                            active[1]=1;
-                            ends[1]=1;
-                            break RUN;
-                          }
-                          else {
-                            CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                            currsigs.addElement(CMDfb);
-                            S160=1;
-                            active[1]=1;
-                            ends[1]=1;
-                            break RUN;
-                          }
-                        }
-                        else {
-                          if(parts_thread_1[2].equals("C")){//sysj\BaxterPlant.sysj line: 38, column: 11
-                            POSC.setPresent();//sysj\BaxterPlant.sysj line: 39, column: 5
-                            currsigs.addElement(POSC);
-                            if(parts_thread_1[2].equals("close")){//sysj\BaxterPlant.sysj line: 46, column: 4
-                              GripDat.setPresent();//sysj\BaxterPlant.sysj line: 47, column: 5
-                              currsigs.addElement(GripDat);
-                              CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                              currsigs.addElement(CMDfb);
-                              S160=1;
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                              currsigs.addElement(CMDfb);
-                              S160=1;
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            if(parts_thread_1[2].equals("D")){//sysj\BaxterPlant.sysj line: 41, column: 11
-                              POSD.setPresent();//sysj\BaxterPlant.sysj line: 42, column: 5
-                              currsigs.addElement(POSD);
-                              if(parts_thread_1[2].equals("close")){//sysj\BaxterPlant.sysj line: 46, column: 4
-                                GripDat.setPresent();//sysj\BaxterPlant.sysj line: 47, column: 5
-                                currsigs.addElement(GripDat);
-                                CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                                currsigs.addElement(CMDfb);
-                                S160=1;
-                                active[1]=1;
-                                ends[1]=1;
-                                break RUN;
-                              }
-                              else {
-                                CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                                currsigs.addElement(CMDfb);
-                                S160=1;
-                                active[1]=1;
-                                ends[1]=1;
-                                break RUN;
-                              }
-                            }
-                            else {
-                              if(parts_thread_1[2].equals("close")){//sysj\BaxterPlant.sysj line: 46, column: 4
-                                GripDat.setPresent();//sysj\BaxterPlant.sysj line: 47, column: 5
-                                currsigs.addElement(GripDat);
-                                CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                                currsigs.addElement(CMDfb);
-                                S160=1;
-                                active[1]=1;
-                                ends[1]=1;
-                                break RUN;
-                              }
-                              else {
-                                CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                                currsigs.addElement(CMDfb);
-                                S160=1;
-                                active[1]=1;
-                                ends[1]=1;
-                                break RUN;
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                    else {
-                      CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                      currsigs.addElement(CMDfb);
-                      S160=1;
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
-                    }
-                  }
-                  else {
-                    if(CMD.getprestatus()){//sysj\BaxterPlant.sysj line: 22, column: 11
-                      command_thread_1 = (String)(CMD.getpreval() == null ? null : ((String)CMD.getpreval()));//sysj\BaxterPlant.sysj line: 23, column: 4
-                      parts_thread_1 = command_thread_1.split(" ");//sysj\BaxterPlant.sysj line: 24, column: 4
-                      System.out.println(parts_thread_1[2]);//sysj\BaxterPlant.sysj line: 29, column: 4
-                      if(parts_thread_1[2].equals("A")){//sysj\BaxterPlant.sysj line: 32, column: 4
-                        POSA.setPresent();//sysj\BaxterPlant.sysj line: 33, column: 5
-                        currsigs.addElement(POSA);
-                        if(parts_thread_1[2].equals("close")){//sysj\BaxterPlant.sysj line: 46, column: 4
-                          GripDat.setPresent();//sysj\BaxterPlant.sysj line: 47, column: 5
-                          currsigs.addElement(GripDat);
-                          CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                          currsigs.addElement(CMDfb);
-                          S160=1;
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                          currsigs.addElement(CMDfb);
-                          S160=1;
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                      else {
-                        if(parts_thread_1[2].equals("B")){//sysj\BaxterPlant.sysj line: 35, column: 11
-                          POSB.setPresent();//sysj\BaxterPlant.sysj line: 36, column: 5
-                          currsigs.addElement(POSB);
-                          if(parts_thread_1[2].equals("close")){//sysj\BaxterPlant.sysj line: 46, column: 4
-                            GripDat.setPresent();//sysj\BaxterPlant.sysj line: 47, column: 5
-                            currsigs.addElement(GripDat);
-                            CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                            currsigs.addElement(CMDfb);
-                            S160=1;
-                            active[1]=1;
-                            ends[1]=1;
-                            break RUN;
-                          }
-                          else {
-                            CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                            currsigs.addElement(CMDfb);
-                            S160=1;
-                            active[1]=1;
-                            ends[1]=1;
-                            break RUN;
-                          }
-                        }
-                        else {
-                          if(parts_thread_1[2].equals("C")){//sysj\BaxterPlant.sysj line: 38, column: 11
-                            POSC.setPresent();//sysj\BaxterPlant.sysj line: 39, column: 5
-                            currsigs.addElement(POSC);
-                            if(parts_thread_1[2].equals("close")){//sysj\BaxterPlant.sysj line: 46, column: 4
-                              GripDat.setPresent();//sysj\BaxterPlant.sysj line: 47, column: 5
-                              currsigs.addElement(GripDat);
-                              CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                              currsigs.addElement(CMDfb);
-                              S160=1;
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                              currsigs.addElement(CMDfb);
-                              S160=1;
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            if(parts_thread_1[2].equals("D")){//sysj\BaxterPlant.sysj line: 41, column: 11
-                              POSD.setPresent();//sysj\BaxterPlant.sysj line: 42, column: 5
-                              currsigs.addElement(POSD);
-                              if(parts_thread_1[2].equals("close")){//sysj\BaxterPlant.sysj line: 46, column: 4
-                                GripDat.setPresent();//sysj\BaxterPlant.sysj line: 47, column: 5
-                                currsigs.addElement(GripDat);
-                                CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                                currsigs.addElement(CMDfb);
-                                S160=1;
-                                active[1]=1;
-                                ends[1]=1;
-                                break RUN;
-                              }
-                              else {
-                                CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                                currsigs.addElement(CMDfb);
-                                S160=1;
-                                active[1]=1;
-                                ends[1]=1;
-                                break RUN;
-                              }
-                            }
-                            else {
-                              if(parts_thread_1[2].equals("close")){//sysj\BaxterPlant.sysj line: 46, column: 4
-                                GripDat.setPresent();//sysj\BaxterPlant.sysj line: 47, column: 5
-                                currsigs.addElement(GripDat);
-                                CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                                currsigs.addElement(CMDfb);
-                                S160=1;
-                                active[1]=1;
-                                ends[1]=1;
-                                break RUN;
-                              }
-                              else {
-                                CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                                currsigs.addElement(CMDfb);
-                                S160=1;
-                                active[1]=1;
-                                ends[1]=1;
-                                break RUN;
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                    else {
-                      CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                      currsigs.addElement(CMDfb);
-                      S160=1;
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
-                    }
-                  }
-                
-                case 1 : 
-                  S160=1;
-                  bottleAtLoad.setPresent();//sysj\BaxterPlant.sysj line: 16, column: 3
-                  currsigs.addElement(bottleAtLoad);
-                  S160=0;
-                  if(failT.getprestatus()){//sysj\BaxterPlant.sysj line: 18, column: 11
-                    System.out.println("fail oii poopy");//sysj\BaxterPlant.sysj line: 19, column: 4
-                    if(CMD.getprestatus()){//sysj\BaxterPlant.sysj line: 22, column: 11
-                      command_thread_1 = (String)(CMD.getpreval() == null ? null : ((String)CMD.getpreval()));//sysj\BaxterPlant.sysj line: 23, column: 4
-                      parts_thread_1 = command_thread_1.split(" ");//sysj\BaxterPlant.sysj line: 24, column: 4
-                      System.out.println(parts_thread_1[2]);//sysj\BaxterPlant.sysj line: 29, column: 4
-                      if(parts_thread_1[2].equals("A")){//sysj\BaxterPlant.sysj line: 32, column: 4
-                        POSA.setPresent();//sysj\BaxterPlant.sysj line: 33, column: 5
-                        currsigs.addElement(POSA);
-                        if(parts_thread_1[2].equals("close")){//sysj\BaxterPlant.sysj line: 46, column: 4
-                          GripDat.setPresent();//sysj\BaxterPlant.sysj line: 47, column: 5
-                          currsigs.addElement(GripDat);
-                          CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                          currsigs.addElement(CMDfb);
-                          S160=1;
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                          currsigs.addElement(CMDfb);
-                          S160=1;
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                      else {
-                        if(parts_thread_1[2].equals("B")){//sysj\BaxterPlant.sysj line: 35, column: 11
-                          POSB.setPresent();//sysj\BaxterPlant.sysj line: 36, column: 5
-                          currsigs.addElement(POSB);
-                          if(parts_thread_1[2].equals("close")){//sysj\BaxterPlant.sysj line: 46, column: 4
-                            GripDat.setPresent();//sysj\BaxterPlant.sysj line: 47, column: 5
-                            currsigs.addElement(GripDat);
-                            CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                            currsigs.addElement(CMDfb);
-                            S160=1;
-                            active[1]=1;
-                            ends[1]=1;
-                            break RUN;
-                          }
-                          else {
-                            CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                            currsigs.addElement(CMDfb);
-                            S160=1;
-                            active[1]=1;
-                            ends[1]=1;
-                            break RUN;
-                          }
-                        }
-                        else {
-                          if(parts_thread_1[2].equals("C")){//sysj\BaxterPlant.sysj line: 38, column: 11
-                            POSC.setPresent();//sysj\BaxterPlant.sysj line: 39, column: 5
-                            currsigs.addElement(POSC);
-                            if(parts_thread_1[2].equals("close")){//sysj\BaxterPlant.sysj line: 46, column: 4
-                              GripDat.setPresent();//sysj\BaxterPlant.sysj line: 47, column: 5
-                              currsigs.addElement(GripDat);
-                              CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                              currsigs.addElement(CMDfb);
-                              S160=1;
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                              currsigs.addElement(CMDfb);
-                              S160=1;
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            if(parts_thread_1[2].equals("D")){//sysj\BaxterPlant.sysj line: 41, column: 11
-                              POSD.setPresent();//sysj\BaxterPlant.sysj line: 42, column: 5
-                              currsigs.addElement(POSD);
-                              if(parts_thread_1[2].equals("close")){//sysj\BaxterPlant.sysj line: 46, column: 4
-                                GripDat.setPresent();//sysj\BaxterPlant.sysj line: 47, column: 5
-                                currsigs.addElement(GripDat);
-                                CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                                currsigs.addElement(CMDfb);
-                                S160=1;
-                                active[1]=1;
-                                ends[1]=1;
-                                break RUN;
-                              }
-                              else {
-                                CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                                currsigs.addElement(CMDfb);
-                                S160=1;
-                                active[1]=1;
-                                ends[1]=1;
-                                break RUN;
-                              }
-                            }
-                            else {
-                              if(parts_thread_1[2].equals("close")){//sysj\BaxterPlant.sysj line: 46, column: 4
-                                GripDat.setPresent();//sysj\BaxterPlant.sysj line: 47, column: 5
-                                currsigs.addElement(GripDat);
-                                CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                                currsigs.addElement(CMDfb);
-                                S160=1;
-                                active[1]=1;
-                                ends[1]=1;
-                                break RUN;
-                              }
-                              else {
-                                CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                                currsigs.addElement(CMDfb);
-                                S160=1;
-                                active[1]=1;
-                                ends[1]=1;
-                                break RUN;
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                    else {
-                      CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                      currsigs.addElement(CMDfb);
-                      S160=1;
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
-                    }
-                  }
-                  else {
-                    if(CMD.getprestatus()){//sysj\BaxterPlant.sysj line: 22, column: 11
-                      command_thread_1 = (String)(CMD.getpreval() == null ? null : ((String)CMD.getpreval()));//sysj\BaxterPlant.sysj line: 23, column: 4
-                      parts_thread_1 = command_thread_1.split(" ");//sysj\BaxterPlant.sysj line: 24, column: 4
-                      System.out.println(parts_thread_1[2]);//sysj\BaxterPlant.sysj line: 29, column: 4
-                      if(parts_thread_1[2].equals("A")){//sysj\BaxterPlant.sysj line: 32, column: 4
-                        POSA.setPresent();//sysj\BaxterPlant.sysj line: 33, column: 5
-                        currsigs.addElement(POSA);
-                        if(parts_thread_1[2].equals("close")){//sysj\BaxterPlant.sysj line: 46, column: 4
-                          GripDat.setPresent();//sysj\BaxterPlant.sysj line: 47, column: 5
-                          currsigs.addElement(GripDat);
-                          CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                          currsigs.addElement(CMDfb);
-                          S160=1;
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                        else {
-                          CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                          currsigs.addElement(CMDfb);
-                          S160=1;
-                          active[1]=1;
-                          ends[1]=1;
-                          break RUN;
-                        }
-                      }
-                      else {
-                        if(parts_thread_1[2].equals("B")){//sysj\BaxterPlant.sysj line: 35, column: 11
-                          POSB.setPresent();//sysj\BaxterPlant.sysj line: 36, column: 5
-                          currsigs.addElement(POSB);
-                          if(parts_thread_1[2].equals("close")){//sysj\BaxterPlant.sysj line: 46, column: 4
-                            GripDat.setPresent();//sysj\BaxterPlant.sysj line: 47, column: 5
-                            currsigs.addElement(GripDat);
-                            CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                            currsigs.addElement(CMDfb);
-                            S160=1;
-                            active[1]=1;
-                            ends[1]=1;
-                            break RUN;
-                          }
-                          else {
-                            CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                            currsigs.addElement(CMDfb);
-                            S160=1;
-                            active[1]=1;
-                            ends[1]=1;
-                            break RUN;
-                          }
-                        }
-                        else {
-                          if(parts_thread_1[2].equals("C")){//sysj\BaxterPlant.sysj line: 38, column: 11
-                            POSC.setPresent();//sysj\BaxterPlant.sysj line: 39, column: 5
-                            currsigs.addElement(POSC);
-                            if(parts_thread_1[2].equals("close")){//sysj\BaxterPlant.sysj line: 46, column: 4
-                              GripDat.setPresent();//sysj\BaxterPlant.sysj line: 47, column: 5
-                              currsigs.addElement(GripDat);
-                              CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                              currsigs.addElement(CMDfb);
-                              S160=1;
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                            else {
-                              CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                              currsigs.addElement(CMDfb);
-                              S160=1;
-                              active[1]=1;
-                              ends[1]=1;
-                              break RUN;
-                            }
-                          }
-                          else {
-                            if(parts_thread_1[2].equals("D")){//sysj\BaxterPlant.sysj line: 41, column: 11
-                              POSD.setPresent();//sysj\BaxterPlant.sysj line: 42, column: 5
-                              currsigs.addElement(POSD);
-                              if(parts_thread_1[2].equals("close")){//sysj\BaxterPlant.sysj line: 46, column: 4
-                                GripDat.setPresent();//sysj\BaxterPlant.sysj line: 47, column: 5
-                                currsigs.addElement(GripDat);
-                                CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                                currsigs.addElement(CMDfb);
-                                S160=1;
-                                active[1]=1;
-                                ends[1]=1;
-                                break RUN;
-                              }
-                              else {
-                                CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                                currsigs.addElement(CMDfb);
-                                S160=1;
-                                active[1]=1;
-                                ends[1]=1;
-                                break RUN;
-                              }
-                            }
-                            else {
-                              if(parts_thread_1[2].equals("close")){//sysj\BaxterPlant.sysj line: 46, column: 4
-                                GripDat.setPresent();//sysj\BaxterPlant.sysj line: 47, column: 5
-                                currsigs.addElement(GripDat);
-                                CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                                currsigs.addElement(CMDfb);
-                                S160=1;
-                                active[1]=1;
-                                ends[1]=1;
-                                break RUN;
-                              }
-                              else {
-                                CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                                currsigs.addElement(CMDfb);
-                                S160=1;
-                                active[1]=1;
-                                ends[1]=1;
-                                break RUN;
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                    else {
-                      CMDfb.setPresent();//sysj\BaxterPlant.sysj line: 54, column: 3
-                      currsigs.addElement(CMDfb);
-                      S160=1;
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
-                    }
-                  }
-                
-              }
-              break;
             
           }
         
@@ -882,15 +166,13 @@ public class BaxterPlant extends ClockDomain{
       else{
         if(!df){
           CMD.gethook();
-          failT.gethook();
           df = true;
         }
         runClockDomain();
       }
       CMD.setpreclear();
-      failT.setpreclear();
       CMDfb.setpreclear();
-      bottleAtLoad.setpreclear();
+      bottleAtPoint.setpreclear();
       POSA.setpreclear();
       POSB.setpreclear();
       POSC.setpreclear();
@@ -905,13 +187,10 @@ public class BaxterPlant extends ClockDomain{
       dummyint = CMD.getStatus() ? CMD.setprepresent() : CMD.setpreclear();
       CMD.setpreval(CMD.getValue());
       CMD.setClear();
-      dummyint = failT.getStatus() ? failT.setprepresent() : failT.setpreclear();
-      failT.setpreval(failT.getValue());
-      failT.setClear();
       CMDfb.sethook();
       CMDfb.setClear();
-      bottleAtLoad.sethook();
-      bottleAtLoad.setClear();
+      bottleAtPoint.sethook();
+      bottleAtPoint.setClear();
       POSA.sethook();
       POSA.setClear();
       POSB.sethook();
@@ -925,7 +204,6 @@ public class BaxterPlant extends ClockDomain{
       if(paused[1]!=0 || suspended[1]!=0 || active[1]!=1);
       else{
         CMD.gethook();
-        failT.gethook();
       }
       runFinisher();
       if(active[1] == 0){

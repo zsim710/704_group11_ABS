@@ -1,0 +1,45 @@
+import run.GUI;
+
+MainController(
+		input Integer signal BottleQuantity;
+        input Integer signal LiquidAmount1;
+        input Integer signal LiquidAmount2;
+        input Integer signal workPieceID;
+		output signal pos1, pos2, pos3, pos4, pos5;    
+		)
+->{
+	int signal totalBot;
+	new Thread(new GUI()).start();
+		trap(T){
+        while(true) {
+			
+        	pause;
+	        	if((Integer)#BottleQuantity == (Integer)#totalBot) {
+	        		exit(T);
+	        	}
+	        	else {
+	           	waitl(5 s);
+	           	emit pos1;
+	           	emit totalBot((Integer)#totalBot + 1);
+	           	
+	            waitl(5 s);
+	            emit pos2;
+	            emit pos1;
+	            emit totalBot((Integer)#totalBot + 1);
+	            waitl(5 s);
+	            emit pos2;
+	            emit pos1;
+	            emit pos3;
+	            emit totalBot((Integer)#totalBot + 1);
+	            waitl(5 s);
+	            emit pos4;
+	            emit pos2;
+	            emit pos1;
+	            emit pos3;
+	            emit totalBot((Integer)#totalBot + 1);
+	        	}
+        	}
+		}
+       
+ 
+    }

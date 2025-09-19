@@ -104,6 +104,10 @@ SimpleClient BottleSend, LiquidAmount1, LiquidAmount2,systemEnable;
         JPanel batchDetailsPanel = createBatchDetailsPanel();
         tabbedPane.addTab("Batch Details", batchDetailsPanel);
         
+        // Create and add the EABS GUI tab
+        JPanel eabsPanel = createEABSPanel();
+        tabbedPane.addTab("EABS Control", eabsPanel);
+        
         mainFrame.add(tabbedPane, BorderLayout.CENTER);
         mainFrame.setVisible(true);
     }
@@ -280,6 +284,104 @@ SimpleClient BottleSend, LiquidAmount1, LiquidAmount2,systemEnable;
         panel.add(summaryPanel, BorderLayout.SOUTH);
 
         return panel;
+    }
+
+    private JPanel createEABSPanel() {
+        JPanel mainPanel = new JPanel(new BorderLayout());
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+        // Title
+        JLabel titleLabel = new JLabel("Enhanced Automated Bottling System (EABS) Control", SwingConstants.CENTER);
+        titleLabel.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 16));
+        mainPanel.add(titleLabel, BorderLayout.NORTH);
+
+        // Create a 2x2 grid for the four components
+        JPanel gridPanel = new JPanel(new GridLayout(2, 2, 10, 10));
+        gridPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+        // Create individual component panels
+        JPanel fillerPanel = createComponentPanel("Filler", new Filler());
+        JPanel capperPanel = createComponentPanel("Capper", new Capper());
+        JPanel bottleStationPanel = createComponentPanel("Bottle Station", new BottleStation());
+        JPanel conveyorPanel = createComponentPanel("Conveyor", new Conveyor());
+
+        // Add panels to grid
+        gridPanel.add(fillerPanel);
+        gridPanel.add(capperPanel);
+        gridPanel.add(bottleStationPanel);
+        gridPanel.add(conveyorPanel);
+
+        mainPanel.add(gridPanel, BorderLayout.CENTER);
+
+        // Start SignalServers for EABS components
+        startEABSSignalServers();
+
+        return mainPanel;
+    }
+
+    private JPanel createComponentPanel(String title, JFrame component) {
+        JPanel panel = new JPanel(new BorderLayout());
+        panel.setBorder(BorderFactory.createTitledBorder(title));
+        panel.setPreferredSize(new Dimension(300, 250));
+
+        // Remove the component from its frame and add its content panel
+        Container contentPane = component.getContentPane();
+        panel.add(contentPane, BorderLayout.CENTER);
+
+        // Make sure the component doesn't exit the application when closed
+        component.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+
+        return panel;
+    }
+
+    private void startEABSSignalServers() {
+        try {
+            // Start SignalServer for Filler
+            SignalServer<LoaderFillerWorker> fillerServer = new SignalServer<LoaderFillerWorker>(Ports.PORT_FILLER_VIZ, LoaderFillerWorker.class);
+            System.out.println("Starting Filler SignalServer on port " + Ports.PORT_FILLER_VIZ);
+            new Thread(fillerServer).start();
+
+            // Start SignalServer for Capper
+            SignalServer<LoaderCapperWorker> capperServer = new SignalServer<LoaderCapperWorker>(Ports.PORT_CAPPER_VIZ, LoaderCapperWorker.class);
+            System.out.println("Starting Capper SignalServer on port " + Ports.PORT_CAPPER_VIZ);
+            new Thread(capperServer).start();
+
+            // Start SignalServer for BottleStation
+            SignalServer<LoaderBSWorker> bottleStationServer = new SignalServer<LoaderBSWorker>(Ports.PORT_ROTARY_VIZ, LoaderBSWorker.class);
+            System.out.println("Starting BottleStation SignalServer on port " + Ports.PORT_ROTARY_VIZ);
+            new Thread(bottleStationServer).start();
+
+            // Start SignalServer for Conveyor
+            SignalServer<LoaderConveyorWorker> conveyorServer = new SignalServer<LoaderConveyorWorker>(Ports.PORT_CONVEYOR_VIZ, LoaderConveyorWorker.class);
+            System.out.println("Starting Conveyor SignalServer on port " + Ports.PORT_CONVEYOR_VIZ);
+            new Thread(conveyorServer).start();
+
+            // Start repaint loop for EABS components
+            startEABSRepaintLoop();
+
+        } catch (Exception e) {
+            System.err.println("Error starting EABS SignalServers: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    private void startEABSRepaintLoop() {
+        new Thread(() -> {
+            while(true) {
+                try {
+                    // Repaint the main frame which will update all embedded components
+                    SwingUtilities.invokeLater(() -> {
+                        if (mainFrame != null) {
+                            mainFrame.repaint();
+                        }
+                    });
+                    Thread.sleep(250);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                    break;
+                }
+            }
+        }).start();
     }
 
     private void submitOrder() {

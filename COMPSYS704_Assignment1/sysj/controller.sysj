@@ -1,0 +1,133 @@
+Controller(
+		input signal pusherRetracted,pusherExtended,WPgripped,armAtSource,armAtDest,empty,request;
+		output signal pusherExtend,vacOn,armSource,armDest;
+		input Integer signal mode;
+		input signal pusherExtendM,vacOnM,armSourceM,armDestM;
+		)
+->{
+/* TODO: Write control-logic */	
+	signal modeA, modeM; 
+{
+	
+	while(true) {
+		
+		present(mode) {
+				
+			if ((Integer)#mode == 0) {
+				emit modeA;
+			} 
+			else if ((Integer)#mode == 1) {
+					emit modeM;
+			}
+			else emit modeA;
+		}
+	pause; 
+	}
+}
+
+|| 
+
+{
+	while(true) {
+		
+		present(modeA) {
+			
+			System.out.print("auto");
+		
+			await(request);
+			
+			abort(armAtDest) {
+				sustain armDest;
+			}
+			
+			abort(pusherExtended) {
+				sustain pusherExtend;
+			}
+			
+			abort(armAtSource) {
+				sustain armSource;
+			}
+			
+			{
+				abort(armAtDest){
+					sustain vacOn;
+				}
+			}
+			
+			||
+			
+			{
+				await(WPgripped);
+				abort(armAtDest) {
+					sustain armDest;
+				}
+			}
+			
+			abort(armAtSource) {
+				sustain armSource;
+			}
+			
+		}
+		
+		pause;
+	}
+}
+
+|| 
+
+{
+	while(true) {
+		
+		present (modeM){
+			emit armDest;
+			
+
+			System.out.print("manual");
+			
+			{
+				loop {
+					present(vacOnM) {
+						emit vacOn;
+					}
+					pause;
+				}
+			}
+			
+			||
+			
+			{
+				loop {
+					present(pusherExtendM) {
+						emit pusherExtend;
+					}
+					pause;
+				}
+			}
+			
+			||
+			
+			{
+				loop {
+					present(armSourceM) {
+						emit armSource;
+					}
+					pause;
+				}
+			}
+			
+			||
+			
+			{
+				loop {
+					present(armDestM) {
+						emit armDest;
+					}
+					pause;
+				}
+			}
+		}
+		pause;
+		}
+	}
+}
+

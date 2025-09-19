@@ -23,7 +23,7 @@ public class Conveyor extends JFrame {
 	public Conveyor() {
 
 		panel = new ConveyorCanvas(); // canvas creates the image panel
-		panel.setPreferredSize(new Dimension(700, 700));
+		panel.setPreferredSize(new Dimension(400, 400));
 		panel.setBackground(Color.WHITE);
 		
 		this.setLayout(new GridBagLayout());
