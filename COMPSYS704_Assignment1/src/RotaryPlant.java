@@ -24,19 +24,19 @@ public class RotaryPlant extends ClockDomain{
   public Signal bottleAtPos3 = new Signal("bottleAtPos3", Signal.OUTPUT);
   public Signal bottleAtPos4 = new Signal("bottleAtPos4", Signal.OUTPUT);
   public Signal bottleAtPos5 = new Signal("bottleAtPos5", Signal.OUTPUT);
-  private int S11718 = 1;
-  private int S7238 = 1;
-  private int S8680 = 1;
-  private int S7309 = 1;
-  private int S8702 = 1;
-  private int S8731 = 1;
-  private int S8711 = 1;
+  private int S16636 = 1;
+  private int S12156 = 1;
+  private int S13598 = 1;
+  private int S12227 = 1;
+  private int S13620 = 1;
+  private int S13649 = 1;
+  private int S13629 = 1;
   
   private int[] ends = new int[5];
   private int[] tdone = new int[5];
   
-  public void thread11730(int [] tdone, int [] ends){
-        switch(S8731){
+  public void thread16648(int [] tdone, int [] ends){
+        switch(S13649){
       case 0 : 
         active[4]=0;
         ends[4]=0;
@@ -44,16 +44,16 @@ public class RotaryPlant extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S8711){
+        switch(S13629){
           case 0 : 
-            if(rotaryTableTrigger.getprestatus()){//sysj\RotaryPlant.sysj line: 108, column: 21
-              S8711=1;
+            if(rotaryTableTrigger.getprestatus()){//sysj\RotaryPlant.sysj line: 103, column: 21
+              S13629=1;
               active[4]=1;
               ends[4]=1;
               tdone[4]=1;
             }
             else {
-              tableAlignedWithSensor.setPresent();//sysj\RotaryPlant.sysj line: 110, column: 6
+              tableAlignedWithSensor.setPresent();//sysj\RotaryPlant.sysj line: 105, column: 6
               currsigs.addElement(tableAlignedWithSensor);
               active[4]=1;
               ends[4]=1;
@@ -62,17 +62,17 @@ public class RotaryPlant extends ClockDomain{
             break;
           
           case 1 : 
-            S8711=1;
-            S8711=0;
-            if(rotaryTableTrigger.getprestatus()){//sysj\RotaryPlant.sysj line: 108, column: 21
-              S8711=1;
+            S13629=1;
+            S13629=0;
+            if(rotaryTableTrigger.getprestatus()){//sysj\RotaryPlant.sysj line: 103, column: 21
+              S13629=1;
               active[4]=1;
               ends[4]=1;
               tdone[4]=1;
             }
             else {
-              System.out.println("emitting aligned sensor");//sysj\RotaryPlant.sysj line: 109, column: 6
-              tableAlignedWithSensor.setPresent();//sysj\RotaryPlant.sysj line: 110, column: 6
+              System.out.println("emitting aligned sensor");//sysj\RotaryPlant.sysj line: 104, column: 6
+              tableAlignedWithSensor.setPresent();//sysj\RotaryPlant.sysj line: 105, column: 6
               currsigs.addElement(tableAlignedWithSensor);
               active[4]=1;
               ends[4]=1;
@@ -86,8 +86,8 @@ public class RotaryPlant extends ClockDomain{
     }
   }
 
-  public void thread11729(int [] tdone, int [] ends){
-        switch(S8702){
+  public void thread16647(int [] tdone, int [] ends){
+        switch(S13620){
       case 0 : 
         active[3]=0;
         ends[3]=0;
@@ -95,10 +95,10 @@ public class RotaryPlant extends ClockDomain{
         break;
       
       case 1 : 
-        if(rotated.getprestatus()){//sysj\RotaryPlant.sysj line: 95, column: 13
-          rotation.setPresent();//sysj\RotaryPlant.sysj line: 96, column: 6
+        if(rotated.getprestatus()){//sysj\RotaryPlant.sysj line: 90, column: 13
+          rotation.setPresent();//sysj\RotaryPlant.sysj line: 91, column: 6
           currsigs.addElement(rotation);
-          System.out.println("recieved rotation");//sysj\RotaryPlant.sysj line: 97, column: 6
+          System.out.println("recieved rotation");//sysj\RotaryPlant.sysj line: 92, column: 6
           active[3]=1;
           ends[3]=1;
           tdone[3]=1;
@@ -113,8 +113,8 @@ public class RotaryPlant extends ClockDomain{
     }
   }
 
-  public void thread11728(int [] tdone, int [] ends){
-        switch(S8680){
+  public void thread16646(int [] tdone, int [] ends){
+        switch(S13598){
       case 0 : 
         active[2]=0;
         ends[2]=0;
@@ -122,7 +122,7 @@ public class RotaryPlant extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S7309){
+        switch(S12227){
           case 0 : 
             if(rotaryTableTrigger.getprestatus()){//sysj\RotaryPlant.sysj line: 18, column: 23
               active[2]=1;
@@ -130,105 +130,105 @@ public class RotaryPlant extends ClockDomain{
               tdone[2]=1;
             }
             else {
-              if((Integer)(bottleTotalRP.getpreval() == null ? null : ((Integer)bottleTotalRP.getpreval())) < (Integer)(BatchQuantityRP.getpreval() == null ? null : ((Integer)BatchQuantityRP.getpreval()))){//sysj\RotaryPlant.sysj line: 24, column: 11
-                if((Integer)(wsActiveRP.getpreval() == null ? null : ((Integer)wsActiveRP.getpreval())) == 2){//sysj\RotaryPlant.sysj line: 25, column: 11
-                  bottleAtPos2.setPresent();//sysj\RotaryPlant.sysj line: 26, column: 9
+              if((Integer)(bottleTotalRP.getpreval() == null ? null : ((Integer)bottleTotalRP.getpreval())) < (Integer)(BatchQuantityRP.getpreval() == null ? null : ((Integer)BatchQuantityRP.getpreval()))){//sysj\RotaryPlant.sysj line: 22, column: 11
+                if((Integer)(wsActiveRP.getpreval() == null ? null : ((Integer)wsActiveRP.getpreval())) == 2){//sysj\RotaryPlant.sysj line: 23, column: 11
+                  bottleAtPos2.setPresent();//sysj\RotaryPlant.sysj line: 24, column: 9
                   currsigs.addElement(bottleAtPos2);
-                  System.out.println("emitted botteAtPos2");//sysj\RotaryPlant.sysj line: 27, column: 9
-                  System.out.println("awaiting disable");//sysj\RotaryPlant.sysj line: 83, column: 5
+                  System.out.println("emitted botteAtPos2");//sysj\RotaryPlant.sysj line: 25, column: 9
+                  System.out.println("awaiting disable");//sysj\RotaryPlant.sysj line: 81, column: 5
                   if(rotaryTableTrigger.getprestatus()){//sysj\RotaryPlant.sysj line: 18, column: 23
-                    S7309=1;
+                    S12227=1;
                     active[2]=1;
                     ends[2]=1;
                     tdone[2]=1;
                   }
                   else {
-                    S7309=0;
+                    S12227=0;
                     active[2]=1;
                     ends[2]=1;
                     tdone[2]=1;
                   }
                 }
                 else {
-                  if((Integer)(wsActiveRP.getpreval() == null ? null : ((Integer)wsActiveRP.getpreval())) == 3){//sysj\RotaryPlant.sysj line: 29, column: 16
-                    bottleAtPos2.setPresent();//sysj\RotaryPlant.sysj line: 30, column: 9
+                  if((Integer)(wsActiveRP.getpreval() == null ? null : ((Integer)wsActiveRP.getpreval())) == 3){//sysj\RotaryPlant.sysj line: 27, column: 16
+                    bottleAtPos2.setPresent();//sysj\RotaryPlant.sysj line: 28, column: 9
                     currsigs.addElement(bottleAtPos2);
-                    bottleAtPos3.setPresent();//sysj\RotaryPlant.sysj line: 31, column: 9
+                    bottleAtPos3.setPresent();//sysj\RotaryPlant.sysj line: 29, column: 9
                     currsigs.addElement(bottleAtPos3);
-                    System.out.println("emitted botteAtPos3");//sysj\RotaryPlant.sysj line: 32, column: 9
-                    System.out.println("awaiting disable");//sysj\RotaryPlant.sysj line: 83, column: 5
+                    System.out.println("emitted botteAtPos3");//sysj\RotaryPlant.sysj line: 30, column: 9
+                    System.out.println("awaiting disable");//sysj\RotaryPlant.sysj line: 81, column: 5
                     if(rotaryTableTrigger.getprestatus()){//sysj\RotaryPlant.sysj line: 18, column: 23
-                      S7309=1;
+                      S12227=1;
                       active[2]=1;
                       ends[2]=1;
                       tdone[2]=1;
                     }
                     else {
-                      S7309=0;
+                      S12227=0;
                       active[2]=1;
                       ends[2]=1;
                       tdone[2]=1;
                     }
                   }
                   else {
-                    if((Integer)(wsActiveRP.getpreval() == null ? null : ((Integer)wsActiveRP.getpreval())) == 4){//sysj\RotaryPlant.sysj line: 34, column: 16
-                      bottleAtPos2.setPresent();//sysj\RotaryPlant.sysj line: 35, column: 9
+                    if((Integer)(wsActiveRP.getpreval() == null ? null : ((Integer)wsActiveRP.getpreval())) == 4){//sysj\RotaryPlant.sysj line: 32, column: 16
+                      bottleAtPos2.setPresent();//sysj\RotaryPlant.sysj line: 33, column: 9
                       currsigs.addElement(bottleAtPos2);
-                      bottleAtPos3.setPresent();//sysj\RotaryPlant.sysj line: 36, column: 9
+                      bottleAtPos3.setPresent();//sysj\RotaryPlant.sysj line: 34, column: 9
                       currsigs.addElement(bottleAtPos3);
-                      bottleAtPos4.setPresent();//sysj\RotaryPlant.sysj line: 37, column: 9
+                      bottleAtPos4.setPresent();//sysj\RotaryPlant.sysj line: 35, column: 9
                       currsigs.addElement(bottleAtPos4);
-                      System.out.println("emitted botteAtPos4");//sysj\RotaryPlant.sysj line: 38, column: 9
-                      System.out.println("awaiting disable");//sysj\RotaryPlant.sysj line: 83, column: 5
+                      System.out.println("emitted botteAtPos4");//sysj\RotaryPlant.sysj line: 36, column: 9
+                      System.out.println("awaiting disable");//sysj\RotaryPlant.sysj line: 81, column: 5
                       if(rotaryTableTrigger.getprestatus()){//sysj\RotaryPlant.sysj line: 18, column: 23
-                        S7309=1;
+                        S12227=1;
                         active[2]=1;
                         ends[2]=1;
                         tdone[2]=1;
                       }
                       else {
-                        S7309=0;
+                        S12227=0;
                         active[2]=1;
                         ends[2]=1;
                         tdone[2]=1;
                       }
                     }
                     else {
-                      if((Integer)(wsActiveRP.getpreval() == null ? null : ((Integer)wsActiveRP.getpreval())) == 5){//sysj\RotaryPlant.sysj line: 40, column: 16
-                        bottleAtPos2.setPresent();//sysj\RotaryPlant.sysj line: 41, column: 9
+                      if((Integer)(wsActiveRP.getpreval() == null ? null : ((Integer)wsActiveRP.getpreval())) == 5){//sysj\RotaryPlant.sysj line: 38, column: 16
+                        bottleAtPos2.setPresent();//sysj\RotaryPlant.sysj line: 39, column: 9
                         currsigs.addElement(bottleAtPos2);
-                        bottleAtPos3.setPresent();//sysj\RotaryPlant.sysj line: 42, column: 9
+                        bottleAtPos3.setPresent();//sysj\RotaryPlant.sysj line: 40, column: 9
                         currsigs.addElement(bottleAtPos3);
-                        bottleAtPos4.setPresent();//sysj\RotaryPlant.sysj line: 43, column: 9
+                        bottleAtPos4.setPresent();//sysj\RotaryPlant.sysj line: 41, column: 9
                         currsigs.addElement(bottleAtPos4);
-                        bottleAtPos5.setPresent();//sysj\RotaryPlant.sysj line: 44, column: 9
+                        bottleAtPos5.setPresent();//sysj\RotaryPlant.sysj line: 42, column: 9
                         currsigs.addElement(bottleAtPos5);
-                        System.out.println("emitted botteAtPos5");//sysj\RotaryPlant.sysj line: 45, column: 9
-                        System.out.println("awaiting disable");//sysj\RotaryPlant.sysj line: 83, column: 5
+                        System.out.println("emitted botteAtPos5");//sysj\RotaryPlant.sysj line: 43, column: 9
+                        System.out.println("awaiting disable");//sysj\RotaryPlant.sysj line: 81, column: 5
                         if(rotaryTableTrigger.getprestatus()){//sysj\RotaryPlant.sysj line: 18, column: 23
-                          S7309=1;
+                          S12227=1;
                           active[2]=1;
                           ends[2]=1;
                           tdone[2]=1;
                         }
                         else {
-                          S7309=0;
+                          S12227=0;
                           active[2]=1;
                           ends[2]=1;
                           tdone[2]=1;
                         }
                       }
                       else {
-                        System.out.println("print error");//sysj\RotaryPlant.sysj line: 48, column: 9
-                        System.out.println("awaiting disable");//sysj\RotaryPlant.sysj line: 83, column: 5
+                        System.out.println("print error");//sysj\RotaryPlant.sysj line: 46, column: 9
+                        System.out.println("awaiting disable");//sysj\RotaryPlant.sysj line: 81, column: 5
                         if(rotaryTableTrigger.getprestatus()){//sysj\RotaryPlant.sysj line: 18, column: 23
-                          S7309=1;
+                          S12227=1;
                           active[2]=1;
                           ends[2]=1;
                           tdone[2]=1;
                         }
                         else {
-                          S7309=0;
+                          S12227=0;
                           active[2]=1;
                           ends[2]=1;
                           tdone[2]=1;
@@ -239,103 +239,103 @@ public class RotaryPlant extends ClockDomain{
                 }
               }
               else {
-                if((Integer)(wsActiveRP.getpreval() == null ? null : ((Integer)wsActiveRP.getpreval())) == 4){//sysj\RotaryPlant.sysj line: 54, column: 11
-                  bottleAtPos2.setPresent();//sysj\RotaryPlant.sysj line: 55, column: 9
+                if((Integer)(wsActiveRP.getpreval() == null ? null : ((Integer)wsActiveRP.getpreval())) == 4){//sysj\RotaryPlant.sysj line: 52, column: 11
+                  bottleAtPos2.setPresent();//sysj\RotaryPlant.sysj line: 53, column: 9
                   currsigs.addElement(bottleAtPos2);
-                  bottleAtPos3.setPresent();//sysj\RotaryPlant.sysj line: 56, column: 9
+                  bottleAtPos3.setPresent();//sysj\RotaryPlant.sysj line: 54, column: 9
                   currsigs.addElement(bottleAtPos3);
-                  bottleAtPos4.setPresent();//sysj\RotaryPlant.sysj line: 57, column: 9
+                  bottleAtPos4.setPresent();//sysj\RotaryPlant.sysj line: 55, column: 9
                   currsigs.addElement(bottleAtPos4);
-                  bottleAtPos5.setPresent();//sysj\RotaryPlant.sysj line: 58, column: 9
+                  bottleAtPos5.setPresent();//sysj\RotaryPlant.sysj line: 56, column: 9
                   currsigs.addElement(bottleAtPos5);
-                  System.out.println("awaiting disable");//sysj\RotaryPlant.sysj line: 83, column: 5
+                  System.out.println("awaiting disable");//sysj\RotaryPlant.sysj line: 81, column: 5
                   if(rotaryTableTrigger.getprestatus()){//sysj\RotaryPlant.sysj line: 18, column: 23
-                    S7309=1;
+                    S12227=1;
                     active[2]=1;
                     ends[2]=1;
                     tdone[2]=1;
                   }
                   else {
-                    S7309=0;
+                    S12227=0;
                     active[2]=1;
                     ends[2]=1;
                     tdone[2]=1;
                   }
                 }
                 else {
-                  if((Integer)(wsActiveRP.getpreval() == null ? null : ((Integer)wsActiveRP.getpreval())) == 3){//sysj\RotaryPlant.sysj line: 60, column: 16
-                    bottleAtPos3.setPresent();//sysj\RotaryPlant.sysj line: 61, column: 9
+                  if((Integer)(wsActiveRP.getpreval() == null ? null : ((Integer)wsActiveRP.getpreval())) == 3){//sysj\RotaryPlant.sysj line: 58, column: 16
+                    bottleAtPos3.setPresent();//sysj\RotaryPlant.sysj line: 59, column: 9
                     currsigs.addElement(bottleAtPos3);
-                    bottleAtPos4.setPresent();//sysj\RotaryPlant.sysj line: 62, column: 9
+                    bottleAtPos4.setPresent();//sysj\RotaryPlant.sysj line: 60, column: 9
                     currsigs.addElement(bottleAtPos4);
-                    bottleAtPos5.setPresent();//sysj\RotaryPlant.sysj line: 63, column: 9
+                    bottleAtPos5.setPresent();//sysj\RotaryPlant.sysj line: 61, column: 9
                     currsigs.addElement(bottleAtPos5);
-                    System.out.println("stopped emitting botteAtPos2");//sysj\RotaryPlant.sysj line: 64, column: 9
-                    System.out.println("awaiting disable");//sysj\RotaryPlant.sysj line: 83, column: 5
+                    System.out.println("stopped emitting botteAtPos2");//sysj\RotaryPlant.sysj line: 62, column: 9
+                    System.out.println("awaiting disable");//sysj\RotaryPlant.sysj line: 81, column: 5
                     if(rotaryTableTrigger.getprestatus()){//sysj\RotaryPlant.sysj line: 18, column: 23
-                      S7309=1;
+                      S12227=1;
                       active[2]=1;
                       ends[2]=1;
                       tdone[2]=1;
                     }
                     else {
-                      S7309=0;
+                      S12227=0;
                       active[2]=1;
                       ends[2]=1;
                       tdone[2]=1;
                     }
                   }
                   else {
-                    if((Integer)(wsActiveRP.getpreval() == null ? null : ((Integer)wsActiveRP.getpreval())) == 2){//sysj\RotaryPlant.sysj line: 66, column: 16
-                      bottleAtPos4.setPresent();//sysj\RotaryPlant.sysj line: 67, column: 9
+                    if((Integer)(wsActiveRP.getpreval() == null ? null : ((Integer)wsActiveRP.getpreval())) == 2){//sysj\RotaryPlant.sysj line: 64, column: 16
+                      bottleAtPos4.setPresent();//sysj\RotaryPlant.sysj line: 65, column: 9
                       currsigs.addElement(bottleAtPos4);
-                      bottleAtPos5.setPresent();//sysj\RotaryPlant.sysj line: 68, column: 9
+                      bottleAtPos5.setPresent();//sysj\RotaryPlant.sysj line: 66, column: 9
                       currsigs.addElement(bottleAtPos5);
-                      System.out.println("stopped emitting botteAtPos3");//sysj\RotaryPlant.sysj line: 69, column: 9
-                      System.out.println("awaiting disable");//sysj\RotaryPlant.sysj line: 83, column: 5
+                      System.out.println("stopped emitting botteAtPos3");//sysj\RotaryPlant.sysj line: 67, column: 9
+                      System.out.println("awaiting disable");//sysj\RotaryPlant.sysj line: 81, column: 5
                       if(rotaryTableTrigger.getprestatus()){//sysj\RotaryPlant.sysj line: 18, column: 23
-                        S7309=1;
+                        S12227=1;
                         active[2]=1;
                         ends[2]=1;
                         tdone[2]=1;
                       }
                       else {
-                        S7309=0;
+                        S12227=0;
                         active[2]=1;
                         ends[2]=1;
                         tdone[2]=1;
                       }
                     }
                     else {
-                      if((Integer)(wsActiveRP.getpreval() == null ? null : ((Integer)wsActiveRP.getpreval())) == 1){//sysj\RotaryPlant.sysj line: 72, column: 16
-                        bottleAtPos5.setPresent();//sysj\RotaryPlant.sysj line: 73, column: 9
+                      if((Integer)(wsActiveRP.getpreval() == null ? null : ((Integer)wsActiveRP.getpreval())) == 1){//sysj\RotaryPlant.sysj line: 70, column: 16
+                        bottleAtPos5.setPresent();//sysj\RotaryPlant.sysj line: 71, column: 9
                         currsigs.addElement(bottleAtPos5);
-                        System.out.println("stopped emitting botteAtPos4");//sysj\RotaryPlant.sysj line: 74, column: 9
-                        System.out.println("awaiting disable");//sysj\RotaryPlant.sysj line: 83, column: 5
+                        System.out.println("stopped emitting botteAtPos4");//sysj\RotaryPlant.sysj line: 72, column: 9
+                        System.out.println("awaiting disable");//sysj\RotaryPlant.sysj line: 81, column: 5
                         if(rotaryTableTrigger.getprestatus()){//sysj\RotaryPlant.sysj line: 18, column: 23
-                          S7309=1;
+                          S12227=1;
                           active[2]=1;
                           ends[2]=1;
                           tdone[2]=1;
                         }
                         else {
-                          S7309=0;
+                          S12227=0;
                           active[2]=1;
                           ends[2]=1;
                           tdone[2]=1;
                         }
                       }
                       else {
-                        System.out.println("error 2");//sysj\RotaryPlant.sysj line: 78, column: 9
-                        System.out.println("awaiting disable");//sysj\RotaryPlant.sysj line: 83, column: 5
+                        System.out.println("error 2");//sysj\RotaryPlant.sysj line: 76, column: 9
+                        System.out.println("awaiting disable");//sysj\RotaryPlant.sysj line: 81, column: 5
                         if(rotaryTableTrigger.getprestatus()){//sysj\RotaryPlant.sysj line: 18, column: 23
-                          S7309=1;
+                          S12227=1;
                           active[2]=1;
                           ends[2]=1;
                           tdone[2]=1;
                         }
                         else {
-                          S7309=0;
+                          S12227=0;
                           active[2]=1;
                           ends[2]=1;
                           tdone[2]=1;
@@ -355,7 +355,7 @@ public class RotaryPlant extends ClockDomain{
               tdone[2]=1;
             }
             else {
-              S7309=0;
+              S12227=0;
               active[2]=1;
               ends[2]=1;
               tdone[2]=1;
@@ -368,18 +368,18 @@ public class RotaryPlant extends ClockDomain{
     }
   }
 
-  public void thread11726(int [] tdone, int [] ends){
-        S8731=1;
-    S8711=0;
-    if(rotaryTableTrigger.getprestatus()){//sysj\RotaryPlant.sysj line: 108, column: 21
-      S8711=1;
+  public void thread16644(int [] tdone, int [] ends){
+        S13649=1;
+    S13629=0;
+    if(rotaryTableTrigger.getprestatus()){//sysj\RotaryPlant.sysj line: 103, column: 21
+      S13629=1;
       active[4]=1;
       ends[4]=1;
       tdone[4]=1;
     }
     else {
-      System.out.println("emitting aligned sensor");//sysj\RotaryPlant.sysj line: 109, column: 6
-      tableAlignedWithSensor.setPresent();//sysj\RotaryPlant.sysj line: 110, column: 6
+      System.out.println("emitting aligned sensor");//sysj\RotaryPlant.sysj line: 104, column: 6
+      tableAlignedWithSensor.setPresent();//sysj\RotaryPlant.sysj line: 105, column: 6
       currsigs.addElement(tableAlignedWithSensor);
       active[4]=1;
       ends[4]=1;
@@ -387,41 +387,41 @@ public class RotaryPlant extends ClockDomain{
     }
   }
 
-  public void thread11725(int [] tdone, int [] ends){
-        S8702=1;
+  public void thread16643(int [] tdone, int [] ends){
+        S13620=1;
     active[3]=1;
     ends[3]=1;
     tdone[3]=1;
   }
 
-  public void thread11724(int [] tdone, int [] ends){
-        S8680=1;
+  public void thread16642(int [] tdone, int [] ends){
+        S13598=1;
     if(rotaryTableTrigger.getprestatus()){//sysj\RotaryPlant.sysj line: 18, column: 23
-      S7309=1;
+      S12227=1;
       active[2]=1;
       ends[2]=1;
       tdone[2]=1;
     }
     else {
-      S7309=0;
+      S12227=0;
       active[2]=1;
       ends[2]=1;
       tdone[2]=1;
     }
   }
 
-  public void thread11722(int [] tdone, int [] ends){
-        S8731=1;
-    S8711=0;
-    if(rotaryTableTrigger.getprestatus()){//sysj\RotaryPlant.sysj line: 108, column: 21
-      S8711=1;
+  public void thread16640(int [] tdone, int [] ends){
+        S13649=1;
+    S13629=0;
+    if(rotaryTableTrigger.getprestatus()){//sysj\RotaryPlant.sysj line: 103, column: 21
+      S13629=1;
       active[4]=1;
       ends[4]=1;
       tdone[4]=1;
     }
     else {
-      System.out.println("emitting aligned sensor");//sysj\RotaryPlant.sysj line: 109, column: 6
-      tableAlignedWithSensor.setPresent();//sysj\RotaryPlant.sysj line: 110, column: 6
+      System.out.println("emitting aligned sensor");//sysj\RotaryPlant.sysj line: 104, column: 6
+      tableAlignedWithSensor.setPresent();//sysj\RotaryPlant.sysj line: 105, column: 6
       currsigs.addElement(tableAlignedWithSensor);
       active[4]=1;
       ends[4]=1;
@@ -429,23 +429,23 @@ public class RotaryPlant extends ClockDomain{
     }
   }
 
-  public void thread11721(int [] tdone, int [] ends){
-        S8702=1;
+  public void thread16639(int [] tdone, int [] ends){
+        S13620=1;
     active[3]=1;
     ends[3]=1;
     tdone[3]=1;
   }
 
-  public void thread11720(int [] tdone, int [] ends){
-        S8680=1;
+  public void thread16638(int [] tdone, int [] ends){
+        S13598=1;
     if(rotaryTableTrigger.getprestatus()){//sysj\RotaryPlant.sysj line: 18, column: 23
-      S7309=1;
+      S12227=1;
       active[2]=1;
       ends[2]=1;
       tdone[2]=1;
     }
     else {
-      S7309=0;
+      S12227=0;
       active[2]=1;
       ends[2]=1;
       tdone[2]=1;
@@ -459,33 +459,33 @@ public class RotaryPlant extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S11718){
+      switch(S16636){
         case 0 : 
-          S11718=0;
+          S16636=0;
           break RUN;
         
         case 1 : 
-          S11718=2;
-          S11718=2;
+          S16636=2;
+          S16636=2;
           System.out.println("awaiting start");//sysj\RotaryPlant.sysj line: 10, column: 3
-          S7238=0;
+          S12156=0;
           if(start_r.getprestatus()){//sysj\RotaryPlant.sysj line: 11, column: 19
             System.out.println("received start");//sysj\RotaryPlant.sysj line: 12, column: 3
-            S7238=1;
-            thread11720(tdone,ends);
-            thread11721(tdone,ends);
-            thread11722(tdone,ends);
-            int biggest11723 = 0;
-            if(ends[2]>=biggest11723){
-              biggest11723=ends[2];
+            S12156=1;
+            thread16638(tdone,ends);
+            thread16639(tdone,ends);
+            thread16640(tdone,ends);
+            int biggest16641 = 0;
+            if(ends[2]>=biggest16641){
+              biggest16641=ends[2];
             }
-            if(ends[3]>=biggest11723){
-              biggest11723=ends[3];
+            if(ends[3]>=biggest16641){
+              biggest16641=ends[3];
             }
-            if(ends[4]>=biggest11723){
-              biggest11723=ends[4];
+            if(ends[4]>=biggest16641){
+              biggest16641=ends[4];
             }
-            if(biggest11723 == 1){
+            if(biggest16641 == 1){
               active[1]=1;
               ends[1]=1;
               break RUN;
@@ -498,25 +498,25 @@ public class RotaryPlant extends ClockDomain{
           }
         
         case 2 : 
-          switch(S7238){
+          switch(S12156){
             case 0 : 
               if(start_r.getprestatus()){//sysj\RotaryPlant.sysj line: 11, column: 19
                 System.out.println("received start");//sysj\RotaryPlant.sysj line: 12, column: 3
-                S7238=1;
-                thread11724(tdone,ends);
-                thread11725(tdone,ends);
-                thread11726(tdone,ends);
-                int biggest11727 = 0;
-                if(ends[2]>=biggest11727){
-                  biggest11727=ends[2];
+                S12156=1;
+                thread16642(tdone,ends);
+                thread16643(tdone,ends);
+                thread16644(tdone,ends);
+                int biggest16645 = 0;
+                if(ends[2]>=biggest16645){
+                  biggest16645=ends[2];
                 }
-                if(ends[3]>=biggest11727){
-                  biggest11727=ends[3];
+                if(ends[3]>=biggest16645){
+                  biggest16645=ends[3];
                 }
-                if(ends[4]>=biggest11727){
-                  biggest11727=ends[4];
+                if(ends[4]>=biggest16645){
+                  biggest16645=ends[4];
                 }
-                if(biggest11727 == 1){
+                if(biggest16645 == 1){
                   active[1]=1;
                   ends[1]=1;
                   break RUN;
@@ -529,30 +529,30 @@ public class RotaryPlant extends ClockDomain{
               }
             
             case 1 : 
-              thread11728(tdone,ends);
-              thread11729(tdone,ends);
-              thread11730(tdone,ends);
-              int biggest11731 = 0;
-              if(ends[2]>=biggest11731){
-                biggest11731=ends[2];
+              thread16646(tdone,ends);
+              thread16647(tdone,ends);
+              thread16648(tdone,ends);
+              int biggest16649 = 0;
+              if(ends[2]>=biggest16649){
+                biggest16649=ends[2];
               }
-              if(ends[3]>=biggest11731){
-                biggest11731=ends[3];
+              if(ends[3]>=biggest16649){
+                biggest16649=ends[3];
               }
-              if(ends[4]>=biggest11731){
-                biggest11731=ends[4];
+              if(ends[4]>=biggest16649){
+                biggest16649=ends[4];
               }
-              if(biggest11731 == 1){
+              if(biggest16649 == 1){
                 active[1]=1;
                 ends[1]=1;
                 break RUN;
               }
               //FINXME code
-              if(biggest11731 == 0){
-                S11718=0;
+              if(biggest16649 == 0){
+                S16636=0;
                 active[1]=0;
                 ends[1]=0;
-                S11718=0;
+                S16636=0;
                 break RUN;
               }
             

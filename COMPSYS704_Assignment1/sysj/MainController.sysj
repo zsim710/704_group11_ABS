@@ -11,6 +11,8 @@ emit wsActive(0);
 emit bottleTotal(0);
 
 await(immediate posOrder);
+emit wsActive(1);
+emit bottleTotal(1);
 
 System.out.println("emiting start conveyor");
 emit start_conveyor;
@@ -21,12 +23,9 @@ emit start_conveyor;
 				present(rotatedM) {
 					// this will need a signal for when it recieved rotated but quantity == bottletotal then dont incrmeent botlte total anymore and wsactive  
 					System.out.println("received rotatedM");
-					
+		
 					emit wsActive((Integer)#wsActive + 1); 
-					System.out.println("wsActive" + #wsActive);
-					
 					emit bottleTotal((Integer)#bottleTotal + 1); 
-					System.out.println("bottleTotal" + #bottleTotal);
 				}
 				
 				present(bottleLeftPos5M) {

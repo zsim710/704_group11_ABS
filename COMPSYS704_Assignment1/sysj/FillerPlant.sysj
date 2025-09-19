@@ -13,43 +13,29 @@ output signal dosUnitEvac,dosUnitFilled;
 	
 			loop {
 				
-				
-				//System.out.println("awaiting starting enable");
-				//pause;
-				//System.out.println("completed starting enable");
+				System.out.println("recieved start");
 				
 				
-				await(valveInjectorOn);
-				//System.out.println("starting filler " + (Integer)#currentFiller);
-				// injector turned on
-				
-				// if dosUnitValveRetract present then we sustain dosUnitFilled(at the top).
-				// we stop sustaining (at the top) when controller forces pressure canister down
-				System.out.println("awaiting disable 1");
-				System.out.println("completed disable 1");
-				
-				System.out.println("awaiting enable 2");
-				pause;
-				System.out.println("completed enable 2");
+				await(immediate valveInjectorOn);
 	
-				abort(dosUnitValveExtend){
-//->						//present(dosUnitValveRetract){ check if it goes from 4 ticks to 2 ticks between emitting dosunitfilled and recieving it in controller
-							sustain dosUnitFilled;
-						//}
+				System.out.println("received valveInjectorOn");
+	
+				abort(immediate dosUnitValveExtend){
+
+					System.out.println("sustaining dosUnitFilled");		
+					sustain dosUnitFilled;
 				}
 				
-				System.out.println("completed disable 2");
-				System.out.println("waiting 2s");
-				//pause;
-				abort(!valveInletOn) {
-						present(dosUnitValveExtend){
-							sustain dosUnitEvac;
-						}
+				System.out.println("aborted dosUnitFilled");
+	
+				abort(immediate !valveInletOn) {
+		
+						System.out.println("sustaining dosUnitEvac");		
+						sustain dosUnitEvac;
 				}
 				
-				System.out.println("completed disable 3");
-				
-				System.out.println("waiting 2s");
+				System.out.println("aborted dosUnitEvac");
+			
 				pause;
 			
 				System.out.println("looped");

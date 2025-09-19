@@ -19,9 +19,10 @@ public class FillerPlant extends ClockDomain{
   public Signal start = new Signal("start", Signal.INPUT);
   public Signal dosUnitEvac = new Signal("dosUnitEvac", Signal.OUTPUT);
   public Signal dosUnitFilled = new Signal("dosUnitFilled", Signal.OUTPUT);
-  private int S2963 = 1;
-  private int S2960 = 1;
-  private int S2753 = 1;
+  private int S6609 = 1;
+  private int S5537 = 1;
+  private int S5535 = 1;
+  private int S5006 = 1;
   
   private int[] ends = new int[2];
   private int[] tdone = new int[2];
@@ -33,31 +34,64 @@ public class FillerPlant extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S2963){
+      switch(S6609){
         case 0 : 
-          S2963=0;
+          S6609=0;
           break RUN;
         
         case 1 : 
-          S2963=2;
-          S2963=2;
-          if(filler2Complete.getprestatus()){//sysj\FillerPlant.sysj line: 9, column: 18
-            System.out.println("all fillers complete");//sysj\FillerPlant.sysj line: 58, column: 2
-            S2963=0;
-            active[1]=0;
-            ends[1]=0;
-            S2963=0;
+          S6609=2;
+          S6609=2;
+          S5537=0;
+          if(filler2Complete.getprestatus()){//sysj\FillerPlant.sysj line: 10, column: 19
+            System.out.println("all fillers complete");//sysj\FillerPlant.sysj line: 45, column: 3
+            S5537=1;
+            active[1]=1;
+            ends[1]=1;
             break RUN;
           }
           else {
-            S2960=0;
-            if(start.getprestatus()){//sysj\FillerPlant.sysj line: 11, column: 19
-              S2960=1;
-              System.out.println("awaiting starting enable");//sysj\FillerPlant.sysj line: 16, column: 4
-              S2753=0;
-              active[1]=1;
-              ends[1]=1;
-              break RUN;
+            S5535=0;
+            if(start.getprestatus()){//sysj\FillerPlant.sysj line: 12, column: 20
+              S5535=1;
+              System.out.println("recieved start");//sysj\FillerPlant.sysj line: 16, column: 5
+              S5006=0;
+              if(valveInjectorOn.getprestatus()){//sysj\FillerPlant.sysj line: 19, column: 21
+                System.out.println("received valveInjectorOn");//sysj\FillerPlant.sysj line: 21, column: 5
+                S5006=1;
+                if(dosUnitValveExtend.getprestatus()){//sysj\FillerPlant.sysj line: 23, column: 21
+                  System.out.println("aborted dosUnitFilled");//sysj\FillerPlant.sysj line: 29, column: 5
+                  S5006=2;
+                  if(!valveInletOn.getprestatus()){//sysj\FillerPlant.sysj line: 31, column: 21
+                    System.out.println("aborted dosUnitEvac");//sysj\FillerPlant.sysj line: 37, column: 5
+                    S5006=3;
+                    active[1]=1;
+                    ends[1]=1;
+                    break RUN;
+                  }
+                  else {
+                    System.out.println("sustaining dosUnitEvac");//sysj\FillerPlant.sysj line: 33, column: 7
+                    dosUnitEvac.setPresent();//sysj\FillerPlant.sysj line: 34, column: 7
+                    currsigs.addElement(dosUnitEvac);
+                    active[1]=1;
+                    ends[1]=1;
+                    break RUN;
+                  }
+                }
+                else {
+                  System.out.println("sustaining dosUnitFilled");//sysj\FillerPlant.sysj line: 25, column: 6
+                  dosUnitFilled.setPresent();//sysj\FillerPlant.sysj line: 26, column: 6
+                  currsigs.addElement(dosUnitFilled);
+                  active[1]=1;
+                  ends[1]=1;
+                  break RUN;
+                }
+              }
+              else {
+                active[1]=1;
+                ends[1]=1;
+                break RUN;
+              }
             }
             else {
               active[1]=1;
@@ -67,143 +101,258 @@ public class FillerPlant extends ClockDomain{
           }
         
         case 2 : 
-          if(filler2Complete.getprestatus()){//sysj\FillerPlant.sysj line: 9, column: 18
-            System.out.println("all fillers complete");//sysj\FillerPlant.sysj line: 58, column: 2
-            S2963=0;
-            active[1]=0;
-            ends[1]=0;
-            S2963=0;
-            break RUN;
-          }
-          else {
-            switch(S2960){
-              case 0 : 
-                if(start.getprestatus()){//sysj\FillerPlant.sysj line: 11, column: 19
-                  S2960=1;
-                  System.out.println("awaiting starting enable");//sysj\FillerPlant.sysj line: 16, column: 4
-                  S2753=0;
-                  active[1]=1;
-                  ends[1]=1;
-                  break RUN;
+          switch(S5537){
+            case 0 : 
+              if(filler2Complete.getprestatus()){//sysj\FillerPlant.sysj line: 10, column: 19
+                System.out.println("all fillers complete");//sysj\FillerPlant.sysj line: 45, column: 3
+                S5537=1;
+                active[1]=1;
+                ends[1]=1;
+                break RUN;
+              }
+              else {
+                switch(S5535){
+                  case 0 : 
+                    if(start.getprestatus()){//sysj\FillerPlant.sysj line: 12, column: 20
+                      S5535=1;
+                      System.out.println("recieved start");//sysj\FillerPlant.sysj line: 16, column: 5
+                      S5006=0;
+                      if(valveInjectorOn.getprestatus()){//sysj\FillerPlant.sysj line: 19, column: 21
+                        System.out.println("received valveInjectorOn");//sysj\FillerPlant.sysj line: 21, column: 5
+                        S5006=1;
+                        if(dosUnitValveExtend.getprestatus()){//sysj\FillerPlant.sysj line: 23, column: 21
+                          System.out.println("aborted dosUnitFilled");//sysj\FillerPlant.sysj line: 29, column: 5
+                          S5006=2;
+                          if(!valveInletOn.getprestatus()){//sysj\FillerPlant.sysj line: 31, column: 21
+                            System.out.println("aborted dosUnitEvac");//sysj\FillerPlant.sysj line: 37, column: 5
+                            S5006=3;
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            System.out.println("sustaining dosUnitEvac");//sysj\FillerPlant.sysj line: 33, column: 7
+                            dosUnitEvac.setPresent();//sysj\FillerPlant.sysj line: 34, column: 7
+                            currsigs.addElement(dosUnitEvac);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                        }
+                        else {
+                          System.out.println("sustaining dosUnitFilled");//sysj\FillerPlant.sysj line: 25, column: 6
+                          dosUnitFilled.setPresent();//sysj\FillerPlant.sysj line: 26, column: 6
+                          currsigs.addElement(dosUnitFilled);
+                          active[1]=1;
+                          ends[1]=1;
+                          break RUN;
+                        }
+                      }
+                      else {
+                        active[1]=1;
+                        ends[1]=1;
+                        break RUN;
+                      }
+                    }
+                    else {
+                      active[1]=1;
+                      ends[1]=1;
+                      break RUN;
+                    }
+                  
+                  case 1 : 
+                    switch(S5006){
+                      case 0 : 
+                        if(valveInjectorOn.getprestatus()){//sysj\FillerPlant.sysj line: 19, column: 21
+                          System.out.println("received valveInjectorOn");//sysj\FillerPlant.sysj line: 21, column: 5
+                          S5006=1;
+                          if(dosUnitValveExtend.getprestatus()){//sysj\FillerPlant.sysj line: 23, column: 21
+                            System.out.println("aborted dosUnitFilled");//sysj\FillerPlant.sysj line: 29, column: 5
+                            S5006=2;
+                            if(!valveInletOn.getprestatus()){//sysj\FillerPlant.sysj line: 31, column: 21
+                              System.out.println("aborted dosUnitEvac");//sysj\FillerPlant.sysj line: 37, column: 5
+                              S5006=3;
+                              active[1]=1;
+                              ends[1]=1;
+                              break RUN;
+                            }
+                            else {
+                              System.out.println("sustaining dosUnitEvac");//sysj\FillerPlant.sysj line: 33, column: 7
+                              dosUnitEvac.setPresent();//sysj\FillerPlant.sysj line: 34, column: 7
+                              currsigs.addElement(dosUnitEvac);
+                              active[1]=1;
+                              ends[1]=1;
+                              break RUN;
+                            }
+                          }
+                          else {
+                            System.out.println("sustaining dosUnitFilled");//sysj\FillerPlant.sysj line: 25, column: 6
+                            dosUnitFilled.setPresent();//sysj\FillerPlant.sysj line: 26, column: 6
+                            currsigs.addElement(dosUnitFilled);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                        }
+                        else {
+                          active[1]=1;
+                          ends[1]=1;
+                          break RUN;
+                        }
+                      
+                      case 1 : 
+                        if(dosUnitValveExtend.getprestatus()){//sysj\FillerPlant.sysj line: 23, column: 21
+                          System.out.println("aborted dosUnitFilled");//sysj\FillerPlant.sysj line: 29, column: 5
+                          S5006=2;
+                          if(!valveInletOn.getprestatus()){//sysj\FillerPlant.sysj line: 31, column: 21
+                            System.out.println("aborted dosUnitEvac");//sysj\FillerPlant.sysj line: 37, column: 5
+                            S5006=3;
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                          else {
+                            System.out.println("sustaining dosUnitEvac");//sysj\FillerPlant.sysj line: 33, column: 7
+                            dosUnitEvac.setPresent();//sysj\FillerPlant.sysj line: 34, column: 7
+                            currsigs.addElement(dosUnitEvac);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                        }
+                        else {
+                          dosUnitFilled.setPresent();//sysj\FillerPlant.sysj line: 26, column: 6
+                          currsigs.addElement(dosUnitFilled);
+                          active[1]=1;
+                          ends[1]=1;
+                          break RUN;
+                        }
+                      
+                      case 2 : 
+                        if(!valveInletOn.getprestatus()){//sysj\FillerPlant.sysj line: 31, column: 21
+                          System.out.println("aborted dosUnitEvac");//sysj\FillerPlant.sysj line: 37, column: 5
+                          S5006=3;
+                          active[1]=1;
+                          ends[1]=1;
+                          break RUN;
+                        }
+                        else {
+                          dosUnitEvac.setPresent();//sysj\FillerPlant.sysj line: 34, column: 7
+                          currsigs.addElement(dosUnitEvac);
+                          active[1]=1;
+                          ends[1]=1;
+                          break RUN;
+                        }
+                      
+                      case 3 : 
+                        S5006=3;
+                        System.out.println("looped");//sysj\FillerPlant.sysj line: 41, column: 5
+                        System.out.println("recieved start");//sysj\FillerPlant.sysj line: 16, column: 5
+                        S5006=0;
+                        if(valveInjectorOn.getprestatus()){//sysj\FillerPlant.sysj line: 19, column: 21
+                          System.out.println("received valveInjectorOn");//sysj\FillerPlant.sysj line: 21, column: 5
+                          S5006=1;
+                          if(dosUnitValveExtend.getprestatus()){//sysj\FillerPlant.sysj line: 23, column: 21
+                            System.out.println("aborted dosUnitFilled");//sysj\FillerPlant.sysj line: 29, column: 5
+                            S5006=2;
+                            if(!valveInletOn.getprestatus()){//sysj\FillerPlant.sysj line: 31, column: 21
+                              System.out.println("aborted dosUnitEvac");//sysj\FillerPlant.sysj line: 37, column: 5
+                              S5006=3;
+                              active[1]=1;
+                              ends[1]=1;
+                              break RUN;
+                            }
+                            else {
+                              System.out.println("sustaining dosUnitEvac");//sysj\FillerPlant.sysj line: 33, column: 7
+                              dosUnitEvac.setPresent();//sysj\FillerPlant.sysj line: 34, column: 7
+                              currsigs.addElement(dosUnitEvac);
+                              active[1]=1;
+                              ends[1]=1;
+                              break RUN;
+                            }
+                          }
+                          else {
+                            System.out.println("sustaining dosUnitFilled");//sysj\FillerPlant.sysj line: 25, column: 6
+                            dosUnitFilled.setPresent();//sysj\FillerPlant.sysj line: 26, column: 6
+                            currsigs.addElement(dosUnitFilled);
+                            active[1]=1;
+                            ends[1]=1;
+                            break RUN;
+                          }
+                        }
+                        else {
+                          active[1]=1;
+                          ends[1]=1;
+                          break RUN;
+                        }
+                      
+                    }
+                    break;
+                  
+                }
+              }
+              break;
+            
+            case 1 : 
+              S5537=1;
+              S5537=0;
+              if(filler2Complete.getprestatus()){//sysj\FillerPlant.sysj line: 10, column: 19
+                System.out.println("all fillers complete");//sysj\FillerPlant.sysj line: 45, column: 3
+                S5537=1;
+                active[1]=1;
+                ends[1]=1;
+                break RUN;
+              }
+              else {
+                S5535=0;
+                if(start.getprestatus()){//sysj\FillerPlant.sysj line: 12, column: 20
+                  S5535=1;
+                  System.out.println("recieved start");//sysj\FillerPlant.sysj line: 16, column: 5
+                  S5006=0;
+                  if(valveInjectorOn.getprestatus()){//sysj\FillerPlant.sysj line: 19, column: 21
+                    System.out.println("received valveInjectorOn");//sysj\FillerPlant.sysj line: 21, column: 5
+                    S5006=1;
+                    if(dosUnitValveExtend.getprestatus()){//sysj\FillerPlant.sysj line: 23, column: 21
+                      System.out.println("aborted dosUnitFilled");//sysj\FillerPlant.sysj line: 29, column: 5
+                      S5006=2;
+                      if(!valveInletOn.getprestatus()){//sysj\FillerPlant.sysj line: 31, column: 21
+                        System.out.println("aborted dosUnitEvac");//sysj\FillerPlant.sysj line: 37, column: 5
+                        S5006=3;
+                        active[1]=1;
+                        ends[1]=1;
+                        break RUN;
+                      }
+                      else {
+                        System.out.println("sustaining dosUnitEvac");//sysj\FillerPlant.sysj line: 33, column: 7
+                        dosUnitEvac.setPresent();//sysj\FillerPlant.sysj line: 34, column: 7
+                        currsigs.addElement(dosUnitEvac);
+                        active[1]=1;
+                        ends[1]=1;
+                        break RUN;
+                      }
+                    }
+                    else {
+                      System.out.println("sustaining dosUnitFilled");//sysj\FillerPlant.sysj line: 25, column: 6
+                      dosUnitFilled.setPresent();//sysj\FillerPlant.sysj line: 26, column: 6
+                      currsigs.addElement(dosUnitFilled);
+                      active[1]=1;
+                      ends[1]=1;
+                      break RUN;
+                    }
+                  }
+                  else {
+                    active[1]=1;
+                    ends[1]=1;
+                    break RUN;
+                  }
                 }
                 else {
                   active[1]=1;
                   ends[1]=1;
                   break RUN;
                 }
-              
-              case 1 : 
-                switch(S2753){
-                  case 0 : 
-                    S2753=0;
-                    System.out.println("completed starting enable");//sysj\FillerPlant.sysj line: 18, column: 4
-                    S2753=1;
-                    active[1]=1;
-                    ends[1]=1;
-                    break RUN;
-                  
-                  case 1 : 
-                    if(valveInjectorOn.getprestatus()){//sysj\FillerPlant.sysj line: 21, column: 10
-                      System.out.println("awaiting disable 1");//sysj\FillerPlant.sysj line: 27, column: 4
-                      System.out.println("completed disable 1");//sysj\FillerPlant.sysj line: 28, column: 4
-                      System.out.println("awaiting enable 2");//sysj\FillerPlant.sysj line: 30, column: 4
-                      S2753=2;
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
-                    }
-                    else {
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
-                    }
-                  
-                  case 2 : 
-                    S2753=2;
-                    System.out.println("completed enable 2");//sysj\FillerPlant.sysj line: 32, column: 4
-                    S2753=3;
-                    if(dosUnitValveRetract.getprestatus()){//sysj\FillerPlant.sysj line: 35, column: 14
-                      dosUnitFilled.setPresent();//sysj\FillerPlant.sysj line: 36, column: 7
-                      currsigs.addElement(dosUnitFilled);
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
-                    }
-                    else {
-                      System.out.println("completed disable 2");//sysj\FillerPlant.sysj line: 40, column: 4
-                      System.out.println("waiting 2s");//sysj\FillerPlant.sysj line: 41, column: 4
-                      S2753=4;
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
-                    }
-                  
-                  case 3 : 
-                    if(dosUnitValveExtend.getprestatus()){//sysj\FillerPlant.sysj line: 34, column: 10
-                      System.out.println("completed disable 2");//sysj\FillerPlant.sysj line: 40, column: 4
-                      System.out.println("waiting 2s");//sysj\FillerPlant.sysj line: 41, column: 4
-                      S2753=4;
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
-                    }
-                    else {
-                      dosUnitFilled.setPresent();//sysj\FillerPlant.sysj line: 36, column: 7
-                      currsigs.addElement(dosUnitFilled);
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
-                    }
-                  
-                  case 4 : 
-                    S2753=4;
-                    S2753=5;
-                    if(dosUnitValveExtend.getprestatus()){//sysj\FillerPlant.sysj line: 44, column: 14
-                      dosUnitEvac.setPresent();//sysj\FillerPlant.sysj line: 45, column: 7
-                      currsigs.addElement(dosUnitEvac);
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
-                    }
-                    else {
-                      System.out.println("completed disable 3");//sysj\FillerPlant.sysj line: 49, column: 4
-                      System.out.println("waiting 2s");//sysj\FillerPlant.sysj line: 51, column: 4
-                      S2753=6;
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
-                    }
-                  
-                  case 5 : 
-                    if(!valveInletOn.getprestatus()){//sysj\FillerPlant.sysj line: 43, column: 10
-                      System.out.println("completed disable 3");//sysj\FillerPlant.sysj line: 49, column: 4
-                      System.out.println("waiting 2s");//sysj\FillerPlant.sysj line: 51, column: 4
-                      S2753=6;
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
-                    }
-                    else {
-                      dosUnitEvac.setPresent();//sysj\FillerPlant.sysj line: 45, column: 7
-                      currsigs.addElement(dosUnitEvac);
-                      active[1]=1;
-                      ends[1]=1;
-                      break RUN;
-                    }
-                  
-                  case 6 : 
-                    S2753=6;
-                    System.out.println("looped");//sysj\FillerPlant.sysj line: 54, column: 4
-                    System.out.println("awaiting starting enable");//sysj\FillerPlant.sysj line: 16, column: 4
-                    S2753=0;
-                    active[1]=1;
-                    ends[1]=1;
-                    break RUN;
-                  
-                }
-                break;
-              
-            }
+              }
+            
           }
         
       }

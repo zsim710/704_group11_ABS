@@ -20,10 +20,9 @@ output signal filler2Complete, start;
 						sustain fillerReady;
 					}
 					System.out.println("no longer emitting filler ready");
-					//pause;
-					//pause; //should be await start -> from plant 
+		
 					System.out.println("awaiting starting start signal");
-					//await(immediate start);
+		
 					emit start;
 		
 					if ((Integer)#currentFiller == 1) {
@@ -31,18 +30,12 @@ output signal filler2Complete, start;
 					}
 					else if ((Integer)#currentFiller == 2) {
 						System.out.println("filler 2 start, filled " + ((Integer)#LiquidAmount2FC) + "%");
-					}else {
+					}
+					else {
 						System.out.println("filler 1 start, filled " + ((Integer)#LiquidAmount1FC) + "%");
 					}
 					
-					// else active then everything else
-					
-		//			await(bottleAtPos2); // is this done in the same tick as the abort
-					//System.out.println("bottle at pos2 in filler");
-				
-					pause;
-					
-					abort(dosUnitFilled){
+					abort(immediate dosUnitFilled){
 						{
 						System.out.println("toggles valve injector");
 						sustain valveInjectorOn;
@@ -54,7 +47,7 @@ output signal filler2Complete, start;
 						}
 					}
 					
-					abort(dosUnitEvac){
+					abort(immediate dosUnitEvac){
 						{
 						System.out.println("toggles valve inlet");
 						sustain valveInletOn;
@@ -70,16 +63,9 @@ output signal filler2Complete, start;
 					
 					emit currentFiller(#currentFiller + 1); // increment the filler 
 					pause;	
-					
-					
-					
-					// only want to await bottleAtPos2 once both fillers have finished 
-					//await(!bottleAtPos2);
-		
 				}
 			}
 			await(currentFiller);
-		
 		}
 	}
 		||
@@ -94,17 +80,13 @@ output signal filler2Complete, start;
 					emit filler2Complete;
 					emit filler2CompleteLocal;
 					emit fillerReady;
-					//await(!bottleAtPos2); // await for 
-					emit currentFiller(1); // reset current filler
+					emit currentFiller(1);
+					await(!bottleAtPos2);// reset current filler
 				}
 				else {
-					// do nothing
 				}
 			}
 		}
-			
-	
-
 }
 	
 

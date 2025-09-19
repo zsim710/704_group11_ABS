@@ -1,7 +1,7 @@
 import run.GUI;
 
 ConveyorPlant(
-		input signal motConveyorOn, bottleAtPos5, rotatedConvP,start;
+		input signal motConveyorOn, bottleAtPos5, rotatedConvP,start, rotaryTableTriggerConvP;
 		output signal bottleAtPos1ConvC, bottleAtPos1RC, bottleAtPos1M;
 		output signal bottleLeftPos5ConvC, bottleLeftPos5M, bottleLeftPos5RC;	
 		
@@ -28,12 +28,17 @@ ConveyorPlant(
 			
 			System.out.println("bottle at pos1");
 			//emit rotatedUpdated;
-			abort(rotatedConvP){
-				sustain bottleAtPos1ConvC; 
+			abort(rotaryTableTriggerConvP){
+				
+				{sustain bottleAtPos1ConvC;}
+				||
+				{sustain bottleAtPos1RC;}
+				
 				}
 			}
 			//emit rotatedUpdated; // maybe we can emit this signal from rotary after its rotated straight to main controller 
 			pause;
+			pause; // maybe this will give a moment when bottleAtPos1ConvC isnt true 
 	}
 	||
 	{
@@ -57,8 +62,9 @@ ConveyorPlant(
 				emit bottleAtPos1RotaryGUI;
 				//System.out.println("got it");
 				emit bottleAtPos1ConveyorGUI;
-				emit bottleAtPos1RC;
-				
+				//emit bottleAtPos1RC;
+				System.out.println("emitted bottleAtPos1RC");
+
 			} 
 			pause;}
 		}

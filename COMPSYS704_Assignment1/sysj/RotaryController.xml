@@ -19,6 +19,8 @@
 			<iSignal Name="BatchQuantityRC" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10003" />
 			
 			<oSignal Name="rotaryTableTrigger" To="RotaryPlantCD.rotaryTableTrigger" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10004" />
+			<oSignal Name="rotaryTableTriggerConvP" To="ConveyorPlantCD.rotaryTableTriggerConvP" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40001" />
+		
 			<oSignal Name="rotated" To="RotaryPlantCD.rotated" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10004" />
 			<oSignal Name="rotatedConvP" To="ConveyorPlantCD.rotatedConvP" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40001" />
 			<oSignal Name="rotatedM" To="MainControllerCD.rotatedM" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="53000" />

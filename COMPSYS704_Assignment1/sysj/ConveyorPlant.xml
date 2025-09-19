@@ -6,6 +6,7 @@
 			<iSignal Name="motConveyorOn" 		 Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="40001" />
 			<iSignal Name="bottleAtPos5" 		 Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="40001" />
 			<iSignal Name="rotatedConvP" 		 Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="40001" />
+			<iSignal Name="rotaryTableTriggerConvP" 		 Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="40001" />			
 			<iSignal Name="start"		 		 Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="40001" />
 			
 			<oSignal Name="bottleAtPos1ConvC" 	To="ConveyorControllerCD.bottleAtPos1ConvC" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40000" />

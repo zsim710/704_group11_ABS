@@ -16,8 +16,6 @@ RotaryPlant(
 			while(true){
 		
 				suspend(immediate rotaryTableTrigger){
-				// do nothing
-		//			sustain bottleAtPos1;
 						
 						//System.out.println("emitted aligned signal");
 						pause;
@@ -81,10 +79,7 @@ RotaryPlant(
 					
 				}
 				System.out.println("awaiting disable");
-				
-				
-				
-				// maybe make this an integer and we can just read its current state for GUI 
+			
 			}
 		}
 		||

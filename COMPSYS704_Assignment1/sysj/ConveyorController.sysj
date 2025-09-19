@@ -14,7 +14,6 @@ ConveyorController(
 		
 	while (true){
 
-		//await(start);
 		//System.out.println("1");
 			
 			if ((Integer)#wsActiveConvC > 4) {
@@ -40,6 +39,7 @@ ConveyorController(
 					sustain motConveyorOn; 
 				}
 			}
+			pause;
 			//System.out.println("conveyor not moving");
 
 	}
