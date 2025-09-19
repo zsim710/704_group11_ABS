@@ -1,7 +1,10 @@
-package org.compsys704;
+package org.compsys704.dontNeedRightNow;
 
 import java.util.Arrays;
 import java.util.List;
+
+import org.compsys704.States;
+import org.compsys704.Worker;
 
 public class LoaderVizWorker extends Worker{
 

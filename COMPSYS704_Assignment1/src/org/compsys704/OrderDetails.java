@@ -1,17 +1,24 @@
 package org.compsys704;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Represents the details of an order submitted through the POS system
  */
 public class OrderDetails implements Serializable {
+    private static int orderCounter = 1; // Static counter for order IDs
+    
     private int liquidAmount1;
     private int liquidAmount2;
     private int bottleQuantity;
     private Date orderTimestamp;
     private String orderId;
+    
+    // Digital twin - list of workpieces for this order
+    private List<Workpiece> workpieces;
     
     /**
      * Constructor to create an OrderDetails instance
@@ -24,7 +31,22 @@ public class OrderDetails implements Serializable {
         this.liquidAmount2 = liquidAmount2;
         this.bottleQuantity = bottleQuantity;
         this.orderTimestamp = new Date();
-        this.orderId = "ORDER_" + System.currentTimeMillis();
+        this.orderId = "ORDER_" + orderCounter++;
+        
+        // Create workpieces for this order (digital twins)
+        this.workpieces = new ArrayList<>();
+        createWorkpieces();
+    }
+    
+    /**
+     * Create individual workpiece instances for each bottle in this order
+     */
+    private void createWorkpieces() {
+        for (int i = 1; i <= bottleQuantity; i++) {
+            Workpiece workpiece = new Workpiece(this, i);
+            workpieces.add(workpiece);
+            System.out.println("Created " + workpiece.getWorkpieceId() + " for " + orderId);
+        }
     }
     
     // Getters
@@ -46,6 +68,14 @@ public class OrderDetails implements Serializable {
     
     public String getOrderId() {
         return orderId;
+    }
+    
+    public List<Workpiece> getWorkpieces() {
+        return workpieces;
+    }
+    
+    public int getWorkpieceCount() {
+        return workpieces != null ? workpieces.size() : 0;
     }
     
     // Setters
@@ -91,5 +121,12 @@ public class OrderDetails implements Serializable {
         return liquidAmount1 >= 0 && liquidAmount2 >= 0 && 
                bottleQuantity > 0 && bottleQuantity <= 10000 &&
                isValidLiquidDistribution();
+    }
+    
+    /**
+     * Reset order counter (call from POS when clearing batches)
+     */
+    public static void resetOrderCounter() {
+        orderCounter = 1;
     }
 }

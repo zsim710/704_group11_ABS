@@ -37,6 +37,7 @@ SimpleClient BottleSend, LiquidAmount1, LiquidAmount2,systemEnable;
     private List<OrderDetails> orderQueue = new ArrayList<>();
     private boolean isProcessingOrder = false;
     private int currentOrderIndex = 0;
+    private OrderDetails currentProcessingOrder = null; // Track currently processing order
 
     // Main Window Components
     JFrame mainFrame;
@@ -425,20 +426,23 @@ SimpleClient BottleSend, LiquidAmount1, LiquidAmount2,systemEnable;
         }
         
         isProcessingOrder = true;
-        OrderDetails currentOrder = orderQueue.get(0);
+        currentProcessingOrder = orderQueue.get(0);
         
-        System.out.println("Processing order: " + currentOrder.toString());
+        System.out.println("Processing order: " + currentProcessingOrder.toString());
         
         try {
             // Send current order to SystemJ
-            BottleSend.sustain(currentOrder.getBottleQuantity());
-            LiquidAmount1.sustain(currentOrder.getLiquidAmount1());
-            LiquidAmount2.sustain(currentOrder.getLiquidAmount2());
+            BottleSend.sustain(currentProcessingOrder.getBottleQuantity());
+            LiquidAmount1.sustain(currentProcessingOrder.getLiquidAmount1());
+            LiquidAmount2.sustain(currentProcessingOrder.getLiquidAmount2());
             
-            System.out.println("Order sent to SystemJ: " + currentOrder.getOrderId());
+            System.out.println("Order sent to SystemJ: " + currentProcessingOrder.getOrderId());
             
             // Remove processed order from queue (it's now being processed)
             orderQueue.remove(0);
+            
+            // Reset workpiece tracking for new order
+            OrderCompletionWorker.resetWorkpieceIndex();
             
             // Update the batch details display to show processing status
             updateBatchDetailsTable();
@@ -451,9 +455,12 @@ SimpleClient BottleSend, LiquidAmount1, LiquidAmount2,systemEnable;
             isProcessingOrder = false;
             
             // Put the order back in the queue on error
-            orderQueue.add(0, currentOrder);
+            orderQueue.add(0, currentProcessingOrder);
             
-            JOptionPane.showMessageDialog(mainFrame, "Error processing order " + currentOrder.getOrderId() + ": " + e.getMessage());
+            JOptionPane.showMessageDialog(mainFrame, "Error processing order " + currentProcessingOrder.getOrderId() + ": " + e.getMessage());
+            
+            // Reset current processing order on error
+            currentProcessingOrder = null;
         }
     }
     
@@ -473,6 +480,12 @@ SimpleClient BottleSend, LiquidAmount1, LiquidAmount2,systemEnable;
             isProcessingOrder = false;
             currentOrderIndex = 0;
             
+            // Reset order counter
+            OrderDetails.resetOrderCounter();
+            
+            // Reset workpiece counter
+            Workpiece.resetWorkpieceCounter();
+            
             // Update the display
             updateBatchDetailsTable();
             
@@ -487,8 +500,9 @@ SimpleClient BottleSend, LiquidAmount1, LiquidAmount2,systemEnable;
     public void onOrderCompleted() {
         System.out.println("Order completion signal received from SystemJ");
         
-        // Reset processing flag
+        // Reset processing flag and current order
         isProcessingOrder = false;
+        currentProcessingOrder = null;
         
         // Update the batch details display
         updateBatchDetailsTable();
@@ -507,14 +521,23 @@ SimpleClient BottleSend, LiquidAmount1, LiquidAmount2,systemEnable;
     public void onBatchFinished() {
         System.out.println("Batch finished signal received from SystemJ");
         
-        // Reset processing flag
+        // Reset processing flag and current order
         isProcessingOrder = false;
+        currentProcessingOrder = null;
         
         // Update the batch details display
         updateBatchDetailsTable();
         
         // Optionally show notification to user
         JOptionPane.showMessageDialog(mainFrame, "Batch processing completed successfully!");
+    }
+    
+    /**
+     * Get the currently processing order for workpiece tracking
+     * @return The OrderDetails instance currently being processed, or null if none
+     */
+    public OrderDetails getCurrentProcessingOrder() {
+        return currentProcessingOrder;
     }
 
     public static void main(String[] args) {
