@@ -72,6 +72,7 @@ public class Filler extends JFrame {
 		cl.pack();
 		cl.setVisible(true);
 		
+		// Only start server and repaint loop when running standalone
 		SignalServer<LoaderFillerWorker> server = new SignalServer<LoaderFillerWorker>(Ports.PORT_FILLER_VIZ, LoaderFillerWorker.class);
 		System.out.println("Starting SignalServer on port " + Ports.PORT_FILLER_VIZ);
 		new Thread(server).start();
