@@ -30,7 +30,7 @@ import java.io.Serializable;
 public class POS implements Serializable {
 
 static final String IP = "127.0.0.1";
-SimpleClient BottleSend, LiquidAmount1, LiquidAmount2,systemEnable;
+SimpleClient BottleSend, LiquidAmount1, LiquidAmount2, posOrder, systemEnable;
 
     // Order history storage
     private List<OrderDetails> orderHistory = new ArrayList<>();
@@ -60,6 +60,7 @@ SimpleClient BottleSend, LiquidAmount1, LiquidAmount2,systemEnable;
         BottleSend = new SimpleClient(IP, Ports.MainControllerCD_port, "MainControllerCD", "BottleQuantity");
         LiquidAmount1 = new SimpleClient(IP, Ports.MainControllerCD_port, "MainControllerCD", "LiquidAmount1");
         LiquidAmount2 = new SimpleClient(IP, Ports.MainControllerCD_port, "MainControllerCD", "LiquidAmount2");
+        posOrder = new SimpleClient(IP, Ports.MainControllerCD_port, "MainControllerCD", "PosOrder");
         systemEnable = null; // Not using this signal
         System.out.println("Successfully connected to SystemJ server");
         } catch (Exception e) {
@@ -69,6 +70,7 @@ SimpleClient BottleSend, LiquidAmount1, LiquidAmount2,systemEnable;
             BottleSend = null;
             LiquidAmount1 = null;
             LiquidAmount2 = null;
+            posOrder = null;
             systemEnable = null;
         }
  
@@ -385,7 +387,7 @@ SimpleClient BottleSend, LiquidAmount1, LiquidAmount2,systemEnable;
     }
 
     private void submitOrder() {
-        if (BottleSend == null || LiquidAmount1 == null || LiquidAmount2 == null) {
+        if (BottleSend == null || LiquidAmount1 == null || LiquidAmount2 == null || posOrder == null) {
             JOptionPane.showMessageDialog(mainFrame, "Error: SystemJ connection not established.");
             return;
         }
@@ -537,8 +539,13 @@ SimpleClient BottleSend, LiquidAmount1, LiquidAmount2,systemEnable;
             BottleSend.sustain(currentProcessingOrder.getBottleQuantity());
             LiquidAmount1.sustain(currentProcessingOrder.getLiquidAmount1());
             LiquidAmount2.sustain(currentProcessingOrder.getLiquidAmount2());
+            posOrder.sustain(); // Send just the signal without any data
             
-            System.out.println("Order sent to SystemJ: " + currentProcessingOrder.getOrderId());
+            System.out.println("Order sent to SystemJ: " + currentProcessingOrder.getOrderId() + 
+                             " | Bottles: " + currentProcessingOrder.getBottleQuantity() +
+                             " | Liquid1: " + currentProcessingOrder.getLiquidAmount1() +
+                             " | Liquid2: " + currentProcessingOrder.getLiquidAmount2() +
+                             " | PosOrder signal sent");
             
             // Remove processed order from queue (it's now being processed)
             orderQueue.remove(0);
